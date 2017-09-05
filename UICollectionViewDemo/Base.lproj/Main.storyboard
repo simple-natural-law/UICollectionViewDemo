@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="-540" y="249"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Home Table View Controller-->
         <scene sceneID="UBA-yp-vNr">
             <objects>
-                <tableViewController id="5nE-ex-812" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="HomeTableViewController" id="5nE-ex-812" customClass="HomeTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rlt-Qt-Piy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
