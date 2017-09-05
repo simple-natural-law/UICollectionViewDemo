@@ -13,6 +13,7 @@
 		1A428C0A1F5E37F3008FC3E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A428C091F5E37F3008FC3E0 /* Assets.xcassets */; };
 		1A428C0D1F5E37F3008FC3E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A428C0B1F5E37F3008FC3E0 /* LaunchScreen.storyboard */; };
 		1A428C191F5E3BF7008FC3E0 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A428C181F5E3BF7008FC3E0 /* HomeTableViewController.m */; };
+		1A428C1D1F5E3FF9008FC3E0 /* BaseDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A428C1C1F5E3FF9008FC3E0 /* BaseDemoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		1A428C0E1F5E37F3008FC3E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A428C171F5E3BF7008FC3E0 /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
 		1A428C181F5E3BF7008FC3E0 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
+		1A428C1B1F5E3FF9008FC3E0 /* BaseDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDemoViewController.h; sourceTree = "<group>"; };
+		1A428C1C1F5E3FF9008FC3E0 /* BaseDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDemoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		1A428BFC1F5E37F3008FC3E0 /* UICollectionViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				1A428C1A1F5E3F42008FC3E0 /* UICollectionView基础运用 */,
 				1A428C001F5E37F3008FC3E0 /* AppDelegate.h */,
 				1A428C011F5E37F3008FC3E0 /* AppDelegate.m */,
 				1A428C171F5E3BF7008FC3E0 /* HomeTableViewController.h */,
@@ -77,6 +81,15 @@
 				1A428BFE1F5E37F3008FC3E0 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1A428C1A1F5E3F42008FC3E0 /* UICollectionView基础运用 */ = {
+			isa = PBXGroup;
+			children = (
+				1A428C1B1F5E3FF9008FC3E0 /* BaseDemoViewController.h */,
+				1A428C1C1F5E3FF9008FC3E0 /* BaseDemoViewController.m */,
+			);
+			path = "UICollectionView基础运用";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,6 +166,7 @@
 			files = (
 				1A428C021F5E37F3008FC3E0 /* AppDelegate.m in Sources */,
 				1A428C191F5E3BF7008FC3E0 /* HomeTableViewController.m in Sources */,
+				1A428C1D1F5E3FF9008FC3E0 /* BaseDemoViewController.m in Sources */,
 				1A428BFF1F5E37F3008FC3E0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

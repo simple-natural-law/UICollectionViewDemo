@@ -10,6 +10,8 @@
 
 @interface HomeTableViewController ()
 
+@property (nonatomic, strong) NSArray *dataSource;
+
 @end
 
 @implementation HomeTableViewController
@@ -26,6 +28,8 @@
     self.title = @"UICollectionView使用";
     
     self.view.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
+    
+    self.dataSource = @[@{@"title":@"UICollectionView基础运用",@"target":@"BaseDemoViewController"}];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -41,7 +45,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 5;
+    return self.dataSource.count;
 }
 
 
@@ -49,7 +53,7 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DemoCell" forIndexPath:indexPath];
     
-    cell.textLabel.text = @"UICollectionView基础运用";
+    cell.textLabel.text = self.dataSource[indexPath.row][@"title"];
     
     return cell;
 }
@@ -73,6 +77,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    UIViewController *targetVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:self.dataSource[indexPath.row][@"target"]];
+    
+    [self.navigationController pushViewController:targetVC animated:YES];
 }
 
 @end
