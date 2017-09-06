@@ -6,7 +6,7 @@
 
 ## 基础
 UICollectionView把视图要展现的数据以及数据的排列与视图的布局方式分开来管理。在开发过程中，开发者自行管理视图要展现的数据，而视图的布局呈现则由许多不同的对象来管理。表1-1列出了UIKit中的集合视图类，并根据其在集合视图中的用途进行了划分。
-######表1-1
+###### 表1-1
 | 目的 | 类/协议 | 描述 |
 | ------ | ------- | ------- |
 | 顶层容器和管理者 | UICollectionView UICollectionViewController | UICollectionView定义了显示视图内容的空间，它继承自[UIScrollView](https://developer.apple.com/documentation/uikit/uiscrollview)，能够根据内容的高度来调整其滚动区域。它的layout布局对象会提供布局信息来呈现数据。UICollectionViewController对象提供了一个UICollectionView的视图控制器级管理支持。 |
