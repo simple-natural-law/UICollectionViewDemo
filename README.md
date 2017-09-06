@@ -5,7 +5,7 @@
 [UICollectionView](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/CollectionViewBasics/CollectionViewBasics.html#//apple_ref/doc/uid/TP40012334-CH2-SW7)是iOS开发中最常用的UI控件之一，我们可以使用它来管理一组有序的不同尺寸的视图，并以可自定制的布局来展示它们。UICollectionView还支持动画，当视图被插入，删除或重新排序时，就会触发动画，动画是支持自定义的。为了更好的使用UICollectionView，我们有必要对其进行深入了解。
 
 ## 基础
-UICollectionView把视图要展现的数据以及数据的排列与视图的布局方式分开来管理。在开发过程中，开发者自行管理视图要展现的数据，而视图的布局呈现则由许多不同的对象来管理。表1-1列出了UIKit中的集合视图类，并根据其在集合视图中的用途进行了划分。
+UICollectionView把视图要展现的数据以及数据的排列与视图的布局方式分开来管理。在开发过程中，开发者自行管理视图要展现的数据，而视图的布局呈现则由许多不同的对象来管理。表1-1列出了UIKit中的集合视图类，并根据它们在集合视图中的作用进行了划分。
 ###### 表1-1
 | 目的 | 类/协议 | 描述 |
 | ------ | ------- | ------- |
