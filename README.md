@@ -48,14 +48,14 @@ UICollectionView支持三种不同类型的可重用视图，每种视图都具�
 UICollectionView必须具有data source对象，data source对象提供了要显示的内容。它可以是一个数据模型对象，也可以是管理UICollectionView的视图控制器，data source对象的唯一要求是它必须能够提供UICollectionView所需的所有信息。delegate对象是可选的，用于管理与内容的呈现和交互。虽然delegate对象的主要职责是管理cell的选中和高亮状态，但可以扩展delegate以提供其他信息。例如，流布局就扩展了delegate对象行为来定制布局，例如，cell的大小和它们之间的间距。
 
 ### UICollectionViewDataSource
-- 提供集合视图包含的section(分区)数量
+提供集合视图包含的section(分区)数量
 ```
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView*)collectionView
 {
 return [_dataArray count];
 }
 ```
-- 提供每个section包含的item(单元格)数量
+提供每个section包含的item(单元格)数量
 ```
 - (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section 
 {
@@ -63,7 +63,7 @@ NSArray* sectionArray = [_dataArray objectAtIndex:section];
 return [sectionArray count];
 }
 ```
-- 对应section和row提供要展示的cell
+对应section和row提供要展示的cell
 ```
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
 cellForItemAtIndexPath:(NSIndexPath *)indexPath 
