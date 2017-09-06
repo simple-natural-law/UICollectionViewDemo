@@ -14,6 +14,7 @@
 {
     CGFloat _itemWidth;
 }
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 
@@ -27,6 +28,8 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     _itemWidth = ([UIScreen mainScreen].bounds.size.width-80.0)/3.0;
+    
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer"];
 }
 
 
@@ -64,6 +67,15 @@
     cell.layer.cornerRadius = 5.0;
     
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footer" forIndexPath:indexPath];
+    
+    supplementaryView.backgroundColor = [UIColor lightGrayColor];
+    
+    return supplementaryView;
 }
 
 
