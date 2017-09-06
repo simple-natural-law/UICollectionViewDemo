@@ -19,5 +19,26 @@ UICollectionView把视图要展现的数据以及数据的排列与视图的布�
 
 上表展示了与UICollectionView相关联的核心对象之间的关系。UICollectionView从它的data source对象中获取要展示的cell的信息。我们需要自行提供data source和delegate对象去管理cell的内容，包括cell的选中和高亮等状态。布局对象负责决定cell所在的位置，布局属性对象负责决定cell的视觉效果属性，它们将布局属性对象传递给UICollectionView，UICollectionView接收到布局信息后创建并展示Cell。
 
-
+###### 图1-1
 ![](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_objects_2x.png)
+
+### 重用视图提高性能
+UICollectionView通过复用已被回收的单元视图来提高效率，当单元视图滚动到屏幕外时，它们不会被删除，但会被移出容器视图并放置到重用队列中。当有新的内容将要滚动到屏幕中时，如果重用队列中有可复用的单元视图，会首先从重用队列中取，并重置被取出来的单元视图的数据，然后将其添加到容器视图中展示。如果重用队列没有可复用的单元视图，这时才会新创建一个单元视图去展示。为了方便这种循环，UICollectionView中展示的单元视图都必须继承自UICollectionReusableView类。
+
+UICollectionView支持三种不同类型的可重用视图，每种视图都具有特定的用途：
+>* cell(单元格)展示UICollectionView的主要内容，每个cell展示内容来自与我们提供的data source对象。每个cell都必须是UICollectionViewCell的实例，同时我们也可以根据需要对其子类化。cell对象支持管理自己的选中和高亮状态。
+>* supplementary view(补充视图)展示每个section(分区)的信息。和cell相同的是，supplementary views也是数据驱动的。不同的是，supplementary views是可选的而不是强制的。supplementary views的使用和布局是由布局对象管理的，系统提供的流布局就支持设置headers和footers作为可选的supplementary views。
+>* decoration view(装饰视图)与data source对象提供的数据不相关，完全属于布局对象。布局对象可能会使用它来实现自定义背景外观。
+
+### 布局对象控制视图的视觉效果
+布局对象负责确定UICollectionView中每个单元格(item)的位置和视觉样式。虽然data source对象提供了要展示的视图和实际内容，但布局对象确定了这些视图的位置，大小以及其他与外观相关的属性。这种责任划分使得我们能够动态的更改布局，而无需更改data source对象提供的数据。
+
+布局对象并不拥有任何视图，它只会生成用来描述cell，supplementary view和decoration view的位置，大小，视觉样式的属性，并将这些属性传递给UICollectionView，UICollectionView将这些属性应用于实际的视图对象。
+
+布局对象可以随意生成视图的位置，大小以及视觉样式属性，没有任何限制。只有布局对象能改变视图在UICollectionView中的位置，它能移动视图，也能随机切换横竖屏，甚至能复位某视图而不用考虑此视图周围的视图。例如，如果有需要，布局对象可以将所有视图叠加在一起。
+
+图1-2显示了垂直滚动的流布局对象如何布置cell和supplementary view。在垂直滚动流布局中，内容区域的宽度保持固定，高度随着内容高度的增加而增加。布局对象一次只放置一个cell或supplementary view，在放置前会先计算出cell或supplementary view在容器视图中的frame，为cell或supplementary view选择最合适的位置。
+###### 图1-2
+![](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_basics_2x.png)
+
+## 简单使用
