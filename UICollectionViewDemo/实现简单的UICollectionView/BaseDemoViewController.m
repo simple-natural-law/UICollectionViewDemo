@@ -158,6 +158,76 @@
     }
 }
 
+#pragma mark- UICollectionViewDelegate
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section)
+    {
+        case 0:
+            return YES;
+            break;
+        case 1:
+            return NO;
+            break;
+        case 2:
+            return YES;
+            break;
+        default:
+            return YES;
+            break;
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    
+    cell.contentView.backgroundColor = [UIColor lightGrayColor];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    
+    cell.contentView.backgroundColor = indexPath.section == 0 ? [UIColor greenColor] : [UIColor yellowColor];
+}
+
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section)
+    {
+        case 0:
+            return YES;
+            break;
+        case 1:
+            return NO;
+            break;
+        case 2:
+            return YES;
+            break;
+        default:
+            return YES;
+            break;
+    }
+}
+
+// called when the user taps on an already-selected item in multi-select mode
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
 
 #pragma mark- UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

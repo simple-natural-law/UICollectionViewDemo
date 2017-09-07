@@ -5,7 +5,7 @@
 [UICollectionView](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/CollectionViewBasics/CollectionViewBasics.html#//apple_ref/doc/uid/TP40012334-CH2-SW7)是iOS开发中最常用的UI控件之一，我们可以使用它来管理一组有序的不同尺寸的视图，并以可自定制的布局来展示它们。UICollectionView还支持动画，当视图被插入，删除或重新排序时，就会触发动画，动画是支持自定义的。为了更好的使用UICollectionView，我们有必要对其进行深入了解。
 
 ## 基础
-### UICollectionView是多个对象的协作
+### UICollectionView是由多个对象的协作实现的
 UICollectionView把视图要展现的数据以及数据的排列与视图的布局方式分开来管理。在开发过程中，开发者自行管理视图要展现的数据，而视图的布局呈现则由许多不同的对象来管理。下表列出了UIKit中的集合视图类，并根据它们在集合视图中的作用进行了划分。
 
 | 目的 | 类/协议 | 描述 |
@@ -48,14 +48,14 @@ UICollectionView支持三种不同类型的可重用视图，每种视图都具�
 我们必须为UICollectionView提供一个data source对象，它为UICollectionView提供了要显示的内容。它可以是一个数据模型对象，也可以是管理UICollectionView的视图控制器，data source对象的唯一要求是它必须能够提供UICollectionView所需的所有信息。delegate对象是可选的，用于管理和内容的呈现，交互有关的方面。delegate对象的主要职责是管理cell的选中和高亮状态，但可以扩展delegate以提供其他信息，流布局就扩展了delegate对象行为来定制布局，例如，cell的大小和它们之间的间距。
 
 ### UICollectionViewDataSource
-提供集合视图包含的section(分区)数量
+提供集合视图包含的section(分区)数量：
 ```
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView*)collectionView
 {
 return [_dataArray count];
 }
 ```
-提供每个section包含的item(单元格)数量
+提供每个section包含的item(单元格)数量：
 ```
 - (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section 
 {
@@ -63,16 +63,16 @@ NSArray* sectionArray = [_dataArray objectAtIndex:section];
 return [sectionArray count];
 }
 ```
-根据IndexPath提供需要要显示的cell
+根据IndexPath提供需要显示的cell：
 ```
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-cellForItemAtIndexPath:(NSIndexPath *)indexPath 
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath 
 {
 UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+
 return cell;
 }
 ```
-根据IndexPath提供需要显示的supplementary view，流布局的supplementary view分为Header和Footer两种类型
+根据IndexPath提供需要显示的supplementary view，流布局的supplementary view分为Header和Footer两种类型：
 ```
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
@@ -80,14 +80,65 @@ return cell;
 if ([kind isEqualToString:UICollectionElementKindSectionHeader])
 {
 UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"HeaderReuseIdentifier" forIndexPath:indexPath];
+
 return supplementaryView;
 }else 
 {
 UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterReuseIdentifier" forIndexPath:indexPath];
+
 return supplementaryView;
 }
 }
 ```
+
+### UICollectionViewDelegate
+设置cell是否能被选中(点击是否有效)：
+```
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+return YES;
+}
+```
+已选中cell时，可以在此方法中执行我们想要的操作：
+```
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+
+}
+```
+已取消选中cell时，可以在此方法中执行我们想要的操作：
+```
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+
+}
+```
+设置cell被选中时是否支持高亮：
+```
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+return YES;
+}
+```
+cell被选中变为高亮状态后，会调用这个方法，我们可以在这里去改变cell的背景色:
+```
+- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+
+cell.contentView.backgroundColor = [UIColor lightGrayColor];
+}
+```
+cell被取消选中变为普通状态后，会调用这个方法，我们可以在这里还原cell的背景色：
+```
+- (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
+{
+UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+
+cell.contentView.backgroundColor = [UIColor whiteColor];
+}
+```
+
 ### cell和supplementary view的重用
 视图的重用避免了不断生成和销毁对象的操作，提高了程序运行的效率。要想重用cell和supplementary view，首先需要注册cell和supplementary view，有种三种注册方式：
 
@@ -99,5 +150,6 @@ return supplementaryView;
 
 > 使用纯代码自定义cell和supplementary view时，需要重写`- (instancetype)initWithFrame:(CGRect)frame`方法，`- (instancetype)init`方法不会被调用。
 
-data source对象为UICollectionView配置cell和supplementary view时，使用`- (UICollectionViewCell *)dequeueReusableCellWithReuseIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath`方法直接从重用队列中取cell，使用`- (UICollectionReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)elementKind withReuseIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath`方法直接从重用队列中取supplementary view。当重用队列中没有可复用的视图时，runtime会自动帮我们新创建一个可用的视图。
+data source对象为UICollectionView配置cell和supplementary view时，使用`- (UICollectionViewCell *)dequeueReusableCellWithReuseIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath`方法直接从重用队列中取cell，使用`- (UICollectionReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)elementKind withReuseIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath`方法直接从重用队列中取supplementary view。当重用队列中没有可复用的视图时，会自动帮我们新创建一个可用的视图。
+
 
