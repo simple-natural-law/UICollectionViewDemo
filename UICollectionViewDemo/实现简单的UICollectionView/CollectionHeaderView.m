@@ -10,12 +10,14 @@
 
 @implementation CollectionHeaderView
 
-- (instancetype)init
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super init];
+    self = [super initWithFrame:frame];
     
     if (self)
     {
+        self.backgroundColor = [UIColor lightGrayColor];
+        
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:self.bounds];
         
         titleLabel.textAlignment = NSTextAlignmentCenter;
@@ -32,12 +34,14 @@
 
 @implementation CollectionFooterView
 
-- (instancetype)init
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super init];
+    self = [super initWithFrame:frame];
     
     if (self)
     {
+        self.backgroundColor = [UIColor cyanColor];
+        
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:self.bounds];
         
         titleLabel.textAlignment = NSTextAlignmentCenter;

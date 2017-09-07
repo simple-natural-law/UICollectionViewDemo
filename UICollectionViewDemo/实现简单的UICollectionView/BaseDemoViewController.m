@@ -8,6 +8,9 @@
 
 #import "BaseDemoViewController.h"
 #import "CollectionHeaderView.h"
+#import "StoryboardCell.h"
+#import "CodeCell.h"
+#import "XibCell.h"
 
 
 @interface BaseDemoViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
@@ -30,11 +33,18 @@
     
     _itemWidth = ([UIScreen mainScreen].bounds.size.width-80.0)/3.0;
     
-    // 纯代码布局时，注册Supplementary View
+    // 纯代码布局时，注册cell和Supplementary View
+    [self.collectionView registerClass:[CodeCell class] forCellWithReuseIdentifier:@"CodeCell"];
+    
     [self.collectionView registerClass:[CollectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderB"];
+    
     [self.collectionView registerClass:[CollectionFooterView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterB"];
-    // Xib布局时，注册Supplementary View
+    
+    // Xib布局时，注册cell和Supplementary View
+    [self.collectionView registerNib:[UINib nibWithNibName:@"XibCell" bundle:nil] forCellWithReuseIdentifier:@"XibCell"];
+    
     [self.collectionView registerNib:[UINib nibWithNibName:@"CustomHeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderC"];
+    
     [self.collectionView registerNib:[UINib nibWithNibName:@"CustomFooterView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterC"];
 }
 
@@ -52,23 +62,39 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellA" forIndexPath:indexPath];
-    
-    switch (indexPath.section) {
+    switch (indexPath.section)
+    {
         case 0:
-            cell.contentView.backgroundColor = [UIColor greenColor];
+        {
+            StoryboardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"StoryboardCell" forIndexPath:indexPath];
+            
+            cell.footLabel.text = [NSString stringWithFormat:@"(%ld,%ld)",indexPath.row,indexPath.section];
+            
+            return cell;
+        }
             break;
         case 1:
-            cell.contentView.backgroundColor = [UIColor yellowColor];
+        {
+            CodeCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CodeCell" forIndexPath:indexPath];
+            
+            cell.headLabel.text = [NSString stringWithFormat:@"(%ld,%ld)",indexPath.row,indexPath.section];
+            
+            return cell;
+        }
             break;
         case 2:
-            cell.contentView.backgroundColor = [UIColor redColor];
+        {
+            XibCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"XibCell" forIndexPath:indexPath];
+            
+            cell.textLabel.text = [NSString stringWithFormat:@"(%ld,%ld)",indexPath.row,indexPath.section];
+            
+            return cell;
+        }
             break;
         default:
+            return nil;
             break;
     }
-    
-    return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
@@ -86,7 +112,7 @@
                 break;
             case 1:
             {
-                UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"HeaderB" forIndexPath:indexPath];
+                CollectionHeaderView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"HeaderB" forIndexPath:indexPath];
                 return supplementaryView;
             }
                 break;
@@ -107,18 +133,21 @@
             case 0:
             {
                 UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterA" forIndexPath:indexPath];
+                
                 return supplementaryView;
             }
                 break;
             case 1:
             {
-                UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterB" forIndexPath:indexPath];
+                CollectionFooterView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterB" forIndexPath:indexPath];
+                
                 return supplementaryView;
             }
                 break;
             case 2:
             {
                 UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterC" forIndexPath:indexPath];
+                
                 return supplementaryView;
             }
                 break;

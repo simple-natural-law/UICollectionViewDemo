@@ -17,6 +17,10 @@
 		1A428C331F611BB0008FC3E0 /* CollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A428C2F1F611BB0008FC3E0 /* CollectionHeaderView.m */; };
 		1A428C341F611BB0008FC3E0 /* CustomFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A428C301F611BB0008FC3E0 /* CustomFooterView.xib */; };
 		1A428C351F611BB0008FC3E0 /* CustomHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A428C311F611BB0008FC3E0 /* CustomHeaderView.xib */; };
+		1A428C381F611CE6008FC3E0 /* StoryboardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A428C371F611CE6008FC3E0 /* StoryboardCell.m */; };
+		1A428C3C1F611E13008FC3E0 /* XibCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A428C3A1F611E13008FC3E0 /* XibCell.m */; };
+		1A428C3D1F611E13008FC3E0 /* XibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A428C3B1F611E13008FC3E0 /* XibCell.xib */; };
+		1A428C401F611E9E008FC3E0 /* CodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A428C3F1F611E9E008FC3E0 /* CodeCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,13 @@
 		1A428C2F1F611BB0008FC3E0 /* CollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionHeaderView.m; sourceTree = "<group>"; };
 		1A428C301F611BB0008FC3E0 /* CustomFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomFooterView.xib; sourceTree = "<group>"; };
 		1A428C311F611BB0008FC3E0 /* CustomHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomHeaderView.xib; sourceTree = "<group>"; };
+		1A428C361F611CE6008FC3E0 /* StoryboardCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoryboardCell.h; sourceTree = "<group>"; };
+		1A428C371F611CE6008FC3E0 /* StoryboardCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryboardCell.m; sourceTree = "<group>"; };
+		1A428C391F611E13008FC3E0 /* XibCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XibCell.h; sourceTree = "<group>"; };
+		1A428C3A1F611E13008FC3E0 /* XibCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XibCell.m; sourceTree = "<group>"; };
+		1A428C3B1F611E13008FC3E0 /* XibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XibCell.xib; sourceTree = "<group>"; };
+		1A428C3E1F611E9E008FC3E0 /* CodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeCell.h; sourceTree = "<group>"; };
+		1A428C3F1F611E9E008FC3E0 /* CodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +110,13 @@
 				1A428C2F1F611BB0008FC3E0 /* CollectionHeaderView.m */,
 				1A428C301F611BB0008FC3E0 /* CustomFooterView.xib */,
 				1A428C311F611BB0008FC3E0 /* CustomHeaderView.xib */,
+				1A428C361F611CE6008FC3E0 /* StoryboardCell.h */,
+				1A428C371F611CE6008FC3E0 /* StoryboardCell.m */,
+				1A428C391F611E13008FC3E0 /* XibCell.h */,
+				1A428C3A1F611E13008FC3E0 /* XibCell.m */,
+				1A428C3B1F611E13008FC3E0 /* XibCell.xib */,
+				1A428C3E1F611E9E008FC3E0 /* CodeCell.h */,
+				1A428C3F1F611E9E008FC3E0 /* CodeCell.m */,
 			);
 			path = "实现简单的UICollectionView";
 			sourceTree = "<group>";
@@ -165,6 +183,7 @@
 				1A428C351F611BB0008FC3E0 /* CustomHeaderView.xib in Resources */,
 				1A428C0D1F5E37F3008FC3E0 /* LaunchScreen.storyboard in Resources */,
 				1A428C0A1F5E37F3008FC3E0 /* Assets.xcassets in Resources */,
+				1A428C3D1F611E13008FC3E0 /* XibCell.xib in Resources */,
 				1A428C341F611BB0008FC3E0 /* CustomFooterView.xib in Resources */,
 				1A428C081F5E37F3008FC3E0 /* Main.storyboard in Resources */,
 			);
@@ -177,10 +196,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A428C401F611E9E008FC3E0 /* CodeCell.m in Sources */,
+				1A428C3C1F611E13008FC3E0 /* XibCell.m in Sources */,
 				1A428C021F5E37F3008FC3E0 /* AppDelegate.m in Sources */,
 				1A428C191F5E3BF7008FC3E0 /* HomeTableViewController.m in Sources */,
 				1A428C321F611BB0008FC3E0 /* BaseDemoViewController.m in Sources */,
 				1A428BFF1F5E37F3008FC3E0 /* main.m in Sources */,
+				1A428C381F611CE6008FC3E0 /* StoryboardCell.m in Sources */,
 				1A428C331F611BB0008FC3E0 /* CollectionHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
