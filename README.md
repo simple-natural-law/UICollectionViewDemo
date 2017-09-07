@@ -90,6 +90,11 @@ return supplementaryView;
 ```
 ### cell和supplementary view的重用
 视图的重用避免了不断生成和销毁对象的操作，提高了程序运行的效率。要想重用cell和supplementary view，首先需要注册cell和supplementary view，有种三种注册方式：
+
 - 使用storyboard布局时，直接拖拽cell或者supplementary view到storyboard中，设置好重用标识即可。
-- 使用xib布局时，使用`- (void)registerNib:(nullable UINib *)nib forCellWithReuseIdentifier:(NSString *)identifier`方法来注册cell，使用`- (void)registerNib:(nullable UINib *)nib forSupplementaryViewOfKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier`方法来注册supplementary view。
-- 使用代码布局时，使用`- (void)registerClass:(nullable Class)cellClass forCellWithReuseIdentifier:(NSString *)identifier`方法来注册cell，使用`- (void)registerClass:(nullable Class)viewClass forSupplementaryViewOfKind:(NSString *)elementKind withReuseIdentifier:(NSString *)identifier`方法来注册supplementary view。
+
+- 使用xib布局时，使用`- (void)registerNib:(UINib *)nib forCellWithReuseIdentifier:(NSString *)identifier`方法来注册cell，使用`- (void)registerNib:(UINib *)nib forSupplementaryViewOfKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier`方法来注册supplementary view。
+
+- 使用代码布局时，使用`- (void)registerClass:(Class)cellClass forCellWithReuseIdentifier:(NSString *)identifier`方法来注册cell，使用`- (void)registerClass:(Class)viewClass forSupplementaryViewOfKind:(NSString *)elementKind withReuseIdentifier:(NSString *)identifier`方法来注册supplementary view。
+
+data source对象为UICollectionView配置cell和supplementary view时，使用`- (UICollectionViewCell *)dequeueReusableCellWithReuseIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath`方法直接从重用队列中取cell，使用`- (UICollectionReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)elementKind withReuseIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath`方法直接从重用队列中取supplementary view。当重用队列中没有可复用的视图时，runtime会自动帮我们新创建一个可用的视图。
