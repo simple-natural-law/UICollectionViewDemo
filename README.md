@@ -45,7 +45,7 @@ UICollectionView支持三种不同类型的可重用视图，每种视图都具�
 ![图1-2](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_basics_2x.png)
 
 ## 实现一个简单的UICollectionView
-UICollectionView必须拥有一个data source对象，data source对象提供了要显示的内容。它可以是一个数据模型对象，也可以是管理UICollectionView的视图控制器，data source对象的唯一要求是它必须能够提供UICollectionView所需的所有信息。delegate对象是可选的，用于管理与内容的呈现和交互。虽然delegate对象的主要职责是管理cell的选中和高亮状态，但可以扩展delegate以提供其他信息。例如，流布局就扩展了delegate对象行为来定制布局，例如，cell的大小和它们之间的间距。
+我们必须为UICollectionView提供一个data source对象，它为UICollectionView提供了要显示的内容。它可以是一个数据模型对象，也可以是管理UICollectionView的视图控制器，data source对象的唯一要求是它必须能够提供UICollectionView所需的所有信息。delegate对象是可选的，用于管理和内容的呈现，交互有关的方面。delegate对象的主要职责是管理cell的选中和高亮状态，但可以扩展delegate以提供其他信息，流布局就扩展了delegate对象行为来定制布局，例如，cell的大小和它们之间的间距。
 
 ### UICollectionViewDataSource
 提供集合视图包含的section(分区)数量
@@ -63,35 +63,33 @@ NSArray* sectionArray = [_dataArray objectAtIndex:section];
 return [sectionArray count];
 }
 ```
-根据section和row提供对应的需要要显示的cell
+根据IndexPath提供需要要显示的cell
 ```
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
 cellForItemAtIndexPath:(NSIndexPath *)indexPath 
 {
 UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
-
 return cell;
 }
 ```
-根据section和row提供对应的需要显示的supplementary view，supplementary view分为Header和Footer两种类型
+根据IndexPath提供需要显示的supplementary view，流布局的supplementary view分为Header和Footer两种类型
 ```
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
 // UICollectionElementKindSectionHeader返回Header，UICollectionElementKindSectionFooter返回Footer
 if ([kind isEqualToString:UICollectionElementKindSectionHeader])
 {
-UICollectionReusableView *supplementaryView = [collectionView 
-dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"HeaderReuseIdentifier" 
-forIndexPath:indexPath];
-
+UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"HeaderReuseIdentifier" forIndexPath:indexPath];
 return supplementaryView;
 }else 
 {
-UICollectionReusableView *supplementaryView = [collectionView 
-dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterReuseIdentifier" 
-forIndexPath:indexPath];
-
+UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterReuseIdentifier" forIndexPath:indexPath];
 return supplementaryView;
 }
 }
 ```
+### cell和supplementary view的重用
+视图的重用避免了不断生成和销毁对象的操作，提高了程序运行的效率。要想重用cell和supplementary view，首先需要注册cell和supplementary view，有种三种注册方式：
+- 使用storyboard布局时，直接拖拽cell或者supplementary view到storyboard中，设置好重用标识即可。
+- 使用xib布局时，使用`- (void)registerNib:(nullable UINib *)nib forCellWithReuseIdentifier:(NSString *)identifier`方法来注册cell，使用`- (void)registerNib:(nullable UINib *)nib forSupplementaryViewOfKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier`方法来注册supplementary view。
+- 使用代码布局时，使用`- (void)registerClass:(nullable Class)cellClass forCellWithReuseIdentifier:(NSString *)identifier`方法来注册cell，使用`- (void)registerClass:(nullable Class)viewClass forSupplementaryViewOfKind:(NSString *)elementKind withReuseIdentifier:(NSString *)identifier`方法来注册supplementary view。
