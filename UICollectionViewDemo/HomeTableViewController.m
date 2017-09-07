@@ -29,7 +29,7 @@
     
     self.view.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
     
-    self.dataSource = @[@{@"title":@"UICollectionView基础运用",@"target":@"BaseDemoViewController"}];
+    self.dataSource = @[@{@"title":@"实现一个简单的UICollectionView",@"target":@"BaseDemoViewController"}];
 }
 
 - (void)didReceiveMemoryWarning {
