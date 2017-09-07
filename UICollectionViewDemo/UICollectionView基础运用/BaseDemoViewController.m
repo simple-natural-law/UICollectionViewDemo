@@ -7,7 +7,7 @@
 //
 
 #import "BaseDemoViewController.h"
-
+#import "CollectionHeaderView.h"
 
 
 @interface BaseDemoViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
@@ -30,29 +30,31 @@
     
     _itemWidth = ([UIScreen mainScreen].bounds.size.width-80.0)/3.0;
     
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reuseIdentifier"];
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"reuseIdentifier"];
+    // 纯代码布局时，注册Supplementary View
+    [self.collectionView registerClass:[CollectionHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderB"];
+    [self.collectionView registerClass:[CollectionFooterView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterB"];
+    // Xib布局时，注册Supplementary View
+    [self.collectionView registerNib:[UINib nibWithNibName:@"CustomHeaderView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderC"];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"CustomFooterView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterC"];
 }
 
 
 #pragma mark- UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return 3;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 30;
+    return 10;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellA" forIndexPath:indexPath];
     
-    NSInteger remainder = indexPath.row%3;
-    
-    switch (remainder) {
+    switch (indexPath.section) {
         case 0:
             cell.contentView.backgroundColor = [UIColor greenColor];
             break;
@@ -66,23 +68,65 @@
             break;
     }
     
-    cell.layer.cornerRadius = 5.0;
-    
     return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
     
     if ([kind isEqualToString:UICollectionElementKindSectionHeader])
     {
-        supplementaryView.backgroundColor = [UIColor lightGrayColor];
+        switch (indexPath.section)
+        {
+            case 0:
+            {
+                UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"HeaderA" forIndexPath:indexPath];
+                return supplementaryView;
+            }
+                break;
+            case 1:
+            {
+                UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"HeaderB" forIndexPath:indexPath];
+                return supplementaryView;
+            }
+                break;
+            case 2:
+            {
+                UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"HeaderC" forIndexPath:indexPath];
+                return supplementaryView;
+            }
+                break;
+            default:
+                return nil;
+                break;
+        }
     }else
     {
-        supplementaryView.backgroundColor = [UIColor darkGrayColor];
+        switch (indexPath.section)
+        {
+            case 0:
+            {
+                UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterA" forIndexPath:indexPath];
+                return supplementaryView;
+            }
+                break;
+            case 1:
+            {
+                UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterB" forIndexPath:indexPath];
+                return supplementaryView;
+            }
+                break;
+            case 2:
+            {
+                UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterC" forIndexPath:indexPath];
+                return supplementaryView;
+            }
+                break;
+            default:
+                return nil;
+                break;
+        }
     }
-    return supplementaryView;
 }
 
 

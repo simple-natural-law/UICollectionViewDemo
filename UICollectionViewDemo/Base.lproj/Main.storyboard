@@ -71,13 +71,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="o9u-SZ-Mxw">
                                     <size key="itemSize" width="135" height="121"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="50" height="50"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CellA" id="341-Ta-Pis">
-                                        <rect key="frame" x="0.0" y="0.0" width="135" height="121"/>
+                                        <rect key="frame" x="0.0" y="50" width="135" height="121"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="135" height="121"/>
@@ -85,6 +85,44 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderA" id="HSG-DD-K2J">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header(storyboard)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ybp-uj-aUg">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.15686274510000001" green="0.56862745100000001" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="ybp-uj-aUg" secondAttribute="trailing" id="8XP-zx-Mbg"/>
+                                        <constraint firstItem="ybp-uj-aUg" firstAttribute="leading" secondItem="HSG-DD-K2J" secondAttribute="leading" id="8jg-6r-wW2"/>
+                                        <constraint firstAttribute="bottom" secondItem="ybp-uj-aUg" secondAttribute="bottom" id="Vix-Y9-j1i"/>
+                                        <constraint firstItem="ybp-uj-aUg" firstAttribute="top" secondItem="HSG-DD-K2J" secondAttribute="top" id="bg5-0z-gTb"/>
+                                    </constraints>
+                                </collectionReusableView>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FooterA" id="kHr-7I-016">
+                                    <rect key="frame" x="0.0" y="171" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Footer(storyboard)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coK-ro-1XX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="0.80392156859999997" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="coK-ro-1XX" secondAttribute="trailing" id="IoF-9K-VwX"/>
+                                        <constraint firstItem="coK-ro-1XX" firstAttribute="leading" secondItem="kHr-7I-016" secondAttribute="leading" id="T25-Lo-bDT"/>
+                                        <constraint firstItem="coK-ro-1XX" firstAttribute="top" secondItem="kHr-7I-016" secondAttribute="top" id="Yoi-PI-edp"/>
+                                        <constraint firstAttribute="bottom" secondItem="coK-ro-1XX" secondAttribute="bottom" id="x4X-wi-xDc"/>
+                                    </constraints>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="6mO-1O-t3p" id="bfy-fW-cDH"/>
                                     <outlet property="delegate" destination="6mO-1O-t3p" id="f1D-cX-A6p"/>
