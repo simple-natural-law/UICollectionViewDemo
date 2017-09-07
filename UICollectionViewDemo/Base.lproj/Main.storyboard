@@ -99,6 +99,9 @@
                             <constraint firstItem="Nh4-1w-fSY" firstAttribute="top" secondItem="4Zz-lp-djX" secondAttribute="bottom" id="sYw-cX-2f3"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="Nh4-1w-fSY" id="dZD-Qb-FYo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J8T-aY-BwF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

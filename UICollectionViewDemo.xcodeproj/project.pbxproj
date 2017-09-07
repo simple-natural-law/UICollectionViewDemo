@@ -123,7 +123,7 @@
 				TargetAttributes = {
 					1A428BF91F5E37F3008FC3E0 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 8AWR7HVK86;
+						DevelopmentTeam = TZ9R55GK8Q;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -288,7 +288,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8AWR7HVK86;
+				DEVELOPMENT_TEAM = TZ9R55GK8Q;
 				INFOPLIST_FILE = UICollectionViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xunxin.UICollectionViewDemo;
@@ -302,7 +302,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 8AWR7HVK86;
+				DEVELOPMENT_TEAM = TZ9R55GK8Q;
 				INFOPLIST_FILE = UICollectionViewDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xunxin.UICollectionViewDemo;
