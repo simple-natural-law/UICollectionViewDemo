@@ -215,17 +215,17 @@
 // called when the user taps on an already-selected item in multi-select mode
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
+    return NO;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [collectionView deselectItemAtIndexPath:indexPath animated:NO];
+    NSLog(@"选中%ld-%ld",indexPath.row,indexPath.section);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    NSLog(@"取消选中%ld-%ld",indexPath.row,indexPath.section);
 }
 
 
