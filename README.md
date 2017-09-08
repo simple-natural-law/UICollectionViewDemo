@@ -99,6 +99,13 @@ return supplementaryView;
 return YES;
 }
 ```
+当collectionView的allowsMultipleSelection(多选)属性为YES时，设置是否可以点击取消选中已被选中的cell：
+```
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+return NO;
+}
+```
 已选中cell时，可以在此方法中执行我们想要的操作：
 ```
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -120,7 +127,7 @@ return YES;
 return YES;
 }
 ```
-cell被选中变为高亮状态后，会调用这个方法，我们可以在这里去改变cell的背景色:
+选中cell时触发高亮，会调用这个方法，我们可以在这里去改变cell的背景色:
 ```
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -138,6 +145,10 @@ UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
 cell.contentView.backgroundColor = [UIColor whiteColor];
 }
 ```
+> 这里需要注意的是，我们点击cell时，cell的状态变化过程这样的：手指接触屏幕时，cell状态变为高亮，此时cell还未被选中。当手指离开屏幕后，cell状态变回到普通状态，然后cell被CollectionView选中。当快速点击选中cell时，由于状态变化很快，导致人眼看不出来cell背景色有发生变化，实际上是发生了变化的。而长按选中cell时，可以看到背景色的变化。
+
+![图2-1](http://oaz007vqv.bkt.clouddn.com/cell_selection_semantics_2x.png?imageView/2/w/600)
+
 
 ### cell和supplementary view的重用
 视图的重用避免了不断生成和销毁对象的操作，提高了程序运行的效率。要想重用cell和supplementary view，首先需要注册cell和supplementary view，有种三种注册方式：
@@ -151,5 +162,3 @@ cell.contentView.backgroundColor = [UIColor whiteColor];
 > 使用纯代码自定义cell和supplementary view时，需要重写`- (instancetype)initWithFrame:(CGRect)frame`方法，`- (instancetype)init`方法不会被调用。
 
 data source对象为UICollectionView配置cell和supplementary view时，使用`- (UICollectionViewCell *)dequeueReusableCellWithReuseIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath`方法直接从重用队列中取cell，使用`- (UICollectionReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)elementKind withReuseIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath`方法直接从重用队列中取supplementary view。当重用队列中没有可复用的视图时，会自动帮我们新创建一个可用的视图。
-
-
