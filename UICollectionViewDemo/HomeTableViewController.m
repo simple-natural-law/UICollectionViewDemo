@@ -29,7 +29,8 @@
     
     self.view.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
     
-    self.dataSource = @[@{@"title":@"实现一个简单的UICollectionView",@"target":@"BaseDemoViewController"}];
+    self.dataSource = @[@{@"title":@"实现一个简单的Collection View",@"target":@"BaseDemoViewController"},
+                        @{@"title":@"可编辑的Collection View",@"target":@"EditableViewController"}];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +43,7 @@
 
     return 1;
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 

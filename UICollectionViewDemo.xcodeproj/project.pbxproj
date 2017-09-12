@@ -21,6 +21,7 @@
 		1A428C3C1F611E13008FC3E0 /* XibCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A428C3A1F611E13008FC3E0 /* XibCell.m */; };
 		1A428C3D1F611E13008FC3E0 /* XibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A428C3B1F611E13008FC3E0 /* XibCell.xib */; };
 		1A428C401F611E9E008FC3E0 /* CodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A428C3F1F611E9E008FC3E0 /* CodeCell.m */; };
+		1A919ECE1F6787C200C2DB12 /* EditableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A919ECD1F6787C200C2DB12 /* EditableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,8 @@
 		1A428C3B1F611E13008FC3E0 /* XibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XibCell.xib; sourceTree = "<group>"; };
 		1A428C3E1F611E9E008FC3E0 /* CodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeCell.h; sourceTree = "<group>"; };
 		1A428C3F1F611E9E008FC3E0 /* CodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeCell.m; sourceTree = "<group>"; };
+		1A919ECC1F6787C200C2DB12 /* EditableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableViewController.h; sourceTree = "<group>"; };
+		1A919ECD1F6787C200C2DB12 /* EditableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +82,7 @@
 		1A428BFC1F5E37F3008FC3E0 /* UICollectionViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				1A919ECB1F67875300C2DB12 /* 可编辑的UICollectionView */,
 				1A428C2B1F611BB0008FC3E0 /* 实现简单的UICollectionView */,
 				1A428C001F5E37F3008FC3E0 /* AppDelegate.h */,
 				1A428C011F5E37F3008FC3E0 /* AppDelegate.m */,
@@ -119,6 +123,15 @@
 				1A428C3F1F611E9E008FC3E0 /* CodeCell.m */,
 			);
 			path = "实现简单的UICollectionView";
+			sourceTree = "<group>";
+		};
+		1A919ECB1F67875300C2DB12 /* 可编辑的UICollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				1A919ECC1F6787C200C2DB12 /* EditableViewController.h */,
+				1A919ECD1F6787C200C2DB12 /* EditableViewController.m */,
+			);
+			path = "可编辑的UICollectionView";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +213,7 @@
 				1A428C3C1F611E13008FC3E0 /* XibCell.m in Sources */,
 				1A428C021F5E37F3008FC3E0 /* AppDelegate.m in Sources */,
 				1A428C191F5E3BF7008FC3E0 /* HomeTableViewController.m in Sources */,
+				1A919ECE1F6787C200C2DB12 /* EditableViewController.m in Sources */,
 				1A428C321F611BB0008FC3E0 /* BaseDemoViewController.m in Sources */,
 				1A428BFF1F5E37F3008FC3E0 /* main.m in Sources */,
 				1A428C381F611CE6008FC3E0 /* StoryboardCell.m in Sources */,
@@ -366,6 +380,7 @@
 				1A428C131F5E37F3008FC3E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
