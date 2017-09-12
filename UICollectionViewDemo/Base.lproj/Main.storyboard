@@ -213,6 +213,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Nh4-1w-fSY" id="dZD-Qb-FYo"/>
+                        <outlet property="flowLayout" destination="o9u-SZ-Mxw" id="OcV-CG-mTv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J8T-aY-BwF" userLabel="First Responder" sceneMemberID="firstResponder"/>

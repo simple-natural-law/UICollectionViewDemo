@@ -20,6 +20,8 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
+
 @end
 
 
@@ -32,6 +34,16 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     _itemWidth = ([UIScreen mainScreen].bounds.size.width-80.0)/3.0;
+    
+#warning - 当itemSize，sectionInset，minimumLineSpacing，minimumInteritemSpacing，headerReferenceSize，footerReferenceSize的大小固定时，直接给布局对象对应属性赋值就可。这样做会比通过调用UICollectionViewDelegateFlowLayout委托方法返回的程序执行效率要高。(但这里我还是在委托方法中返回)
+//    self.flowLayout.itemSize     = CGSizeMake(_itemWidth, _itemWidth);
+//    self.flowLayout.sectionInset = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
+//    self.flowLayout.minimumLineSpacing      = 10.0;
+//    self.flowLayout.minimumInteritemSpacing = 10.0;
+//    self.flowLayout.headerReferenceSize = CGSizeMake(self.collectionView.frame.size.width, 40.0);
+//    self.flowLayout.footerReferenceSize = CGSizeMake(self.collectionView.frame.size.width, 40.0);
+    
+    
     
     // 纯代码布局时，注册cell和Supplementary View
     [self.collectionView registerClass:[CodeCell class] forCellWithReuseIdentifier:@"CodeCell"];
