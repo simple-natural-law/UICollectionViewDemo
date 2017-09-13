@@ -173,21 +173,7 @@
 #pragma mark- UICollectionViewDelegate
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.section)
-    {
-        case 0:
-            return YES;
-            break;
-        case 1:
-            return NO;
-            break;
-        case 2:
-            return YES;
-            break;
-        default:
-            return YES;
-            break;
-    }
+    return YES;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
@@ -201,33 +187,31 @@
 {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     
-    cell.contentView.backgroundColor = indexPath.section == 0 ? [UIColor greenColor] : [UIColor yellowColor];
+    switch (indexPath.section) {
+        case 0:
+            cell.contentView.backgroundColor = [UIColor greenColor];
+            break;
+        case 1:
+            cell.contentView.backgroundColor = [UIColor redColor];
+            break;
+        case 2:
+            cell.contentView.backgroundColor = [UIColor yellowColor];
+            break;
+        default:
+            break;
+    }
 }
 
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.section)
-    {
-        case 0:
-            return YES;
-            break;
-        case 1:
-            return NO;
-            break;
-        case 2:
-            return YES;
-            break;
-        default:
-            return YES;
-            break;
-    }
+    return YES;
 }
 
 // called when the user taps on an already-selected item in multi-select mode
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return NO;
+    return YES;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
