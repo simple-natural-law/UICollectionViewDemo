@@ -54,10 +54,10 @@
             </objects>
             <point key="canvasLocation" x="313" y="249"/>
         </scene>
-        <!--可编辑的Collection View-->
+        <!--可多选的Collection View-->
         <scene sceneID="Vfs-VN-q3Q">
             <objects>
-                <viewController storyboardIdentifier="MultipleSelectedViewController" title="可编辑的Collection View" id="gZ8-UV-5Cg" customClass="MultipleSelectedViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MultipleSelectedViewController" title="可多选的Collection View" id="gZ8-UV-5Cg" customClass="MultipleSelectedViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sRn-Tq-1MR"/>
                         <viewControllerLayoutGuide type="bottom" id="ygy-i3-wbH"/>
@@ -82,7 +82,16 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="105" height="103"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="deselected" translatesAutoresizingMaskIntoConstraints="NO" id="FNy-wu-mh8">
+                                                    <rect key="frame" x="89" y="0.0" width="16" height="16"/>
+                                                </imageView>
+                                            </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="FNy-wu-mh8" firstAttribute="top" secondItem="9Ug-zf-VP7" secondAttribute="top" id="XGk-zB-86x"/>
+                                            <constraint firstAttribute="trailing" secondItem="FNy-wu-mh8" secondAttribute="trailing" id="dsC-IL-k7E"/>
+                                        </constraints>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -221,4 +230,7 @@
             <point key="canvasLocation" x="1288.8" y="-452.92353823088462"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="deselected" width="16" height="16"/>
+    </resources>
 </document>
