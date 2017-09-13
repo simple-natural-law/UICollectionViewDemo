@@ -57,7 +57,7 @@
         <!--可编辑的Collection View-->
         <scene sceneID="Vfs-VN-q3Q">
             <objects>
-                <viewController storyboardIdentifier="EditableViewController" title="可编辑的Collection View" id="gZ8-UV-5Cg" customClass="EditableViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MultipleSelectedViewController" title="可编辑的Collection View" id="gZ8-UV-5Cg" customClass="MultipleSelectedViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sRn-Tq-1MR"/>
                         <viewControllerLayoutGuide type="bottom" id="ygy-i3-wbH"/>
