@@ -1,12 +1,12 @@
-#关于UICollectionView使用
+# 关于UICollectionView使用
 
 ## 概述
 
-[UICollectionView](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/CollectionViewBasics/CollectionViewBasics.html#//apple_ref/doc/uid/TP40012334-CH2-SW7)是iOS开发中最常用的UI控件之一，我们可以使用它来管理一组有序的不同尺寸的视图，并以可自定制的布局来展示它们。UICollectionView还支持动画，当视图被插入，删除或重新排序时，就会触发动画，动画是支持自定义的。为了更好的使用UICollectionView，我们有必要对其进行深入了解。
+[UICollectionView](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/CollectionViewBasics/CollectionViewBasics.html#//apple_ref/doc/uid/TP40012334-CH2-SW7)是iOS开发中最常用的UI控件之一，我们可以使用它来管理一组有序的不同尺寸的视图，并以可定制的布局来展示它们。UICollectionView还支持动画，当视图被插入，删除或重新排序时，就会触发动画，动画是支持自定义的。为了更好的使用UICollectionView，我们有必要对其进行深入了解。
 
 ## 基础
 ### UICollectionView是由多个对象协作实现的
-UICollectionView把视图要展现的数据以及数据的排列与视图的布局方式分开来管理。在开发过程中，开发者自行管理视图要展现的数据，而视图的布局呈现则由许多不同的对象来管理。下表列出了UIKit中的集合视图类，并根据它们在集合视图中的作用进行了划分。
+UICollectionView将视图要展现的数据以及数据的排列与视图的布局方式分开来管理。视图的数据内容有我们自行管理，而视图的布局呈现则由许多不同的对象来管理。下表列出了UIKit中的集合视图类，并根据它们在集合视图中的作用进行了划分。
 
 | 目的 | 类/协议 | 描述 |
 |-----|--------|------|
@@ -45,7 +45,7 @@ UICollectionView支持三种不同类型的可重用视图，每种视图都具�
 ![图1-2](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_basics_2x.png)
 
 ## 实现一个简单的UICollectionView
-我们必须为UICollectionView提供一个data source对象，它为UICollectionView提供了要显示的内容。它可以是一个数据模型对象，也可以是管理UICollectionView的视图控制器，data source对象的唯一要求是它必须能够提供UICollectionView所需的所有信息。delegate对象是可选的，用于管理和内容的呈现，交互有关的方面。delegate对象的主要职责是管理cell的选中和高亮状态，但可以扩展delegate以提供其他信息，流布局就扩展了delegate对象行为来定制布局，例如，cell的大小和它们之间的间距。
+我们必须为UICollectionView提供一个data source对象，它为UICollectionView提供了要显示的内容。它可以是一个数据模型对象，也可以是管理UICollectionView的视图控制器，data source对象的唯一要求是它必须能够提供UICollectionView所需的所有信息。delegate对象是可选的，用于管理和内容的呈现，交互有关的方面。delegate对象的主要职责是管理cell的选中和高亮状态，但可以扩展delegate以提供其他信息，流布局对象就扩展了delegate对象行为来定制布局，例如，cell的大小和它们之间的间距。
 
 ### UICollectionViewDataSource
 提供集合视图包含的section(分区)数量：
@@ -149,6 +149,53 @@ cell.contentView.backgroundColor = [UIColor whiteColor];
 
 ![图2-1](http://oaz007vqv.bkt.clouddn.com/cell_selection_semantics_2x.png?imageView/2/w/600)
 
+### UICollectionViewDelegateFlowLayout
+该协议是对`UICollectionViewDelegate`的扩展，能够动态返回cell的大小，和cell之间的间距等。
+
+根据IndexPath返回对应的Cell的大小：
+```
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+return CGSizeMake(80.0, 80.0);
+}
+```
+根据Section返回对应的cell到Collection View到四周边界的距离：
+```
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
+}
+```
+根据Section返回对应的cell之间的行间距：
+```
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+return 10.0;
+}
+```
+根据section返回对应的cell之间的列间距：
+```
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+return 10.0;
+}
+```
+根据section返回对应的Header大小
+```
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+return CGSizeMake(collectionView.frame.size.width, 40.0);
+}
+```
+根据section返回对应的Footer大小
+```
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+{
+return CGSizeMake(collectionView.frame.size.width, 40.0);
+}
+```
+
+> 如果Collection View使用流布局，当cell的大小，cell之间的间距，cell到Collection View四周的边距，Header和Footer的大小固定时，可以直接设置`UICollectionViewFlowLayout`对象的`itemSize`，`minimumLineSpacing`，`minimumInteritemSpacing`，`sectionInset`，`headerReferenceSize`，`footerReferenceSize`属性，这样能够提高程序的运行效率。
 
 ### cell和supplementary view的重用
 视图的重用避免了不断生成和销毁对象的操作，提高了程序运行的效率。要想重用cell和supplementary view，首先需要注册cell和supplementary view，有种三种注册方式：
@@ -162,3 +209,25 @@ cell.contentView.backgroundColor = [UIColor whiteColor];
 > 使用纯代码自定义cell和supplementary view时，需要重写`- (instancetype)initWithFrame:(CGRect)frame`方法，`- (instancetype)init`方法不会被调用。
 
 data source对象为UICollectionView配置cell和supplementary view时，使用`- (UICollectionViewCell *)dequeueReusableCellWithReuseIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath`方法直接从重用队列中取cell，使用`- (UICollectionReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)elementKind withReuseIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath`方法直接从重用队列中取supplementary view。当重用队列中没有可复用的视图时，会自动帮我们新创建一个可用的视图。
+
+### cell的插入，删除和移动
+插入，删除，移动单个cell或者某个section的所有cell时，遵循下面两个步骤：
+
+- 更新数据源对象中的数据内容。
+- 调用对应的插入，删除或者移动方法。
+
+Collection View插入，删除和移动cell之前，必须先对应更新数据源。如果数据源没有更新，程序运行就会崩溃。
+
+当插入，删除或者移动单个cell时，会自动添加动画效果来反映Collection View的更改。如果想要批量插入，删除或者移动cell并附带动画效果，需要调用`- (void)performBatchUpdates:(void (^ __nullable)(void))updates completion:(void (^ __nullable)(BOOL finished))completion`方法，在`updates block`内执行所有插入，删除或移动调用。批量更新时会同时对所有更改进行动画处理，我们可以随意混合调用插入，删除或者移动方法来更新Collection View。
+```
+[self.collectionView performBatchUpdates:^{
+
+NSArray* itemPaths = [self.collectionView indexPathsForSelectedItems];
+
+// Delete the items from the data source.
+[self deleteItemsFromDataSourceAtIndexPaths:itemPaths];
+
+// Now delete the items from the collection view.
+[self.collectionView deleteItemsAtIndexPaths:itemPaths];
+} completion:nil];
+```
