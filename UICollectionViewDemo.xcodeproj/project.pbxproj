@@ -21,6 +21,7 @@
 		1A428C3C1F611E13008FC3E0 /* XibCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A428C3A1F611E13008FC3E0 /* XibCell.m */; };
 		1A428C3D1F611E13008FC3E0 /* XibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A428C3B1F611E13008FC3E0 /* XibCell.xib */; };
 		1A428C401F611E9E008FC3E0 /* CodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A428C3F1F611E9E008FC3E0 /* CodeCell.m */; };
+		1A5E1B101F68D8EC00AA79BE /* SelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B0F1F68D8EC00AA79BE /* SelectCell.m */; };
 		1A919ED21F68D24800C2DB12 /* MultipleSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A919ED11F68D24800C2DB12 /* MultipleSelectedViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,8 @@
 		1A428C3B1F611E13008FC3E0 /* XibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XibCell.xib; sourceTree = "<group>"; };
 		1A428C3E1F611E9E008FC3E0 /* CodeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeCell.h; sourceTree = "<group>"; };
 		1A428C3F1F611E9E008FC3E0 /* CodeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeCell.m; sourceTree = "<group>"; };
+		1A5E1B0E1F68D8EC00AA79BE /* SelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCell.h; sourceTree = "<group>"; };
+		1A5E1B0F1F68D8EC00AA79BE /* SelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCell.m; sourceTree = "<group>"; };
 		1A919ED01F68D24800C2DB12 /* MultipleSelectedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleSelectedViewController.h; sourceTree = "<group>"; };
 		1A919ED11F68D24800C2DB12 /* MultipleSelectedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleSelectedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -130,6 +133,8 @@
 			children = (
 				1A919ED01F68D24800C2DB12 /* MultipleSelectedViewController.h */,
 				1A919ED11F68D24800C2DB12 /* MultipleSelectedViewController.m */,
+				1A5E1B0E1F68D8EC00AA79BE /* SelectCell.h */,
+				1A5E1B0F1F68D8EC00AA79BE /* SelectCell.m */,
 			);
 			path = "可多选的UICollectionView";
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				1A428BFF1F5E37F3008FC3E0 /* main.m in Sources */,
 				1A428C381F611CE6008FC3E0 /* StoryboardCell.m in Sources */,
 				1A428C331F611BB0008FC3E0 /* CollectionHeaderView.m in Sources */,
+				1A5E1B101F68D8EC00AA79BE /* SelectCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

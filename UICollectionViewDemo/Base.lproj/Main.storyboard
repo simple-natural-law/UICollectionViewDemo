@@ -76,7 +76,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SelectCell" id="9Ug-zf-VP7">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SelectCell" id="9Ug-zf-VP7" customClass="SelectCell">
                                         <rect key="frame" x="0.0" y="0.0" width="105" height="103"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -96,6 +96,9 @@
                                             <constraint firstItem="FNy-wu-mh8" firstAttribute="top" secondItem="9Ug-zf-VP7" secondAttribute="top" id="XGk-zB-86x"/>
                                             <constraint firstAttribute="trailing" secondItem="FNy-wu-mh8" secondAttribute="trailing" id="dsC-IL-k7E"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="FNy-wu-mh8" id="Chq-W1-8nq"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
