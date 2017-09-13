@@ -140,24 +140,24 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wTq-U4-1Hj">
-                                    <size key="itemSize" width="80" height="80"/>
+                                    <size key="itemSize" width="100" height="97"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="0.0" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InsertCell" id="aMS-fP-77m">
-                                        <rect key="frame" x="10" y="10" width="80" height="80"/>
+                                        <rect key="frame" x="10" y="10" width="100" height="97"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="97"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
-                                    <outlet property="dataSource" destination="Z4A-6o-x5z" id="P2A-x3-A16"/>
-                                    <outlet property="delegate" destination="Z4A-6o-x5z" id="Ygw-89-IQG"/>
+                                    <outlet property="dataSource" destination="Z4A-6o-x5z" id="fVi-7s-pPC"/>
+                                    <outlet property="delegate" destination="Z4A-6o-x5z" id="1Pd-DU-3Fc"/>
                                 </connections>
                             </collectionView>
                         </subviews>
@@ -170,7 +170,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="NFB-U8-7Og" id="VEH-wD-lgt"/>
+                        <outlet property="collectionView" destination="NFB-U8-7Og" id="kDq-Xt-QA8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IUf-lE-c6S" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -27,11 +27,15 @@
     
     self.title = @"UICollectionView使用";
     
+    UIBarButtonItem * backButtonItem = [[UIBarButtonItem alloc] init];
+    backButtonItem.title = @"Back";
+    self.navigationItem.backBarButtonItem = backButtonItem;
+    
     self.view.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1.0];
     
     self.dataSource = @[@{@"title":@"简单的Collection View",@"target":@"BaseDemoViewController"},
                         @{@"title":@"可多选的Collection View",@"target":@"MultipleSelectedViewController"},
-                        @{@"title":@"插入,删除和移动Cell",@"target":@"InsertViewController"}];
+                        @{@"title":@"插入，删除和移动Cell",@"target":@"InsertViewController"}];
 }
 
 - (void)didReceiveMemoryWarning {
