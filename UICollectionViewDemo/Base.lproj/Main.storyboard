@@ -122,7 +122,60 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UaS-uY-h4g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1244" y="247.82608695652175"/>
+            <point key="canvasLocation" x="1289" y="249"/>
+        </scene>
+        <!--插入删除移动Cell-->
+        <scene sceneID="qcK-8O-0RI">
+            <objects>
+                <viewController storyboardIdentifier="InsertViewController" title="插入删除移动Cell" id="Z4A-6o-x5z" customClass="InsertViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cvg-4l-y3f"/>
+                        <viewControllerLayoutGuide type="bottom" id="zRG-rB-Kih"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="04Y-20-yhJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="NFB-U8-7Og">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wTq-U4-1Hj">
+                                    <size key="itemSize" width="80" height="80"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InsertCell" id="aMS-fP-77m">
+                                        <rect key="frame" x="10" y="10" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Z4A-6o-x5z" id="P2A-x3-A16"/>
+                                    <outlet property="delegate" destination="Z4A-6o-x5z" id="Ygw-89-IQG"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NFB-U8-7Og" firstAttribute="leading" secondItem="04Y-20-yhJ" secondAttribute="leading" id="CfO-ht-Q5z"/>
+                            <constraint firstItem="zRG-rB-Kih" firstAttribute="top" secondItem="NFB-U8-7Og" secondAttribute="bottom" id="XW3-Rg-bzo"/>
+                            <constraint firstAttribute="trailing" secondItem="NFB-U8-7Og" secondAttribute="trailing" id="fh9-vz-aYz"/>
+                            <constraint firstItem="NFB-U8-7Og" firstAttribute="top" secondItem="cvg-4l-y3f" secondAttribute="bottom" id="oVe-fO-A0p"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="NFB-U8-7Og" id="VEH-wD-lgt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IUf-lE-c6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1287.2" y="944.97751124437787"/>
         </scene>
         <!--简单的Collection View-->
         <scene sceneID="gEY-7h-LF1">
