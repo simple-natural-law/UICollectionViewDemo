@@ -17,9 +17,9 @@
 // 是否处于编辑状态
 @property (assign, nonatomic) BOOL isEditing;
 
-@property (weak, nonatomic) UIView *snapshotView;
+@property (strong, nonatomic) UIView *snapshotView;
 
-@property (weak, nonatomic) NSIndexPath *formIndexPath;
+@property (strong, nonatomic) NSIndexPath *formIndexPath;
 
 @end
 
@@ -89,14 +89,17 @@
             UICollectionViewCell *targetCell = [self.collectionView cellForItemAtIndexPath:indexPath];
             // 得到当前cell的截图
             self.snapshotView = [targetCell snapshotViewAfterScreenUpdates:YES];
-            // 隐藏被点击的cell
-            targetCell.hidden = YES;
             
             self.snapshotView.center = targetCell.center;
             
             [self.collectionView addSubview:self.snapshotView];
             
-            self.snapshotView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+            // 隐藏被点击的cell
+            targetCell.hidden = YES;
+            
+            [UIView animateWithDuration:0.15 animations:^{
+                self.snapshotView.transform = CGAffineTransformMakeScale(1.1, 1.1);
+            }];
         }
             break;
         case UIGestureRecognizerStateChanged:  //手势发生变化
@@ -123,9 +126,10 @@
         {
             UICollectionViewCell *targetCell = [self.collectionView cellForItemAtIndexPath:self.formIndexPath];
             
-            [UIView animateWithDuration:0.25 animations:^{
+            [UIView animateWithDuration:0.2 animations:^{
                 
                 self.snapshotView.center = targetCell.center;
+                self.snapshotView.transform = CGAffineTransformIdentity;
                 
             }completion:^(BOOL finished) {
                 
@@ -133,6 +137,8 @@
                 
                 [self.snapshotView removeFromSuperview];
                 
+                self.formIndexPath = nil;
+                self.snapshotView  = nil;
             }];
         }
             break;
