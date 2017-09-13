@@ -14,6 +14,8 @@
 
 @property (assign, nonatomic) BOOL isEditing;
 
+@property (copy, nonatomic) DidClickDeleteButtonBlock block;
+
 @end
 
 @implementation InsertCell
@@ -21,7 +23,10 @@
 
 - (IBAction)delete:(id)sender
 {
-    
+    if (self.block)
+    {
+        self.block(self);
+    }
 }
 
 
@@ -31,5 +36,11 @@
     
     self.deleteButton.hidden = !isEditing;
 }
+
+- (void)didClickDeleteButtonBlock:(DidClickDeleteButtonBlock)block
+{
+    self.block = block;
+}
+
 
 @end

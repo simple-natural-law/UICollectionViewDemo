@@ -68,6 +68,11 @@
     
     cell.titleLabel.text = self.dataArray[indexPath.row];
     
+    [cell didClickDeleteButtonBlock:^(InsertCell *cell) {
+        
+        
+    }];
+    
     return cell;
 }
 
@@ -176,7 +181,7 @@
                 self.formIndexPath = nil;
                 self.snapshotView  = nil;
                 
-                // 不在可视范围内的cell，有可能并没有被回收,就不会调用cellForItemAtIndexPath:方法，这些cell的状态不会刷新。
+                // 不在可视范围内的cell，滑动到可视范围内的时候,可能不会调用cellForItemAtIndexPath:方法，这些cell的编辑状态不会刷新。
                 [self.collectionView reloadData];
             }];
         }

@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class InsertCell;
+
+typedef void(^DidClickDeleteButtonBlock)(InsertCell *cell);
+
 @interface InsertCell : UICollectionViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 - (void)setIsEditing:(BOOL)isEditing;
+
+- (void)didClickDeleteButtonBlock:(DidClickDeleteButtonBlock)block;
 
 @end
