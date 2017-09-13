@@ -80,15 +80,26 @@
 {
     [self.selectedDataArray addObject:self.dataArray[indexPath.row]];
     
-    NSLog(@"%@",self.selectedDataArray);
+    NSLog(@"已选中: %@",self.selectedDataArray);
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.selectedDataArray removeObject:self.dataArray[indexPath.row]];
     
-    NSLog(@"%@",self.selectedDataArray);
+    NSLog(@"已选中: %@",self.selectedDataArray);
 }
+
+
+- (NSMutableArray *)selectedDataArray
+{
+    if (_selectedDataArray == nil)
+    {
+        _selectedDataArray = [[NSMutableArray alloc] init];
+    }
+    return _selectedDataArray;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
