@@ -23,6 +23,7 @@
 		1A428C401F611E9E008FC3E0 /* CodeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A428C3F1F611E9E008FC3E0 /* CodeCell.m */; };
 		1A5E1B101F68D8EC00AA79BE /* SelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B0F1F68D8EC00AA79BE /* SelectCell.m */; };
 		1A5E1B181F690C8B00AA79BE /* InsertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B171F690C8B00AA79BE /* InsertViewController.m */; };
+		1A5E1B1B1F691F6D00AA79BE /* InsertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B1A1F691F6D00AA79BE /* InsertCell.m */; };
 		1A919ED21F68D24800C2DB12 /* MultipleSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A919ED11F68D24800C2DB12 /* MultipleSelectedViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,8 @@
 		1A5E1B0F1F68D8EC00AA79BE /* SelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCell.m; sourceTree = "<group>"; };
 		1A5E1B161F690C8B00AA79BE /* InsertViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertViewController.h; sourceTree = "<group>"; };
 		1A5E1B171F690C8B00AA79BE /* InsertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertViewController.m; sourceTree = "<group>"; };
+		1A5E1B191F691F6D00AA79BE /* InsertCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertCell.h; sourceTree = "<group>"; };
+		1A5E1B1A1F691F6D00AA79BE /* InsertCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertCell.m; sourceTree = "<group>"; };
 		1A919ED01F68D24800C2DB12 /* MultipleSelectedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleSelectedViewController.h; sourceTree = "<group>"; };
 		1A919ED11F68D24800C2DB12 /* MultipleSelectedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleSelectedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +140,8 @@
 			children = (
 				1A5E1B161F690C8B00AA79BE /* InsertViewController.h */,
 				1A5E1B171F690C8B00AA79BE /* InsertViewController.m */,
+				1A5E1B191F691F6D00AA79BE /* InsertCell.h */,
+				1A5E1B1A1F691F6D00AA79BE /* InsertCell.m */,
 			);
 			path = "插入删除移动Cell";
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A5E1B1B1F691F6D00AA79BE /* InsertCell.m in Sources */,
 				1A428C401F611E9E008FC3E0 /* CodeCell.m in Sources */,
 				1A428C3C1F611E13008FC3E0 /* XibCell.m in Sources */,
 				1A428C021F5E37F3008FC3E0 /* AppDelegate.m in Sources */,
