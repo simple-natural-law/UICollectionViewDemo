@@ -35,7 +35,7 @@
     self.isEditing = NO;
     
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(startEdit:)];
-    longPress.minimumPressDuration = 1.0;
+    longPress.minimumPressDuration = 0.5;
     [self.collectionView addGestureRecognizer:longPress];
 }
 
