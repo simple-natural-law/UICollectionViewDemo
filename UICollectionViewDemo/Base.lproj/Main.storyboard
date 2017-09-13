@@ -153,10 +153,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CXb-7i-SbW">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vWp-L6-fMj">
                                                     <rect key="frame" x="10" y="10" width="80" height="80"/>
                                                     <color key="backgroundColor" red="0.15686274510000001" green="0.56862745100000001" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                </view>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pl0-x4-lI1">
                                                     <rect key="frame" x="80" y="0.0" width="20" height="20"/>
                                                     <constraints>
@@ -171,15 +174,16 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="CXb-7i-SbW" firstAttribute="leading" secondItem="aMS-fP-77m" secondAttribute="leading" constant="10" id="6PL-89-aeG"/>
-                                            <constraint firstAttribute="bottom" secondItem="CXb-7i-SbW" secondAttribute="bottom" constant="10" id="Eof-MS-UwC"/>
-                                            <constraint firstAttribute="trailing" secondItem="CXb-7i-SbW" secondAttribute="trailing" constant="10" id="e0e-XJ-dAA"/>
+                                            <constraint firstItem="vWp-L6-fMj" firstAttribute="leading" secondItem="aMS-fP-77m" secondAttribute="leading" constant="10" id="43f-55-X4N"/>
+                                            <constraint firstAttribute="trailing" secondItem="vWp-L6-fMj" secondAttribute="trailing" constant="10" id="EeN-qU-Txd"/>
+                                            <constraint firstItem="vWp-L6-fMj" firstAttribute="top" secondItem="aMS-fP-77m" secondAttribute="top" constant="10" id="GEq-Zf-73a"/>
+                                            <constraint firstAttribute="bottom" secondItem="vWp-L6-fMj" secondAttribute="bottom" constant="10" id="PZh-7r-sPL"/>
                                             <constraint firstItem="Pl0-x4-lI1" firstAttribute="top" secondItem="aMS-fP-77m" secondAttribute="top" id="hmw-HG-C5n"/>
                                             <constraint firstAttribute="trailing" secondItem="Pl0-x4-lI1" secondAttribute="trailing" id="p3u-So-by2"/>
-                                            <constraint firstItem="CXb-7i-SbW" firstAttribute="top" secondItem="aMS-fP-77m" secondAttribute="top" constant="10" id="tf9-cR-jdO"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="deleteButton" destination="Pl0-x4-lI1" id="yeR-8K-AuJ"/>
+                                            <outlet property="titleLabel" destination="vWp-L6-fMj" id="EfR-fc-qCD"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

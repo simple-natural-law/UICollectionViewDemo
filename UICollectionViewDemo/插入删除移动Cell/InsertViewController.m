@@ -34,7 +34,17 @@
     
     self.isEditing = NO;
     
-    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(startEdit:)];
+    UIButton *editButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [editButton setTitle:@"编辑" forState:UIControlStateNormal];
+    editButton.frame = CGRectMake(0, 0, 60, 30);
+    
+    [editButton addTarget:self action:@selector(startEdit:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:editButton];
+    
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
     longPress.minimumPressDuration = 0.5;
     [self.collectionView addGestureRecognizer:longPress];
 }
@@ -56,20 +66,46 @@
     
     [cell setIsEditing:self.isEditing];
     
+    cell.titleLabel.text = self.dataArray[indexPath.row];
+    
     return cell;
 }
 
+#pragma mark- UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"indexPath: %ld-%ld, text:%@",indexPath.row,indexPath.section,self.dataArray[indexPath.row]);
+}
 
-#pragma mark- 
-- (void)startEdit:(UILongPressGestureRecognizer *)gestureRecognizer
+#pragma mark- target action
+- (void)startEdit:(UIButton *)button
+{
+    if (self.isEditing)
+    {
+        [button setTitle:@"编辑" forState:UIControlStateNormal];
+        self.isEditing = NO;
+    }else
+    {
+        [button setTitle:@"完成" forState:UIControlStateNormal];
+        self.isEditing = YES;
+    }
+    
+    [self.collectionView reloadData];
+}
+
+
+- (void)longPressAction:(UILongPressGestureRecognizer *)gestureRecognizer
 {
     if (!self.isEditing)
     {
         self.isEditing = YES;
         
+        UIButton *button = self.navigationItem.rightBarButtonItem.customView;
+        [button setTitle:@"完成" forState:UIControlStateNormal];
+        
         for (InsertCell *cell in self.collectionView.visibleCells)
         {
-            [cell setIsEditing:self.isEditing];
+            [cell setIsEditing:YES];
         }
     }
     
@@ -139,6 +175,9 @@
                 
                 self.formIndexPath = nil;
                 self.snapshotView  = nil;
+                
+                // 不在可视范围内的cell，有可能并没有被回收,就不会调用cellForItemAtIndexPath:方法，这些cell的状态不会刷新。
+                [self.collectionView reloadData];
             }];
         }
             break;
@@ -149,7 +188,7 @@
 }
 
 
-#pragma mark- 懒加载
+#pragma mark- setter and getter
 - (NSMutableArray *)dataArray
 {
     if (_dataArray == nil)

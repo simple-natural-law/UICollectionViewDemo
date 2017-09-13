@@ -10,6 +10,8 @@
 
 @interface InsertCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
 - (void)setIsEditing:(BOOL)isEditing;
 
 @end
