@@ -76,15 +76,19 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EditCell" id="9Ug-zf-VP7">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SelectCell" id="9Ug-zf-VP7">
                                         <rect key="frame" x="0.0" y="0.0" width="105" height="103"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="105" height="103"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="deselected" translatesAutoresizingMaskIntoConstraints="NO" id="FNy-wu-mh8">
-                                                    <rect key="frame" x="89" y="0.0" width="16" height="16"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="deselected" translatesAutoresizingMaskIntoConstraints="NO" id="FNy-wu-mh8">
+                                                    <rect key="frame" x="73" y="0.0" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="FXK-XI-5A2"/>
+                                                        <constraint firstAttribute="width" constant="32" id="kcE-B7-CVC"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                         </view>
@@ -231,6 +235,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="deselected" width="16" height="16"/>
+        <image name="deselected" width="32" height="32"/>
     </resources>
 </document>
