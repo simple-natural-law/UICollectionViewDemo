@@ -24,6 +24,8 @@
 		1A5E1B101F68D8EC00AA79BE /* SelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B0F1F68D8EC00AA79BE /* SelectCell.m */; };
 		1A5E1B181F690C8B00AA79BE /* InsertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B171F690C8B00AA79BE /* InsertViewController.m */; };
 		1A5E1B1B1F691F6D00AA79BE /* InsertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B1A1F691F6D00AA79BE /* InsertCell.m */; };
+		1A5E1B1F1F6A7C0700AA79BE /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B1E1F6A7C0700AA79BE /* EditViewController.m */; };
+		1A5E1B221F6A7CDE00AA79BE /* EditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B211F6A7CDE00AA79BE /* EditCell.m */; };
 		1A919ED21F68D24800C2DB12 /* MultipleSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A919ED11F68D24800C2DB12 /* MultipleSelectedViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,10 @@
 		1A5E1B171F690C8B00AA79BE /* InsertViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertViewController.m; sourceTree = "<group>"; };
 		1A5E1B191F691F6D00AA79BE /* InsertCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsertCell.h; sourceTree = "<group>"; };
 		1A5E1B1A1F691F6D00AA79BE /* InsertCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertCell.m; sourceTree = "<group>"; };
+		1A5E1B1D1F6A7C0700AA79BE /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
+		1A5E1B1E1F6A7C0700AA79BE /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
+		1A5E1B201F6A7CDE00AA79BE /* EditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCell.h; sourceTree = "<group>"; };
+		1A5E1B211F6A7CDE00AA79BE /* EditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCell.m; sourceTree = "<group>"; };
 		1A919ED01F68D24800C2DB12 /* MultipleSelectedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleSelectedViewController.h; sourceTree = "<group>"; };
 		1A919ED11F68D24800C2DB12 /* MultipleSelectedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleSelectedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +97,7 @@
 		1A428BFC1F5E37F3008FC3E0 /* UICollectionViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				1A5E1B1C1F6A7BA100AA79BE /* 剪切复制和粘贴Cell */,
 				1A5E1B151F690C8B00AA79BE /* 插入删除移动Cell */,
 				1A919ECF1F68D24800C2DB12 /* 可多选的UICollectionView */,
 				1A428C2B1F611BB0008FC3E0 /* 实现简单的UICollectionView */,
@@ -144,6 +151,17 @@
 				1A5E1B1A1F691F6D00AA79BE /* InsertCell.m */,
 			);
 			path = "插入删除移动Cell";
+			sourceTree = "<group>";
+		};
+		1A5E1B1C1F6A7BA100AA79BE /* 剪切复制和粘贴Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1A5E1B1D1F6A7C0700AA79BE /* EditViewController.h */,
+				1A5E1B1E1F6A7C0700AA79BE /* EditViewController.m */,
+				1A5E1B201F6A7CDE00AA79BE /* EditCell.h */,
+				1A5E1B211F6A7CDE00AA79BE /* EditCell.m */,
+			);
+			path = "剪切复制和粘贴Cell";
 			sourceTree = "<group>";
 		};
 		1A919ECF1F68D24800C2DB12 /* 可多选的UICollectionView */ = {
@@ -235,12 +253,14 @@
 				1A5E1B1B1F691F6D00AA79BE /* InsertCell.m in Sources */,
 				1A428C401F611E9E008FC3E0 /* CodeCell.m in Sources */,
 				1A428C3C1F611E13008FC3E0 /* XibCell.m in Sources */,
+				1A5E1B221F6A7CDE00AA79BE /* EditCell.m in Sources */,
 				1A428C021F5E37F3008FC3E0 /* AppDelegate.m in Sources */,
 				1A428C191F5E3BF7008FC3E0 /* HomeTableViewController.m in Sources */,
 				1A919ED21F68D24800C2DB12 /* MultipleSelectedViewController.m in Sources */,
 				1A428C321F611BB0008FC3E0 /* BaseDemoViewController.m in Sources */,
 				1A5E1B181F690C8B00AA79BE /* InsertViewController.m in Sources */,
 				1A428BFF1F5E37F3008FC3E0 /* main.m in Sources */,
+				1A5E1B1F1F6A7C0700AA79BE /* EditViewController.m in Sources */,
 				1A428C381F611CE6008FC3E0 /* StoryboardCell.m in Sources */,
 				1A428C331F611BB0008FC3E0 /* CollectionHeaderView.m in Sources */,
 				1A5E1B101F68D8EC00AA79BE /* SelectCell.m in Sources */,
