@@ -235,14 +235,15 @@ if (finished)
 
 ### 长按cell弹出编辑菜单
 长按某个cell时，可以弹出一个编辑菜单，能够用于剪切，粘贴，复制这个cell。长按弹出编辑菜单，delegate对象必须实现下面3个委托方法：
+是否显示编辑菜单
 ```
-// 是否显示编辑菜单
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 return YES;
 }
-
-// 可以执行哪些操作
+```
+可以执行哪些操作
+```
 - (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(nullable id)sender
 {
 if ([NSStringFromSelector(action) isEqualToString:@"copy:"]
@@ -252,8 +253,9 @@ return YES;
 }
 return NO;
 }
-
-// 点击菜单中选项后会调用的方法，在该方法执行对应的操作
+```
+点击菜单中选项后会调用的方法，在该方法执行对应的操作
+```
 - (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(nullable id)sender
 {
 if ([NSStringFromSelector(action) isEqualToString:@"cut:"])
