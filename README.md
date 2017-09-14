@@ -14,7 +14,7 @@ UICollectionView将视图要展现的数据以及数据的排列与视图的布�
 | 内容管理 | UICollectionViewDataSource协议 UICollectionViewDelegate协议 | DataSource协议是最重要的且必须遵循实现，它创造并管理UICollectionView的视图内容。Delegate协议能获取视图的信息并自定义视图的行为，这个协议是可选的。|
 | 内容视图 | UICollectionReusableView UICollectionViewCell | UICollectionView展示的所有视图都必须是UICollectionReusableView类的实例，该类支持回收复用机制。回收复用视图而不是重新创建，在视图滚动时，能极大提高性能。 UICollectionViewCell对象是用来展示主要数据的可重用视图,该类继承自UICollectionReusableView。|
 | 布局 | UICollectionViewLayout UICollectionViewLayoutAttributes UICollectionViewUpdateItem | UICollectionViewLayout的子类被称为布局对象，它负责定义集合视图中的cell和可重用视图的位置，大小，视觉效果。在布局过程中，布局对象UICollectionViewLayout会创建一个布局属性对象UICollectionViewLayoutAttributes去告诉集合视图在什么位置，用什么样视觉外观去展示cell和可重用视图。当在集合视图中插入，删除，移动数据项时，布局对象会接收到UICollectionViewUpdateItem类的实例，我们不需要自行创建该类的实例。|
-| 流布局  | UICollectionViewFlowLayout UICollectionViewDelegateFlowLayout协议 |  UICollectionViewFlowLayout类是用于实现网格或其他基于行的布局的具体布局对象。 我们可以按照原样使用该类或者配合UICollectionViewDelegateFlowLayout协议一起使用，这样就可以动态自定义布局信息。|
+| 流水布局  | UICollectionViewFlowLayout UICollectionViewDelegateFlowLayout协议 |  UICollectionViewFlowLayout类是用于实现网格或其他基于行的布局的具体布局对象。 我们可以按照原样使用该类或者配合UICollectionViewDelegateFlowLayout协议一起使用，这样就可以动态自定义布局信息。|
 
 
 上表展示了与UICollectionView相关联的核心对象之间的关系。UICollectionView从它的data source对象中获取要展示的cell的信息。我们需要自行提供data source和delegate对象去管理cell的内容，包括cell的选中和高亮等状态。布局对象负责决定cell所在的位置，布局属性对象负责决定cell的视觉效果属性，它们将布局属性对象传递给UICollectionView，UICollectionView接收到布局信息后创建并展示Cell。
@@ -29,7 +29,7 @@ UICollectionView支持三种不同类型的可重用视图，每种视图都具�
 
 - cell(单元格)展示UICollectionView的主要内容，每个cell展示内容来自与我们提供的data source对象。每个cell都必须是UICollectionViewCell的实例，同时我们也可以根据需要对其子类化。cell对象支持管理自己的选中和高亮状态。
 
-- supplementary view(补充视图)展示每个section(分区)的信息。和cell相同的是，supplementary view也是数据驱动的。不同的是，supplementary view是可选的而不是强制的。supplementary view的使用和布局是由布局对象管理的，系统提供的流布局就支持设置header和footer作为可选的supplementary view。
+- supplementary view(补充视图)展示每个section(分区)的信息。和cell相同的是，supplementary view也是数据驱动的。不同的是，supplementary view是可选的而不是强制的。supplementary view的使用和布局是由布局对象管理的，系统提供的流水布局就支持设置header和footer作为可选的supplementary view。
 
 - decoration view(装饰视图)与data source对象提供的数据不相关，完全属于布局对象。布局对象可能会使用它来实现自定义背景外观。
 
@@ -40,12 +40,12 @@ UICollectionView支持三种不同类型的可重用视图，每种视图都具�
 
 布局对象可以随意生成视图的位置，大小以及视觉样式属性，没有任何限制。只有布局对象能改变视图在UICollectionView中的位置，它能移动视图，也能随机切换横竖屏，甚至能复位某视图而不用考虑此视图周围的视图。例如，如果有需要，布局对象可以将所有视图叠加在一起。
 
-下图显示了垂直滚动的流布局对象如何布置cell。在垂直滚动流布局中，内容区域的宽度保持固定，高度随着内容高度的增加而增加。布局对象一次只放置一个cell，在放置前会先计算出cell在容器视图中的frame，为cell选择最合适的位置。
+下图显示了垂直滚动的流水布局对象如何布置cell。在垂直滚动流水布局中，内容区域的宽度保持固定，高度随着内容高度的增加而增加。布局对象一次只放置一个cell，在放置前会先计算出cell在容器视图中的frame，为cell选择最合适的位置。
 
 ![图1-2](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_basics_2x.png)
 
 ## 实现一个简单的Collection View
-我们必须为CollectionView提供一个data source对象，它为UICollectionView提供了要显示的内容。它可以是一个数据模型对象，也可以是管理UICollectionView的视图控制器，data source对象的唯一要求是它必须能够提供UICollectionView所需的所有信息。delegate对象是可选的，用于管理和内容的呈现以及交互有关的方面。delegate对象的主要职责是管理cell的选中和高亮状态，可以扩展delegate以提供其他信息。流布局对象就扩展了delegate对象行为来定制布局，例如，cell的大小和它们之间的间距。
+我们必须为CollectionView提供一个data source对象，它为UICollectionView提供了要显示的内容。它可以是一个数据模型对象，也可以是管理UICollectionView的视图控制器，data source对象的唯一要求是它必须能够提供UICollectionView所需的所有信息。delegate对象是可选的，用于管理和内容的呈现以及交互有关的方面。delegate对象的主要职责是管理cell的选中和高亮状态，可以扩展delegate以提供其他信息。流水布局对象就扩展了delegate对象行为来定制布局，例如，cell的大小和它们之间的间距。
 
 ### UICollectionViewDataSource
 提供集合视图包含的section(分区)数量：
@@ -72,7 +72,7 @@ UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentif
 return cell;
 }
 ```
-根据IndexPath提供需要显示的supplementary view，流布局的supplementary view分为Header和Footer两种类型：
+根据IndexPath提供需要显示的supplementary view，流水布局的supplementary view分为Header和Footer两种类型：
 ```
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
@@ -90,6 +90,7 @@ return supplementaryView;
 }
 }
 ```
+> * 当Collection View的cell数量较少时，Collection的bounce属性会默认关闭，而有时候我们的页面需要下拉刷新数据的功能，这时只需要设置`alwaysBounceVertical`属性设为YES即可。
 
 ### UICollectionViewDelegate
 设置cell是否能被选中(点击是否有效)：
@@ -195,7 +196,7 @@ return CGSizeMake(collectionView.frame.size.width, 40.0);
 }
 ```
 
-> 如果Collection View使用流布局，当cell的大小，cell之间的间距，cell到Collection View四周的边距，Header和Footer的大小固定时，可以直接设置`UICollectionViewFlowLayout`对象的`itemSize`，`minimumLineSpacing`，`minimumInteritemSpacing`，`sectionInset`，`headerReferenceSize`，`footerReferenceSize`属性，这样能够提高程序的运行效率。
+> 如果Collection View使用流水布局，当cell的大小，cell之间的间距，cell到Collection View四周的边距，Header和Footer的大小固定时，可以直接设置`UICollectionViewFlowLayout`对象的`itemSize`，`minimumLineSpacing`，`minimumInteritemSpacing`，`sectionInset`，`headerReferenceSize`，`footerReferenceSize`属性，这样能够提高程序的运行效率。
 
 ### cell和supplementary view的重用
 视图的重用避免了不断生成和销毁对象的操作，提高了程序运行的效率。要想重用cell和supplementary view，首先需要注册cell和supplementary view，有种三种注册方式：
@@ -231,3 +232,40 @@ if (finished)
 }
 }];
 ```
+
+### 长按cell弹出编辑菜单
+长按某个cell时，可以弹出一个编辑菜单，能够用于剪切，粘贴，复制这个cell。长按弹出编辑菜单，delegate对象必须实现下面3个委托方法：
+```
+// 是否显示编辑菜单
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+return YES;
+}
+
+// 可以执行哪些操作
+- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(nullable id)sender
+{
+if ([NSStringFromSelector(action) isEqualToString:@"copy:"]
+|| [NSStringFromSelector(action) isEqualToString:@"paste:"])
+{
+return YES;
+}
+return NO;
+}
+
+// 点击菜单中选项后会调用的方法，在该方法执行对应的操作
+- (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(nullable id)sender
+{
+if ([NSStringFromSelector(action) isEqualToString:@"cut:"])
+{
+// 剪切操作
+}else if ([NSStringFromSelector(action) isEqualToString:@"copy:"])
+{
+// 复制操作
+}else if ([NSStringFromSelector(action) isEqualToString:@"paste:"])
+{
+// 粘贴操作
+}
+}
+```
+Collection View只支持`cut:`，`copy:`，`paste:`三种编辑操作。想要了解如何配合剪贴板使用这些操作，可以参看[Text Programming Guide for iOS](https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009542)。
