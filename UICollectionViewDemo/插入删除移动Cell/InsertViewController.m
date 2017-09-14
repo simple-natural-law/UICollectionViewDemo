@@ -74,7 +74,7 @@
         
         NSIndexPath *indexPath = [weakself.collectionView indexPathForCell:cell];
         
-        [weakself.dataArray removeObjectAtIndex:indexPath.row];
+        [weakself.dataArray[indexPath.section] removeObjectAtIndex:indexPath.row];
         
         [weakself.collectionView deleteItemsAtIndexPaths:@[indexPath]];
     }];
