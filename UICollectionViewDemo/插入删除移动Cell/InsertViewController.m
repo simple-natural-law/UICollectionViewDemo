@@ -76,6 +76,19 @@
     return cell;
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader])
+    {
+        UICollectionReusableView *reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"Header" forIndexPath:indexPath];
+        
+        return reusableView;
+    }
+    
+    return nil;
+}
+
+
 #pragma mark- UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -202,7 +215,7 @@
         
         for (int i = 0; i < 20; i++)
         {
-            [_dataArray addObject:[NSString stringWithFormat:@"row: %d",i]];
+            [_dataArray addObject:[NSString stringWithFormat:@"id: %d",i]];
         }
     }
     return _dataArray;
