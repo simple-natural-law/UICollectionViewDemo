@@ -44,8 +44,8 @@ UICollectionView支持三种不同类型的可重用视图，每种视图都具�
 
 ![图1-2](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_basics_2x.png)
 
-## 实现一个简单的UICollectionView
-我们必须为UICollectionView提供一个data source对象，它为UICollectionView提供了要显示的内容。它可以是一个数据模型对象，也可以是管理UICollectionView的视图控制器，data source对象的唯一要求是它必须能够提供UICollectionView所需的所有信息。delegate对象是可选的，用于管理和内容的呈现，交互有关的方面。delegate对象的主要职责是管理cell的选中和高亮状态，但可以扩展delegate以提供其他信息，流布局对象就扩展了delegate对象行为来定制布局，例如，cell的大小和它们之间的间距。
+## 实现一个简单的Collection View
+我们必须为CollectionView提供一个data source对象，它为UICollectionView提供了要显示的内容。它可以是一个数据模型对象，也可以是管理UICollectionView的视图控制器，data source对象的唯一要求是它必须能够提供UICollectionView所需的所有信息。delegate对象是可选的，用于管理和内容的呈现以及交互有关的方面。delegate对象的主要职责是管理cell的选中和高亮状态，可以扩展delegate以提供其他信息。流布局对象就扩展了delegate对象行为来定制布局，例如，cell的大小和它们之间的间距。
 
 ### UICollectionViewDataSource
 提供集合视图包含的section(分区)数量：
@@ -145,7 +145,7 @@ UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
 cell.contentView.backgroundColor = [UIColor whiteColor];
 }
 ```
-> 这里需要注意的是，我们点击cell时，cell的状态变化过程这样的：手指接触屏幕时，cell状态变为高亮，此时cell还未被选中。当手指离开屏幕后，cell状态变回到普通状态，然后cell被CollectionView选中。当快速点击选中cell时，由于状态变化很快，导致人眼看不出来cell背景色有发生变化，实际上是发生了变化的。而长按选中cell时，可以看到背景色的变化。
+> 注意，点击cell时，cell的状态变化过程为：手指接触屏幕时，cell状态变为高亮，此时cell还未被选中。当手指离开屏幕后，cell状态变回到普通状态，然后cell被Collection View选中。当快速点击选中cell时，由于状态变化很快，导致人眼看不出来cell背景色有发生变化，实际上是发生了变化的。而长按选中cell时，可以看到背景色的变化。
 
 ![图2-1](http://oaz007vqv.bkt.clouddn.com/cell_selection_semantics_2x.png?imageView/2/w/600)
 
@@ -218,16 +218,20 @@ data source对象为UICollectionView配置cell和supplementary view时，使用`
 
 Collection View插入，删除和移动cell之前，必须先对应更新数据源。如果数据源没有更新，程序运行就会崩溃。
 
-当插入，删除或者移动单个cell时，会自动添加动画效果来反映Collection View的更改。如果想要批量插入，删除或者移动cell并附带动画效果，需要调用`- (void)performBatchUpdates:(void (^ __nullable)(void))updates completion:(void (^ __nullable)(BOOL finished))completion`方法，在`updates block`内执行所有插入，删除或移动调用。批量更新时会同时对所有更改进行动画处理，我们可以随意混合调用插入，删除或者移动方法来更新Collection View。
+当插入，删除或者移动cell时，会自动添加动画效果来反映Collection View的更改。在执行动画时如果还需要`同步`执行其他操作，可以使用`- (void)performBatchUpdates:(void (^ __nullable)(void))updates completion:(void (^ __nullable)(BOOL finished))completion`方法，在`updates block`内执行所有插入，删除或移动调用，动画执行完毕后会调用`completion block`。
 ```
 [self.collectionView performBatchUpdates:^{
 
 NSArray* itemPaths = [self.collectionView indexPathsForSelectedItems];
-
-// Delete the items from the data source.
+// 删除数据源中的数据
 [self deleteItemsFromDataSourceAtIndexPaths:itemPaths];
-
-// Now delete the items from the collection view.
+// 更新Collection View
 [self.collectionView deleteItemsAtIndexPaths:itemPaths];
-} completion:nil];
+} completion:^(BOOL finished){
+
+if (finished)
+{
+// 执行其他操作
+}
+}];
 ```
