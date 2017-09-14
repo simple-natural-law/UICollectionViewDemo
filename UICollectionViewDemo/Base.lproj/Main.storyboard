@@ -143,7 +143,7 @@
                                     <size key="itemSize" width="100" height="100"/>
                                     <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="50"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InsertCell" id="aMS-fP-77m" customClass="InsertCell">
@@ -211,10 +211,24 @@
                                     <outlet property="delegate" destination="Z4A-6o-x5z" id="1Pd-DU-3Fc"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tI6-tp-uhS">
+                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.80392156859999997" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="UdJ-we-4CV"/>
+                                </constraints>
+                                <state key="normal" title="插入一个Item"/>
+                                <connections>
+                                    <action selector="insertItem:" destination="Z4A-6o-x5z" eventType="touchUpInside" id="ZCI-nD-9v7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="zRG-rB-Kih" firstAttribute="top" secondItem="tI6-tp-uhS" secondAttribute="bottom" id="AVz-4J-3EV"/>
                             <constraint firstItem="NFB-U8-7Og" firstAttribute="leading" secondItem="04Y-20-yhJ" secondAttribute="leading" id="CfO-ht-Q5z"/>
+                            <constraint firstItem="tI6-tp-uhS" firstAttribute="width" secondItem="04Y-20-yhJ" secondAttribute="width" id="Jpj-5N-N8N"/>
+                            <constraint firstItem="tI6-tp-uhS" firstAttribute="leading" secondItem="04Y-20-yhJ" secondAttribute="leading" id="JqQ-gf-m1R"/>
                             <constraint firstItem="zRG-rB-Kih" firstAttribute="top" secondItem="NFB-U8-7Og" secondAttribute="bottom" id="XW3-Rg-bzo"/>
                             <constraint firstAttribute="trailing" secondItem="NFB-U8-7Og" secondAttribute="trailing" id="fh9-vz-aYz"/>
                             <constraint firstItem="NFB-U8-7Og" firstAttribute="top" secondItem="cvg-4l-y3f" secondAttribute="bottom" id="oVe-fO-A0p"/>

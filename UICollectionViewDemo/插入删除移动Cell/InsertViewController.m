@@ -68,9 +68,15 @@
     
     cell.titleLabel.text = self.dataArray[indexPath.row];
     
+    __weak typeof(self) weakself = self;
+    
     [cell didClickDeleteButtonBlock:^(InsertCell *cell) {
         
+        NSIndexPath *indexPath = [weakself.collectionView indexPathForCell:cell];
         
+        [weakself.dataArray removeObjectAtIndex:indexPath.row];
+        
+        [weakself.collectionView deleteItemsAtIndexPaths:@[indexPath]];
     }];
     
     return cell;
@@ -92,7 +98,7 @@
 #pragma mark- UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"indexPath: %ld-%ld, text:%@",indexPath.row,indexPath.section,self.dataArray[indexPath.row]);
+    NSLog(@"indexPath: %ld-%ld, %@",indexPath.row,indexPath.section,self.dataArray[indexPath.row]);
 }
 
 #pragma mark- target action
@@ -168,7 +174,7 @@
             
             // 先改变数据源
             NSString *string = self.dataArray[self.formIndexPath.row];
-            [self.dataArray removeObject:string];
+            [self.dataArray removeObjectAtIndex:self.formIndexPath.row];
             [self.dataArray insertObject:string atIndex:toIndexPath.row];
             
             // 再移动cell
@@ -203,6 +209,15 @@
         default:
             break;
     }
+}
+
+- (IBAction)insertItem:(id)sender
+{
+    NSInteger index = arc4random()%(self.dataArray.count+1);
+    
+    [self.dataArray insertObject:@"item" atIndex:index];
+    
+    [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]]];
 }
 
 
