@@ -221,12 +221,8 @@ Collection View插入，删除和移动cell之前，必须先对应更新数据�
 当插入，删除或者移动cell时，会自动添加动画效果来反映Collection View的更改。在执行动画时如果还需要`同步`执行其他操作，可以使用`- (void)performBatchUpdates:(void (^ __nullable)(void))updates completion:(void (^ __nullable)(BOOL finished))completion`方法，在`updates block`内执行所有插入，删除或移动调用，动画执行完毕后会调用`completion block`。
 ```
 [self.collectionView performBatchUpdates:^{
+// 执行更改操作
 
-NSArray* itemPaths = [self.collectionView indexPathsForSelectedItems];
-// 删除数据源中的数据
-[self deleteItemsFromDataSourceAtIndexPaths:itemPaths];
-// 更新Collection View
-[self.collectionView deleteItemsAtIndexPaths:itemPaths];
 } completion:^(BOOL finished){
 
 if (finished)
