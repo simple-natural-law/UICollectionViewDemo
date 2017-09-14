@@ -79,10 +79,22 @@
 {
     if ([NSStringFromSelector(action) isEqualToString:@"copy:"])
     {
+        // 取出被点击cell对应的数据内容
+        NSString *string = self.dataArray[indexPath.row];
+        
+        // 把内容保存到剪贴板上,剪贴板属于全局的
+        [UIPasteboard generalPasteboard].string = string;
         
     }else if ([NSStringFromSelector(action) isEqualToString:@"paste:"])
     {
+        // 取出剪贴板中保存的内容
         
+        NSString *string = [UIPasteboard generalPasteboard].string;
+        
+        // 插入数据到数据源数组中
+        [self.dataArray insertObject:string atIndex:indexPath.row];
+        
+        [self.collectionView insertItemsAtIndexPaths:@[indexPath]];
     }
 }
 
