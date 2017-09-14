@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -212,7 +213,7 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tI6-tp-uhS">
-                                <rect key="frame" x="0.0" y="627" width="375" height="40"/>
+                                <rect key="frame" x="0.0" y="627" width="187.5" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.80392156859999997" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="UdJ-we-4CV"/>
@@ -222,16 +223,30 @@
                                     <action selector="insertItem:" destination="Z4A-6o-x5z" eventType="touchUpInside" id="ZCI-nD-9v7"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Bp-Lo-UOo">
+                                <rect key="frame" x="187.5" y="627" width="187.5" height="40"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="v9m-VM-MCj"/>
+                                </constraints>
+                                <state key="normal" title="插入一个Section"/>
+                                <connections>
+                                    <action selector="insertSection:" destination="Z4A-6o-x5z" eventType="touchUpInside" id="aGP-ny-v63"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="9Bp-Lo-UOo" firstAttribute="leading" secondItem="tI6-tp-uhS" secondAttribute="trailing" id="67r-dC-bjJ"/>
                             <constraint firstItem="zRG-rB-Kih" firstAttribute="top" secondItem="tI6-tp-uhS" secondAttribute="bottom" id="AVz-4J-3EV"/>
                             <constraint firstItem="NFB-U8-7Og" firstAttribute="leading" secondItem="04Y-20-yhJ" secondAttribute="leading" id="CfO-ht-Q5z"/>
-                            <constraint firstItem="tI6-tp-uhS" firstAttribute="width" secondItem="04Y-20-yhJ" secondAttribute="width" id="Jpj-5N-N8N"/>
+                            <constraint firstItem="tI6-tp-uhS" firstAttribute="width" secondItem="04Y-20-yhJ" secondAttribute="width" multiplier="0.5" id="Jpj-5N-N8N"/>
                             <constraint firstItem="tI6-tp-uhS" firstAttribute="leading" secondItem="04Y-20-yhJ" secondAttribute="leading" id="JqQ-gf-m1R"/>
                             <constraint firstItem="zRG-rB-Kih" firstAttribute="top" secondItem="NFB-U8-7Og" secondAttribute="bottom" id="XW3-Rg-bzo"/>
+                            <constraint firstItem="zRG-rB-Kih" firstAttribute="top" secondItem="9Bp-Lo-UOo" secondAttribute="bottom" id="bbS-YS-1Sj"/>
                             <constraint firstAttribute="trailing" secondItem="NFB-U8-7Og" secondAttribute="trailing" id="fh9-vz-aYz"/>
                             <constraint firstItem="NFB-U8-7Og" firstAttribute="top" secondItem="cvg-4l-y3f" secondAttribute="bottom" id="oVe-fO-A0p"/>
+                            <constraint firstAttribute="trailing" secondItem="9Bp-Lo-UOo" secondAttribute="trailing" id="oax-YF-1fM"/>
                         </constraints>
                     </view>
                     <connections>

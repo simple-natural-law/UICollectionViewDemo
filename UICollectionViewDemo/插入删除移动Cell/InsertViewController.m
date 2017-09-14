@@ -52,12 +52,12 @@
 #pragma mark- UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return self.dataArray.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.dataArray.count;
+    return [self.dataArray[section] count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -66,7 +66,7 @@
     
     [cell setIsEditing:self.isEditing];
     
-    cell.titleLabel.text = self.dataArray[indexPath.row];
+    cell.titleLabel.text = self.dataArray[indexPath.section][indexPath.row];
     
     __weak typeof(self) weakself = self;
     
@@ -98,7 +98,7 @@
 #pragma mark- UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"indexPath: %ld-%ld, %@",indexPath.row,indexPath.section,self.dataArray[indexPath.row]);
+    NSLog(@"indexPath: %ld-%ld, %@",indexPath.row,indexPath.section,self.dataArray[indexPath.section][indexPath.row]);
 }
 
 #pragma mark- target action
@@ -173,9 +173,9 @@
             if (toIndexPath == nil)  return;
             
             // 先改变数据源
-            NSString *string = self.dataArray[self.formIndexPath.row];
-            [self.dataArray removeObjectAtIndex:self.formIndexPath.row];
-            [self.dataArray insertObject:string atIndex:toIndexPath.row];
+            NSString *string = self.dataArray[self.formIndexPath.section][self.formIndexPath.row];
+            [self.dataArray[self.formIndexPath.section] removeObjectAtIndex:self.formIndexPath.row];
+            [self.dataArray[toIndexPath.section] insertObject:string atIndex:toIndexPath.row];
             
             // 再移动cell
             [self.collectionView moveItemAtIndexPath:self.formIndexPath toIndexPath:toIndexPath];
@@ -215,17 +215,33 @@
 {
     [self.collectionView performBatchUpdates:^{
         
-        [self.dataArray insertObject:@"item" atIndex:0];
+        [self.dataArray[0] insertObject:@"item-0" atIndex:0];
+        [self.dataArray[0] insertObject:@"item-0" atIndex:1];
+        [self.dataArray[0] insertObject:@"item-0" atIndex:2];
         
-        [self.dataArray insertObject:@"item" atIndex:1];
+        [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0],[NSIndexPath indexPathForRow:1 inSection:0],[NSIndexPath indexPathForRow:2 inSection:0]]];
         
-        [self.dataArray insertObject:@"item" atIndex:2];
+    } completion:^(BOOL finished) {
         
-        [self.dataArray insertObject:@"item" atIndex:3];
+        if (finished)
+        {
+            NSLog(@"动画执行结束");
+        }
+    }];
+}
+
+- (IBAction)insertSection:(id)sender
+{
+    [self.collectionView performBatchUpdates:^{
         
-        [self.dataArray insertObject:@"item" atIndex:4];
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        for (int i = 0; i < 8; i++)
+        {
+            [array addObject:@"item-1"];
+        }
+        [self.dataArray addObject:array];
         
-        [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0],[NSIndexPath indexPathForRow:1 inSection:0],[NSIndexPath indexPathForRow:2 inSection:0],[NSIndexPath indexPathForRow:3 inSection:0],[NSIndexPath indexPathForRow:4 inSection:0]]];
+        [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:1]];
         
     } completion:^(BOOL finished) {
         
@@ -244,10 +260,14 @@
     {
         _dataArray = [[NSMutableArray alloc] init];
         
-        for (int i = 0; i < 20; i++)
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        
+        for (int i = 0; i < 10; i++)
         {
-            [_dataArray addObject:[NSString stringWithFormat:@"id: %d",i]];
+            [array addObject:[NSString stringWithFormat:@"id: %d",i]];
         }
+        
+        [_dataArray addObject:array];
     }
     return _dataArray;
 }
