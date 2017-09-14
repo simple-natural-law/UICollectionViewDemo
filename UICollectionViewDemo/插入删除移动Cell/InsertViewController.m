@@ -213,18 +213,6 @@
 
 - (IBAction)insertItem:(id)sender
 {
-//    [self.dataArray insertObject:@"item" atIndex:0];
-//    
-//    [self.dataArray insertObject:@"item" atIndex:1];
-//    
-//    [self.dataArray insertObject:@"item" atIndex:2];
-//    
-//    [self.dataArray insertObject:@"item" atIndex:3];
-//    
-//    [self.dataArray insertObject:@"item" atIndex:4];
-//    
-//    [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0],[NSIndexPath indexPathForRow:1 inSection:0],[NSIndexPath indexPathForRow:2 inSection:0],[NSIndexPath indexPathForRow:3 inSection:0],[NSIndexPath indexPathForRow:4 inSection:0]]];
-    
     [self.collectionView performBatchUpdates:^{
         
         [self.dataArray insertObject:@"item" atIndex:0];
