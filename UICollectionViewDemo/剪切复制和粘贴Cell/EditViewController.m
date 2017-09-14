@@ -88,7 +88,6 @@
     }else if ([NSStringFromSelector(action) isEqualToString:@"paste:"])
     {
         // 取出剪贴板中保存的内容
-        
         NSString *string = [UIPasteboard generalPasteboard].string;
         
         // 插入数据到数据源数组中
