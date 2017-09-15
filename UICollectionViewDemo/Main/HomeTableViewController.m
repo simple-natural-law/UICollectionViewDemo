@@ -36,7 +36,8 @@
     self.dataSource = @[@{@"title":@"简单的Collection View", @"target":@"BaseDemoViewController"},
                         @{@"title":@"可多选的Collection View", @"target":@"MultipleSelectedViewController"},
                         @{@"title":@"插入，删除和移动Cell", @"target":@"InsertViewController"},
-                        @{@"title":@"剪切，复制和粘贴Cell", @"target":@"EditViewController"}];
+                        @{@"title":@"剪切，复制和粘贴Cell", @"target":@"EditViewController"},
+                        @{@"title":@"不规则瀑布流", @"target":@"WaterfallsFlowViewController"}];
 }
 
 - (void)didReceiveMemoryWarning {
