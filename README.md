@@ -44,7 +44,7 @@ UICollectionView支持三种不同类型的可重用视图，每种视图都具�
 
 ![图1-2](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_basics_2x.png)
 
-## 实现一个简单的Collection View
+## 使用
 我们必须为CollectionView提供一个data source对象，它为UICollectionView提供了要显示的内容。它可以是一个数据模型对象，也可以是管理UICollectionView的视图控制器，data source对象的唯一要求是它必须能够提供UICollectionView所需的所有信息。delegate对象是可选的，用于管理和内容的呈现以及交互有关的方面。delegate对象的主要职责是管理cell的选中和高亮状态，可以扩展delegate以提供其他信息。流水布局对象就扩展了delegate对象行为来定制布局，例如，cell的大小和它们之间的间距。
 
 ### UICollectionViewDataSource
@@ -52,41 +52,41 @@ UICollectionView支持三种不同类型的可重用视图，每种视图都具�
 ```
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView*)collectionView
 {
-return [_dataArray count];
+    return [_dataArray count];
 }
 ```
 提供每个section包含的item(单元格)数量：
 ```
 - (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section 
 {
-NSArray* sectionArray = [_dataArray objectAtIndex:section];
-return [sectionArray count];
+    NSArray* sectionArray = [_dataArray objectAtIndex:section];
+    return [sectionArray count];
 }
 ```
 根据IndexPath提供需要显示的cell：
 ```
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath 
 {
-UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
+    UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
 
-return cell;
+    return cell;
 }
 ```
 根据IndexPath提供需要显示的supplementary view，流水布局的supplementary view分为Header和Footer两种类型：
 ```
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-// UICollectionElementKindSectionHeader返回Header，UICollectionElementKindSectionFooter返回Footer
-if ([kind isEqualToString:UICollectionElementKindSectionHeader])
-{
-UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"HeaderReuseIdentifier" forIndexPath:indexPath];
+    // UICollectionElementKindSectionHeader返回Header，UICollectionElementKindSectionFooter返回Footer
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader])
+    {
+    UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"HeaderReuseIdentifier" forIndexPath:indexPath];
 
-return supplementaryView;
-}else 
-{
-UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterReuseIdentifier" forIndexPath:indexPath];
+    return supplementaryView;
+    }else 
+    {
+    UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterReuseIdentifier" forIndexPath:indexPath];
 
-return supplementaryView;
+    return supplementaryView;
 }
 }
 ```
@@ -97,14 +97,14 @@ return supplementaryView;
 ```
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-return YES;
+    return YES;
 }
 ```
 当collectionView的allowsMultipleSelection(多选)属性为YES时，设置是否可以点击取消选中已被选中的cell：
 ```
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-return NO;
+    return NO;
 }
 ```
 已选中cell时，可以在此方法中执行我们想要的操作：
@@ -125,25 +125,25 @@ return NO;
 ```
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-return YES;
+    return YES;
 }
 ```
 选中cell时触发高亮，会调用这个方法，我们可以在这里去改变cell的背景色:
 ```
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
 
-cell.contentView.backgroundColor = [UIColor lightGrayColor];
+    cell.contentView.backgroundColor = [UIColor lightGrayColor];
 }
 ```
 cell被取消选中变为普通状态后，会调用这个方法，我们可以在这里还原cell的背景色：
 ```
 - (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
-UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
 
-cell.contentView.backgroundColor = [UIColor whiteColor];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
 }
 ```
 > 注意，点击cell时，cell的状态变化过程为：手指接触屏幕时，cell状态变为高亮，此时cell还未被选中。当手指离开屏幕后，cell状态变回到普通状态，然后cell被Collection View选中。当快速点击选中cell时，由于状态变化很快，导致人眼看不出来cell背景色有发生变化，实际上是发生了变化的。而长按选中cell时，可以看到背景色的变化。
@@ -157,42 +157,42 @@ cell.contentView.backgroundColor = [UIColor whiteColor];
 ```
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-return CGSizeMake(80.0, 80.0);
+    return CGSizeMake(80.0, 80.0);
 }
 ```
 根据Section返回对应的cell到Collection View到四周边界的距离：
 ```
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
+    return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
 }
 ```
 根据Section返回对应的cell之间的行间距：
 ```
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-return 10.0;
+    return 10.0;
 }
 ```
 根据section返回对应的cell之间的列间距：
 ```
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
-return 10.0;
+    return 10.0;
 }
 ```
 根据section返回对应的Header大小
 ```
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-return CGSizeMake(collectionView.frame.size.width, 40.0);
+    return CGSizeMake(collectionView.frame.size.width, 40.0);
 }
 ```
 根据section返回对应的Footer大小
 ```
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
 {
-return CGSizeMake(collectionView.frame.size.width, 40.0);
+    return CGSizeMake(collectionView.frame.size.width, 40.0);
 }
 ```
 
@@ -222,14 +222,14 @@ Collection View插入，删除和移动cell之前，必须先对应更新数据�
 当插入，删除或者移动cell时，会自动添加动画效果来反映Collection View的更改。在执行动画时如果还需要`同步`执行其他操作，可以使用`- (void)performBatchUpdates:(void (^ __nullable)(void))updates completion:(void (^ __nullable)(BOOL finished))completion`方法，在`updates block`内执行所有插入，删除或移动调用，动画执行完毕后会调用`completion block`。
 ```
 [self.collectionView performBatchUpdates:^{
-// 执行更改操作
+    // 执行更改操作
 
 } completion:^(BOOL finished){
 
-if (finished)
-{
-// 执行其他操作
-}
+    if (finished)
+    {
+    // 执行其他操作
+    }
 }];
 ```
 
@@ -239,35 +239,48 @@ if (finished)
 ```
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-return YES;
+    return YES;
 }
 ```
 可以执行哪些操作
 ```
 - (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(nullable id)sender
 {
-if ([NSStringFromSelector(action) isEqualToString:@"copy:"]
-|| [NSStringFromSelector(action) isEqualToString:@"paste:"])
-{
-return YES;
-}
-return NO;
+    if ([NSStringFromSelector(action) isEqualToString:@"copy:"]|| [NSStringFromSelector(action) isEqualToString:@"paste:"])
+    {
+        return YES;
+    }
+    return NO;
 }
 ```
 点击菜单中选项后会调用的方法，在该方法执行对应的操作
 ```
 - (void)collectionView:(UICollectionView *)collectionView performAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(nullable id)sender
 {
-if ([NSStringFromSelector(action) isEqualToString:@"cut:"])
-{
-// 剪切操作
-}else if ([NSStringFromSelector(action) isEqualToString:@"copy:"])
-{
-// 复制操作
-}else if ([NSStringFromSelector(action) isEqualToString:@"paste:"])
-{
-// 粘贴操作
-}
+    if ([NSStringFromSelector(action) isEqualToString:@"cut:"])
+    {
+        // 剪切操作
+    }else if ([NSStringFromSelector(action) isEqualToString:@"copy:"])
+    {
+        // 复制操作
+    }else if ([NSStringFromSelector(action) isEqualToString:@"paste:"])
+    {
+        // 粘贴操作
+    }
 }
 ```
 Collection View只支持`cut:`，`copy:`，`paste:`三种编辑操作。想要了解如何配合剪贴板使用这些操作，可以参看[Text Programming Guide for iOS](https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009542)。
+
+### 切换布局时的转场动画
+切换布局最简单的方式是使用`- (void)setCollectionViewLayout:(UICollectionViewLayout *)layout animated:(BOOL)animated`方法，交互式转场切换布局或者需要控制切换过程时，可以使用`UICollectionViewTransitionLayout`对象。
+
+`UICollectionViewTransitionLayout`类是一种特殊的布局类，它继承自`UICollectionViewLayout`类,在切换到新布局的过程中，它将作为Collection View的临时布局。使用`UICollectionViewTransitionLayout`布局对象时，可以使用不同的计时算法让动画遵循非线性路径，或者根据传入的触摸事件进行移动。官方提供的`UICollectionViewTransitionLayout`类支持对新布局的线性转换，但我们可以对其进行子类化来实现任何所需的效果。
+
+`UICollectionViewLayout`提供了几种跟踪布局之间转换进度的方法，`UICollectionViewTransitionLayout`类通过`transitionProgress`属性来跟踪转场切换的进度，当转场切换开始后，我们需要定期更新此属性值来指示完成的百分比。使用自定义`UICollectionViewTransitionLayout`对象时，`UICollectionViewTransitionLayout`类提供来2种跟踪与布局相关的值的方法：`- (void)updateValue:(CGFloat)value forAnimatedKey:(NSString *)key`和`- (CGFloat)valueForAnimatedKey:(NSString *)key`。
+
+转场切换布局时，使用`UICollectionViewTransitionLayout`对象的步骤如下：
+
+- 使用`- (instancetype)initWithCurrentLayout:(UICollectionViewLayout *)currentLayout nextLayout:(UICollectionViewLayout *)newLayout `方法创建一个`UICollectionViewTransitionLayout`实例对象。
+- 定期修改`transitionProgress`属性值来指示转场切换的进度。在修改转场进度后，一定要调用`- (void)invalidateLayout`方法来废止已执行的临时布局。
+- Collection View的delegate对象实现委托方法`- (nonnull UICollectionViewTransitionLayout *)collectionView:(UICollectionView *)collectionView transitionLayoutForOldLayout:(UICollectionViewLayout *)fromLayout newLayout:(UICollectionViewLayout *)toLayout`返回创建的`UICollectionViewTransitionLayout`实例对象。
+- 可以使用`- (void)updateValue:(CGFloat)value forAnimatedKey:(NSString *)key`方法来修改与布局相关的值。
