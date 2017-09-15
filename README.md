@@ -1,4 +1,4 @@
-# 关于UICollectionView使用
+# UICollectionView探究
 
 ## 概述
 
@@ -60,6 +60,7 @@ UICollectionView支持三种不同类型的可重用视图，每种视图都具�
 - (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section 
 {
     NSArray* sectionArray = [_dataArray objectAtIndex:section];
+    
     return [sectionArray count];
 }
 ```
@@ -79,15 +80,15 @@ UICollectionView支持三种不同类型的可重用视图，每种视图都具�
     // UICollectionElementKindSectionHeader返回Header，UICollectionElementKindSectionFooter返回Footer
     if ([kind isEqualToString:UICollectionElementKindSectionHeader])
     {
-    UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"HeaderReuseIdentifier" forIndexPath:indexPath];
+        UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"HeaderReuseIdentifier" forIndexPath:indexPath];
 
-    return supplementaryView;
+        return supplementaryView;
     }else 
     {
-    UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterReuseIdentifier" forIndexPath:indexPath];
+        UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterReuseIdentifier" forIndexPath:indexPath];
 
-    return supplementaryView;
-}
+        return supplementaryView;
+    }
 }
 ```
 > * 当Collection View的cell数量较少时，Collection的bounce属性会默认关闭，而有时候我们的页面需要下拉刷新数据的功能，这时只需要设置`alwaysBounceVertical`属性设为YES即可。
