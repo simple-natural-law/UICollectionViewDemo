@@ -45,6 +45,13 @@
 #pragma mark- UICollectionViewDelegateFlowLayout
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 3)
+    {
+        return CGSizeMake(200, 100.0);
+    }else if (indexPath.row == 6)
+    {
+        return CGSizeMake(300.0, 100.0);
+    }
     return CGSizeMake(100.0, 100.0);
 }
 
