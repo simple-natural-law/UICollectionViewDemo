@@ -282,6 +282,9 @@ Collection View只支持`cut:`，`copy:`，`paste:`三种编辑操作。想要�
 转场切换布局时，使用`UICollectionViewTransitionLayout`对象的步骤如下：
 
 - 使用`- (instancetype)initWithCurrentLayout:(UICollectionViewLayout *)currentLayout nextLayout:(UICollectionViewLayout *)newLayout `方法创建一个`UICollectionViewTransitionLayout`实例对象。
+
 - 定期修改`transitionProgress`属性值来指示转场切换的进度。在修改转场进度后，一定要调用`- (void)invalidateLayout`方法来废止已执行的临时布局。
+
 - Collection View的delegate对象实现委托方法`- (nonnull UICollectionViewTransitionLayout *)collectionView:(UICollectionView *)collectionView transitionLayoutForOldLayout:(UICollectionViewLayout *)fromLayout newLayout:(UICollectionViewLayout *)toLayout`返回创建的`UICollectionViewTransitionLayout`实例对象。
+
 - 可以使用`- (void)updateValue:(CGFloat)value forAnimatedKey:(NSString *)key`方法来修改与布局相关的值。
