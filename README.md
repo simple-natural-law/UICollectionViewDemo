@@ -152,7 +152,7 @@ cell被取消选中变为普通状态后，会调用这个方法，我们可以�
 ![图2-1](http://oaz007vqv.bkt.clouddn.com/cell_selection_semantics_2x.png?imageView/2/w/600)
 
 ### UICollectionViewDelegateFlowLayout
-该协议是对`UICollectionViewDelegate`的扩展，能够动态返回cell的大小，和cell之间的间距等。
+该协议是对`UICollectionViewDelegate`的扩展，能够动态返回cell的大小，和cell之间的`最小`间距等。
 
 根据IndexPath返回对应的Cell的大小：
 ```
@@ -161,21 +161,21 @@ cell被取消选中变为普通状态后，会调用这个方法，我们可以�
     return CGSizeMake(80.0, 80.0);
 }
 ```
-根据Section返回对应的cell到Collection View到四周边界的距离：
+返回cell到所在section的四周边界的距离：
 ```
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
     return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
 }
 ```
-根据Section返回对应的cell之间的行间距：
+根据Section返回对应的cell之间的行`最小`间距：
 ```
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     return 10.0;
 }
 ```
-根据section返回对应的cell之间的列间距：
+根据section返回对应的cell之间的列`最小`间距：
 ```
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
@@ -249,7 +249,7 @@ Collection View插入，删除和移动cell之前，必须先对应更新数据�
     {
         return YES;
     }
-        return NO;
+    return NO;
 }
 ```
 点击菜单中选项后会调用的方法，在该方法执行对应的操作
@@ -287,10 +287,12 @@ Collection View只支持`cut:`，`copy:`，`paste:`三种编辑操作。想要�
 - 可以使用`- (void)updateValue:(CGFloat)value forAnimatedKey:(NSString *)key`方法来修改与布局相关的值。
 
 ## 流水布局
-官方提供的`UICollectionViewFlowLayout`流水布局对象实现了基于行的断开布局，单元格被放置在线性路径上，并沿着该行放置尽可能多的单元格，当前行上的空间不足以放置下一个单元格时，会重新计算出合适的当前行上摆放的单元格之间的间距，如果该行上只有一个单元格，那么它会被置中，然后流水布局会创建新的一行并在该行继续之前的布局过程，如下图所示：
+官方提供的`UICollectionViewFlowLayout`流水布局对象实现了基于行的断开布局，单元格被放置在线性路径上，并沿着该行放置尽可能多的单元格，当前行上的空间在使用`最小`间距也不足以放置下一个单元格时，会重新计算出合适的当前行上摆放的单元格之间的间距，如果该行上只有一个单元格，那么它会被置中，然后流水布局会创建新的一行并在该行继续之前的布局过程。
 
 ![图3-1](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/flow_horiz_layout_uneven_2x.png)
 
-在使用流水布局时，通过固定单元格的大小和单元格之间的间距来实现网格状视图，同时也可以任意设置单元格的小和单元格之间的间距来实现不规则排列的视图。单元格的大小，单元格之间的最小间距，单元格到集合视图四周的边距以及Header和Footer的大小固定时，可以直接设置`itemSize`，`minimumLineSpacing`，`minimumInteritemSpacing`，`sectionInset`，`headerReferenceSize`，`footerReferenceSize`属性值。如果想要动态设置单元格的大小，单元格之间的最小间距，单元格到集合视图四周的边距以及Header和Footer的大小，需要集合视图的delegate对象实现`UICollectionViewDelegateFlowLayout`协议的委托方法。
+![图3-2](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/flow_section_insets_2x.png)
+
+在使用流水布局时，通过固定单元格的大小和单元格之间的`最小`间距来实现网格状视图，同时也可以任意设置单元格的小和单元格之间的间距来实现不规则排列的视图。单元格的大小，单元格之间的`最小`间距，单元格到所在分区四周的边距以及Header和Footer的大小固定时，可以直接设置`itemSize`，`minimumLineSpacing`，`minimumInteritemSpacing`，`sectionInset`，`headerReferenceSize`，`footerReferenceSize`属性值。如果想要动态设置它们，需要集合视图的delegate对象实现`UICollectionViewDelegateFlowLayout`协议的委托方法。
 
 ## 自定义布局
