@@ -20,13 +20,14 @@
 		1A5E1B1B1F691F6D00AA79BE /* InsertCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B1A1F691F6D00AA79BE /* InsertCell.m */; };
 		1A5E1B1F1F6A7C0700AA79BE /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B1E1F6A7C0700AA79BE /* EditViewController.m */; };
 		1A5E1B221F6A7CDE00AA79BE /* EditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B211F6A7CDE00AA79BE /* EditCell.m */; };
-		1A5E1B261F6BB71E00AA79BE /* WaterfallsFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B251F6BB71E00AA79BE /* WaterfallsFlowViewController.m */; };
 		1A5E1B321F6BB77D00AA79BE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B291F6BB77D00AA79BE /* AppDelegate.m */; };
 		1A5E1B331F6BB77D00AA79BE /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B2B1F6BB77D00AA79BE /* HomeTableViewController.m */; };
 		1A5E1B351F6BB77D00AA79BE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B2D1F6BB77D00AA79BE /* main.m */; };
 		1A5E1B361F6BB77D00AA79BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A5E1B2F1F6BB77D00AA79BE /* Assets.xcassets */; };
 		1A5E1B371F6BB77D00AA79BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A5E1B301F6BB77D00AA79BE /* LaunchScreen.storyboard */; };
 		1A5E1B381F6BB77D00AA79BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A5E1B311F6BB77D00AA79BE /* Main.storyboard */; };
+		1A5E1B441F70C7BF00AA79BE /* WaterfallsFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B411F70C7BF00AA79BE /* WaterfallsFlowLayout.m */; };
+		1A5E1B451F70C7BF00AA79BE /* WaterfallsFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B431F70C7BF00AA79BE /* WaterfallsFlowViewController.m */; };
 		1A919ED21F68D24800C2DB12 /* MultipleSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A919ED11F68D24800C2DB12 /* MultipleSelectedViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -55,8 +56,6 @@
 		1A5E1B1E1F6A7C0700AA79BE /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
 		1A5E1B201F6A7CDE00AA79BE /* EditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditCell.h; sourceTree = "<group>"; };
 		1A5E1B211F6A7CDE00AA79BE /* EditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditCell.m; sourceTree = "<group>"; };
-		1A5E1B241F6BB71E00AA79BE /* WaterfallsFlowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterfallsFlowViewController.h; sourceTree = "<group>"; };
-		1A5E1B251F6BB71E00AA79BE /* WaterfallsFlowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterfallsFlowViewController.m; sourceTree = "<group>"; };
 		1A5E1B281F6BB77D00AA79BE /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1A5E1B291F6BB77D00AA79BE /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1A5E1B2A1F6BB77D00AA79BE /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
@@ -66,6 +65,10 @@
 		1A5E1B2F1F6BB77D00AA79BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1A5E1B301F6BB77D00AA79BE /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A5E1B311F6BB77D00AA79BE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		1A5E1B401F70C7BF00AA79BE /* WaterfallsFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterfallsFlowLayout.h; sourceTree = "<group>"; };
+		1A5E1B411F70C7BF00AA79BE /* WaterfallsFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterfallsFlowLayout.m; sourceTree = "<group>"; };
+		1A5E1B421F70C7BF00AA79BE /* WaterfallsFlowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaterfallsFlowViewController.h; sourceTree = "<group>"; };
+		1A5E1B431F70C7BF00AA79BE /* WaterfallsFlowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterfallsFlowViewController.m; sourceTree = "<group>"; };
 		1A919ED01F68D24800C2DB12 /* MultipleSelectedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleSelectedViewController.h; sourceTree = "<group>"; };
 		1A919ED11F68D24800C2DB12 /* MultipleSelectedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleSelectedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,7 +105,7 @@
 			children = (
 				1A5E1B271F6BB77D00AA79BE /* Main */,
 				1A5E1B2E1F6BB77D00AA79BE /* Resource */,
-				1A5E1B231F6BB44700AA79BE /* 不规则瀑布流布局 */,
+				1A5E1B3F1F70C7BF00AA79BE /* 瀑布流布局 */,
 				1A5E1B1C1F6A7BA100AA79BE /* 剪切复制和粘贴Cell */,
 				1A5E1B151F690C8B00AA79BE /* 插入删除移动Cell */,
 				1A919ECF1F68D24800C2DB12 /* 可多选的UICollectionView */,
@@ -153,15 +156,6 @@
 			path = "剪切复制和粘贴Cell";
 			sourceTree = "<group>";
 		};
-		1A5E1B231F6BB44700AA79BE /* 不规则瀑布流布局 */ = {
-			isa = PBXGroup;
-			children = (
-				1A5E1B241F6BB71E00AA79BE /* WaterfallsFlowViewController.h */,
-				1A5E1B251F6BB71E00AA79BE /* WaterfallsFlowViewController.m */,
-			);
-			path = "不规则瀑布流布局";
-			sourceTree = "<group>";
-		};
 		1A5E1B271F6BB77D00AA79BE /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +177,17 @@
 				1A5E1B311F6BB77D00AA79BE /* Main.storyboard */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		1A5E1B3F1F70C7BF00AA79BE /* 瀑布流布局 */ = {
+			isa = PBXGroup;
+			children = (
+				1A5E1B401F70C7BF00AA79BE /* WaterfallsFlowLayout.h */,
+				1A5E1B411F70C7BF00AA79BE /* WaterfallsFlowLayout.m */,
+				1A5E1B421F70C7BF00AA79BE /* WaterfallsFlowViewController.h */,
+				1A5E1B431F70C7BF00AA79BE /* WaterfallsFlowViewController.m */,
+			);
+			path = "瀑布流布局";
 			sourceTree = "<group>";
 		};
 		1A919ECF1F68D24800C2DB12 /* 可多选的UICollectionView */ = {
@@ -272,10 +277,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A5E1B1B1F691F6D00AA79BE /* InsertCell.m in Sources */,
+				1A5E1B441F70C7BF00AA79BE /* WaterfallsFlowLayout.m in Sources */,
 				1A428C401F611E9E008FC3E0 /* CodeCell.m in Sources */,
-				1A5E1B261F6BB71E00AA79BE /* WaterfallsFlowViewController.m in Sources */,
 				1A428C3C1F611E13008FC3E0 /* XibCell.m in Sources */,
 				1A5E1B221F6A7CDE00AA79BE /* EditCell.m in Sources */,
+				1A5E1B451F70C7BF00AA79BE /* WaterfallsFlowViewController.m in Sources */,
 				1A919ED21F68D24800C2DB12 /* MultipleSelectedViewController.m in Sources */,
 				1A428C321F611BB0008FC3E0 /* BaseDemoViewController.m in Sources */,
 				1A5E1B321F6BB77D00AA79BE /* AppDelegate.m in Sources */,
