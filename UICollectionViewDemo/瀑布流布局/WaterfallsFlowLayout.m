@@ -11,6 +11,12 @@
 
 static NSString *const itemLayoutInfoKey = @"itemLayoutInfoKey";
 
+static NSString *const supplementaryViewLayoutInfoKey = @"supplementaryViewLayoutInfoKey";
+
+static NSString *const kElementKindSectionHeader = @"kElementKindSectionHeader";
+
+static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
+
 @interface WaterfallsFlowLayout ()
 
 @property (nonatomic, strong) NSMutableDictionary *attributesDic;
@@ -43,32 +49,48 @@ static NSString *const itemLayoutInfoKey = @"itemLayoutInfoKey";
     
     NSMutableDictionary *itemLayoutInfo = [[NSMutableDictionary alloc] init];
     
+    NSMutableDictionary *supplementaryViewLayoutInfo = [[NSMutableDictionary alloc] init];
+    
     for (int i = 0; i < sectionCount; i++)
     {
+        // 准备记录每列最大高度
         NSInteger column = [self columnCountForSectionAtIndex:i];
-        
         NSMutableArray *heightArray = [NSMutableArray arrayWithCapacity:column];
-        
         for (int c = 0; c < column; c++)
         {
             [heightArray addObject:@(0)];
         }
-        
         [self.columnHeightArray addObject:heightArray];
         
+        // 准备header布局信息
+        NSIndexPath *supplementaryViewIndexPath = [NSIndexPath indexPathWithIndex:i];
+        
+        UICollectionViewLayoutAttributes *headerAttributes = [self layoutAttributesForSupplementaryViewOfKind:kElementKindSectionHeader atIndexPath:supplementaryViewIndexPath];
+        
+        [supplementaryViewLayoutInfo setObject:headerAttributes forKey:kElementKindSectionHeader];
+        
+        // 准备item布局信息
         NSInteger itemCount = [self.collectionView numberOfItemsInSection:i];
         
         for (int j = 0; j < itemCount; j++)
         {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:j inSection:i];
             
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
             
             [itemLayoutInfo setObject:attributes forKey:indexPath];
         }
+        
+        // 准备footer布局信息
+        UICollectionViewLayoutAttributes *footerAttributes = [self layoutAttributesForSupplementaryViewOfKind:kElementKindSectionFooter atIndexPath:supplementaryViewIndexPath];
+        
+        [supplementaryViewLayoutInfo setObject:footerAttributes forKey:kElementKindSectionFooter];
+        
     }
     
     [self.attributesDic setObject:itemLayoutInfo forKey:itemLayoutInfoKey];
+    
+    [self.attributesDic setObject:supplementaryViewLayoutInfo forKey:supplementaryViewLayoutInfoKey];
 }
 
 
@@ -107,6 +129,11 @@ static NSString *const itemLayoutInfoKey = @"itemLayoutInfoKey";
     return attributesArr;
 }
 
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
 
 #pragma mark- Methods
 - (NSInteger)columnCountForSectionAtIndex:(NSInteger)section
