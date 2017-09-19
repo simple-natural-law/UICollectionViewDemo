@@ -8,9 +8,12 @@
 
 #import "WaterfallsFlowLayout.h"
 
+
+static NSString *const itemLayoutInfoKey = @"itemLayoutInfoKey";
+
 @interface WaterfallsFlowLayout ()
 
-@property (nonatomic, strong) NSMutableArray *attributesArray;
+@property (nonatomic, strong) NSMutableDictionary *attributesDic;
 
 @property (nonatomic, assign) CGFloat contentHeight;
 // 保存每个分区的所有列的当前高度
@@ -32,11 +35,13 @@
 {
     [super prepareLayout];
     
-    [self.attributesArray removeAllObjects];
+    [self.attributesDic removeAllObjects];
     
     [self.columnHeightArray removeAllObjects];
     
     NSInteger sectionCount = [self.collectionView numberOfSections];
+    
+    NSMutableDictionary *itemLayoutInfo = [[NSMutableDictionary alloc] init];
     
     for (int i = 0; i < sectionCount; i++)
     {
@@ -59,9 +64,11 @@
             
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
             
-            [self.attributesArray addObject:attributes];
+            [itemLayoutInfo setObject:attributes forKey:indexPath];
         }
     }
+    
+    [self.attributesDic setObject:itemLayoutInfo forKey:itemLayoutInfoKey];
 }
 
 
@@ -74,9 +81,30 @@
 }
 
 
+
+/*
+ * 返回位置在传入的rect范围内的所有布局信息(当item数量较多时，如果这里忽略rect而直接返回所有的布局信息，程序的运行效率会较低)
+ */
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
 {
-    return [super layoutAttributesForElementsInRect:rect];
+    NSMutableArray *attributesArr = [[NSMutableArray alloc] init];
+    
+    for (NSString *key in self.attributesDic.allKeys)
+    {
+        NSDictionary *dic = [self.attributesDic objectForKey:key];
+        
+        for (NSIndexPath *key in dic.allKeys)
+        {
+            UICollectionViewLayoutAttributes *attributes = [dic objectForKey:key];
+            
+            if (CGRectIntersectsRect(rect, attributes.frame))
+            {
+                [attributesArr addObject:attributes];
+            }
+        }
+    }
+    
+    return attributesArr;
 }
 
 
@@ -128,13 +156,13 @@
     return self.rowSpacing;
 }
 
-- (NSMutableArray *)attributesArray
+- (NSMutableDictionary *)attributesDic
 {
-    if (_attributesArray == nil)
+    if (_attributesDic == nil)
     {
-        _attributesArray = [[NSMutableArray alloc] init];
+        _attributesDic = [[NSMutableDictionary alloc] init];
     }
-    return _attributesArray;
+    return _attributesDic;
 }
 
 - (NSMutableArray *)columnHeightArray
