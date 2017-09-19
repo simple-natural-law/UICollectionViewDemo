@@ -8,20 +8,41 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol UICollectionViewDelegateWaterfallsFlowLayout <UICollectionViewDelegate>
+
+@required
+// 返回item的高度
+- (CGFloat)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout heightForItemAtIndexPath:(NSIndexPath *)indexPath;
+
+@optional
+- (NSInteger)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout columnCountForSectionAtIndex:(NSInteger)section;
+// 返回section到collection view四周的边距
+- (UIEdgeInsets)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section;
+// 返回行间距
+- (CGFloat)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout rowSpacingForSectionAtIndex:(NSInteger)section;
+// 返回列间距
+- (CGFloat)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout columnSpacingForSectionAtIndex:(NSInteger)section;
+
+- (CGSize)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section;
+
+- (CGSize)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section;
+
+@end
+
+
+
 @interface WaterfallsFlowLayout : UICollectionViewLayout
 
 // 列数
 @property (nonatomic, assign) NSInteger columnCount;
 
 // 列间距
-@property (nonatomic, assign) NSInteger columnSpacing;
+@property (nonatomic, assign) CGFloat columnSpacing;
 
 // 行间距
-@property (nonatomic, assign) NSInteger rowSpacing;
+@property (nonatomic, assign) CGFloat rowSpacing;
 
 // section到collection view四周的边距
 @property (nonatomic, assign) UIEdgeInsets sectionInset;
-
-
 
 @end
