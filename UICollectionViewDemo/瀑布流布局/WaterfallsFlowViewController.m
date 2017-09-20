@@ -39,6 +39,10 @@
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
+    UILabel *label = [cell.contentView viewWithTag:10086];
+    
+    label.text = [NSString stringWithFormat:@"%ld",indexPath.row];
+    
     return cell;
 }
 
@@ -46,7 +50,39 @@
 #pragma mark- UICollectionViewDelegateWaterfallsFlowLayout
 - (CGFloat)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return arc4random()%150+50.0;
+    switch (indexPath.section)
+    {
+        case 0:
+            return arc4random()%100+50.0;
+            break;
+        case 1:
+            return arc4random()%150+80.0;
+            break;
+        case 2:
+            return arc4random()%200+120.0;
+            break;
+        default:
+            return 0.0;
+            break;
+    }
+}
+
+- (NSInteger)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout columnCountForSectionAtIndex:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return 4;
+            break;
+        case 1:
+            return 3;
+            break;
+        case 2:
+            return 2;
+            break;
+        default:
+            return 0;
+            break;
+    }
 }
 
 

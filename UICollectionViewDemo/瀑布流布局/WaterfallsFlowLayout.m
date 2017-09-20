@@ -102,7 +102,7 @@ static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
         
         for (int c = 0; c < column; c++)
         {
-            [self.columnHeightArray addObject:@(originY)];
+            [self.columnHeightArray addObject:@(0)];
         }
         
         // 准备item布局信息
@@ -116,10 +116,7 @@ static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
             
             CGFloat minimumHeight = [self.columnHeightArray[index] floatValue];
             
-            if (minimumHeight == originY)
-            {
-                originY = minimumHeight;
-            }else
+            if (minimumHeight > 0.0)
             {
                 originY = minimumHeight + rowSpacing;
             }
@@ -274,7 +271,7 @@ static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
         return [(id<UICollectionViewDelegateWaterfallsFlowLayout>)self.collectionView.delegate waterfallsCollectionView:self.collectionView layout:self referenceSizeForHeaderInSection:section];
     }
     
-    return CGSizeMake(self.collectionView.frame.size.width, 30.0);
+    return CGSizeMake(0.0, 0.0);
 }
 
 - (CGSize)footerSizeInSection:(NSInteger)section
@@ -284,7 +281,7 @@ static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
         return [(id<UICollectionViewDelegateWaterfallsFlowLayout>)self.collectionView.delegate waterfallsCollectionView:self.collectionView layout:self referenceSizeForFooterInSection:section];
     }
     
-    return CGSizeMake(self.collectionView.frame.size.width, 30.0);
+    return CGSizeMake(0.0, 0.0);
 }
 
 /// 返回高度最小列的下标
