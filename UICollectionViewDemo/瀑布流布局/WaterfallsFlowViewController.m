@@ -47,6 +47,25 @@
 }
 
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader])
+    {
+        UICollectionReusableView *reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"Header" forIndexPath:indexPath];
+        
+        return reusableView;
+        
+    }else if ([kind isEqualToString:UICollectionElementKindSectionFooter])
+    {
+        UICollectionReusableView *reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"Footer" forIndexPath:indexPath];
+        
+        return reusableView;
+    }
+    
+    return nil;
+}
+
+
 #pragma mark- UICollectionViewDelegateWaterfallsFlowLayout
 - (CGFloat)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -85,6 +104,101 @@
     }
 }
 
+- (CGSize)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    switch (section)
+    {
+        case 0:
+            return CGSizeMake(collectionView.frame.size.width, 30.0);
+            break;
+        case 1:
+            return CGSizeMake(collectionView.frame.size.width, 20.0);
+            break;
+        case 2:
+            return CGSizeMake(collectionView.frame.size.width, 40.0);
+            break;
+        default:
+            return CGSizeMake(0.0, 0.0);
+            break;
+    }
+}
+
+- (CGSize)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section
+{
+    switch (section)
+    {
+        case 0:
+            return CGSizeMake(collectionView.frame.size.width, 30.0);
+            break;
+        case 1:
+            return CGSizeMake(collectionView.frame.size.width, 20.0);
+            break;
+        case 2:
+            return CGSizeMake(collectionView.frame.size.width, 40.0);
+            break;
+        default:
+            return CGSizeMake(0.0, 0.0);
+            break;
+    }
+}
+
+- (CGFloat)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout columnSpacingForSectionAtIndex:(NSInteger)section
+{
+    switch (section)
+    {
+        case 0:
+            return 10.0;
+            break;
+        case 1:
+            return 20.0;
+            break;
+        case 2:
+            return 30.0;
+            break;
+        default:
+            return 10.0;
+            break;
+    }
+}
+
+- (CGFloat)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout rowSpacingForSectionAtIndex:(NSInteger)section
+{
+    switch (section)
+    {
+        case 0:
+            return 10.0;
+            break;
+        case 1:
+            return 20.0;
+            break;
+        case 2:
+            return 30.0;
+            break;
+        default:
+            return 10.0;
+            break;
+    }
+}
+
+
+- (UIEdgeInsets)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    switch (section)
+    {
+        case 0:
+            return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
+            break;
+        case 1:
+            return UIEdgeInsetsMake(20.0, 20.0, 20.0, 20.0);
+            break;
+        case 2:
+            return UIEdgeInsetsMake(30.0, 30.0, 30.0, 30.0);
+            break;
+        default:
+            return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
+            break;
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

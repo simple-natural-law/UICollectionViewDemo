@@ -13,10 +13,6 @@ static NSString *const itemLayoutInfoKey = @"itemLayoutInfoKey";
 
 static NSString *const supplementaryViewLayoutInfoKey = @"supplementaryViewLayoutInfoKey";
 
-static NSString *const kElementKindSectionHeader = @"kElementKindSectionHeader";
-
-static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
-
 
 @interface WaterfallsFlowLayout ()
 
@@ -87,13 +83,13 @@ static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
         // 准备header布局信息
         NSIndexPath *supplementaryViewIndexPath = [NSIndexPath indexPathWithIndex:i];
         
-        UICollectionViewLayoutAttributes *headerAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:kElementKindSectionHeader withIndexPath:supplementaryViewIndexPath];
+        UICollectionViewLayoutAttributes *headerAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader withIndexPath:supplementaryViewIndexPath];
         
         CGSize headerSize = [self headerSizeInSection:i];
         
         headerAttributes.frame = CGRectMake(0.0, originY, self.collectionView.frame.size.width, headerSize.height);
         
-        [supplementaryViewLayoutInfo setObject:headerAttributes forKey:kElementKindSectionHeader];
+        [supplementaryViewLayoutInfo setObject:headerAttributes forKey:UICollectionElementKindSectionHeader];
         
         originY += headerSize.height + inset.top;
         
@@ -139,13 +135,13 @@ static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
         originY = [self getMaximumHeightFormAllColumnHeights]+inset.bottom;
         
         // 准备footer布局信息
-        UICollectionViewLayoutAttributes *footerAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:kElementKindSectionFooter withIndexPath:supplementaryViewIndexPath];
+        UICollectionViewLayoutAttributes *footerAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter withIndexPath:supplementaryViewIndexPath];
         
         CGSize footerSize = [self footerSizeInSection:i];
         
         footerAttributes.frame = CGRectMake(0, originY, self.collectionView.frame.size.width, footerSize.height);
         
-        [supplementaryViewLayoutInfo setObject:footerAttributes forKey:kElementKindSectionFooter];
+        [supplementaryViewLayoutInfo setObject:footerAttributes forKey:UICollectionElementKindSectionFooter];
         
         originY += footerSize.height;
     }

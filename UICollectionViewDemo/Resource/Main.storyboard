@@ -274,13 +274,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mAd-qG-lST" customClass="WaterfallsFlowLayout">
                                     <size key="itemSize" width="103" height="98"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="50" height="50"/>
+                                    <size key="footerReferenceSize" width="50" height="50"/>
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="KbO-mu-1Fi">
-                                        <rect key="frame" x="10" y="10" width="103" height="98"/>
+                                        <rect key="frame" x="10" y="60" width="103" height="98"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="103" height="98"/>
@@ -303,6 +303,44 @@
                                         </constraints>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Header" id="VhC-D1-8Jj">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HTg-Uw-h7E">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.15686274510000001" green="0.56862745100000001" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="HTg-Uw-h7E" secondAttribute="trailing" id="766-E4-LmW"/>
+                                        <constraint firstAttribute="bottom" secondItem="HTg-Uw-h7E" secondAttribute="bottom" id="CIe-3Z-p3Z"/>
+                                        <constraint firstItem="HTg-Uw-h7E" firstAttribute="top" secondItem="VhC-D1-8Jj" secondAttribute="top" id="ZOb-69-pPQ"/>
+                                        <constraint firstItem="HTg-Uw-h7E" firstAttribute="leading" secondItem="VhC-D1-8Jj" secondAttribute="leading" id="Ztl-7E-iHL"/>
+                                    </constraints>
+                                </collectionReusableView>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Footer" id="h2G-v4-S8f">
+                                    <rect key="frame" x="0.0" y="168" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Footer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3k-n0-i43">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.98431372549999996" green="0.5568627451" blue="0.64705882349999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="W3k-n0-i43" firstAttribute="top" secondItem="h2G-v4-S8f" secondAttribute="top" id="DN4-ak-m8Y"/>
+                                        <constraint firstAttribute="trailing" secondItem="W3k-n0-i43" secondAttribute="trailing" id="eiF-yi-nUT"/>
+                                        <constraint firstAttribute="bottom" secondItem="W3k-n0-i43" secondAttribute="bottom" id="kcy-dJ-OIJ"/>
+                                        <constraint firstItem="W3k-n0-i43" firstAttribute="leading" secondItem="h2G-v4-S8f" secondAttribute="leading" id="wSm-tX-TVK"/>
+                                    </constraints>
+                                </collectionReusableView>
                                 <connections>
                                     <outlet property="dataSource" destination="4EI-lk-KuW" id="cyn-91-J22"/>
                                     <outlet property="delegate" destination="4EI-lk-KuW" id="tv4-vt-5Hq"/>
