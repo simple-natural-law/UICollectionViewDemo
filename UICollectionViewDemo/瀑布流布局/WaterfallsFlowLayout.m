@@ -17,6 +17,7 @@ static NSString *const kElementKindSectionHeader = @"kElementKindSectionHeader";
 
 static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
 
+
 @interface WaterfallsFlowLayout ()
 
 @property (nonatomic, strong) NSMutableDictionary *attributesDic;
@@ -30,8 +31,30 @@ static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
 
 @implementation WaterfallsFlowLayout
 
-#pragma mark- 重写父类方法 UICollectionViewLayout(UISubclassingHooks)
+- (instancetype)init
+{
+    self = [super init];
+    
+    if (self)
+    {
+        [self config];
+    }
+    return self;
+}
 
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    
+    if (self)
+    {
+        [self config];
+    }
+    return self;
+}
+
+#pragma mark- 重写父类方法 UICollectionViewLayout(UISubclassingHooks)
 /**
  collectionView初次显示前或者调用invalidateLayout方法后会调用此方法
  触发此方法会重新计算布局，每次布局也是从此方法开始
@@ -41,9 +64,9 @@ static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
 {
     [super prepareLayout];
     
-    [self.attributesDic removeAllObjects];
+    NSLog(@"prepareLayout");
     
-    [self.columnHeightArray removeAllObjects];
+    [self.attributesDic removeAllObjects];
     
     NSInteger sectionCount = [self.collectionView numberOfSections];
     
@@ -51,42 +74,86 @@ static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
     
     NSMutableDictionary *supplementaryViewLayoutInfo = [[NSMutableDictionary alloc] init];
     
+    CGFloat originY = 0.0;
+    
     for (int i = 0; i < sectionCount; i++)
     {
-        // 准备记录每列最大高度
-        NSInteger column = [self columnCountForSectionAtIndex:i];
-        NSMutableArray *heightArray = [NSMutableArray arrayWithCapacity:column];
-        for (int c = 0; c < column; c++)
-        {
-            [heightArray addObject:@(0)];
-        }
-        [self.columnHeightArray addObject:heightArray];
+        NSInteger      column = [self columnCountForSectionAtIndex:i];
+        UIEdgeInsets    inset = [self insetForSectionAtIndex:i];
+        CGFloat columnSpacing = [self columnSpacingForSectionAtIndex:i];
+        CGFloat    rowSpacing = [self rowSpacingForSectionAtIndex:i];
+        CGFloat     itemWidth = floorf((self.collectionView.frame.size.width - inset.left - inset.right - columnSpacing*(column-1))/column);
         
         // 准备header布局信息
         NSIndexPath *supplementaryViewIndexPath = [NSIndexPath indexPathWithIndex:i];
         
-        UICollectionViewLayoutAttributes *headerAttributes = [self layoutAttributesForSupplementaryViewOfKind:kElementKindSectionHeader atIndexPath:supplementaryViewIndexPath];
+        UICollectionViewLayoutAttributes *headerAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:kElementKindSectionHeader withIndexPath:supplementaryViewIndexPath];
+        
+        CGSize headerSize = [self headerSizeInSection:i];
+        
+        headerAttributes.frame = CGRectMake(0.0, originY, self.collectionView.frame.size.width, headerSize.height);
         
         [supplementaryViewLayoutInfo setObject:headerAttributes forKey:kElementKindSectionHeader];
+        
+        originY += headerSize.height + inset.top;
+        
+        // 记录该分区的每列总高度
+        [self.columnHeightArray removeAllObjects];
+        
+        for (int c = 0; c < column; c++)
+        {
+            [self.columnHeightArray addObject:@(originY)];
+        }
         
         // 准备item布局信息
         NSInteger itemCount = [self.collectionView numberOfItemsInSection:i];
         
+        CGFloat originX = 0.0;
+        
         for (int j = 0; j < itemCount; j++)
         {
+            NSInteger index = [self getMinimumHeightColumnIndexFromAllColumns];
+            
+            CGFloat minimumHeight = [self.columnHeightArray[index] floatValue];
+            
+            if (minimumHeight == originY)
+            {
+                originY = minimumHeight;
+            }else
+            {
+                originY = minimumHeight + rowSpacing;
+            }
+            
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:j inSection:i];
             
-            UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
+            UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+            
+            originX = inset.left + index * (itemWidth + columnSpacing);
+            
+            CGFloat itemHeight = [self itemHeightForIndexPath:indexPath];
+            
+            attributes.frame = CGRectMake(originX, originY, itemWidth, itemHeight);
             
             [itemLayoutInfo setObject:attributes forKey:indexPath];
+            
+            self.columnHeightArray[index] = @(originY + itemHeight);
         }
         
+        originY = [self getMaximumHeightFormAllColumnHeights]+inset.bottom;
+        
         // 准备footer布局信息
-        UICollectionViewLayoutAttributes *footerAttributes = [self layoutAttributesForSupplementaryViewOfKind:kElementKindSectionFooter atIndexPath:supplementaryViewIndexPath];
+        UICollectionViewLayoutAttributes *footerAttributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:kElementKindSectionFooter withIndexPath:supplementaryViewIndexPath];
+        
+        CGSize footerSize = [self footerSizeInSection:i];
+        
+        footerAttributes.frame = CGRectMake(0, originY, self.collectionView.frame.size.width, footerSize.height);
         
         [supplementaryViewLayoutInfo setObject:footerAttributes forKey:kElementKindSectionFooter];
         
+        originY += footerSize.height;
     }
+    
+    self.contentHeight = originY;
     
     [self.attributesDic setObject:itemLayoutInfo forKey:itemLayoutInfoKey];
     
@@ -99,6 +166,7 @@ static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
  */
 - (CGSize)collectionViewContentSize
 {
+    NSLog(@"collectionViewContentSize");
     return CGSizeMake(self.collectionView.bounds.size.width, self.contentHeight);
 }
 
@@ -109,6 +177,8 @@ static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
  */
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
 {
+    NSLog(@"layoutAttributesForElementsInRect:");
+    
     NSMutableArray *attributesArr = [[NSMutableArray alloc] init];
     
     for (NSString *key in self.attributesDic.allKeys)
@@ -132,8 +202,22 @@ static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"layoutAttributesForItemAtIndexPath:");
     
+    UICollectionViewLayoutAttributes *attributes = self.attributesDic[itemLayoutInfoKey][indexPath];
+    
+    return attributes;
 }
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"layoutAttributesForSupplementaryViewOfKind:");
+    
+    UICollectionViewLayoutAttributes *attributes = self.attributesDic[supplementaryViewLayoutInfoKey][indexPath];
+    
+    return attributes;
+}
+
 
 #pragma mark- Methods
 - (NSInteger)columnCountForSectionAtIndex:(NSInteger)section
@@ -183,6 +267,71 @@ static NSString *const kElementKindSectionFooter = @"kElementKindSectionFooter";
     return self.rowSpacing;
 }
 
+- (CGSize)headerSizeInSection:(NSInteger)section
+{
+    if ([self.collectionView.delegate respondsToSelector:@selector(waterfallsCollectionView:layout:referenceSizeForHeaderInSection:)])
+    {
+        return [(id<UICollectionViewDelegateWaterfallsFlowLayout>)self.collectionView.delegate waterfallsCollectionView:self.collectionView layout:self referenceSizeForHeaderInSection:section];
+    }
+    
+    return CGSizeMake(self.collectionView.frame.size.width, 30.0);
+}
+
+- (CGSize)footerSizeInSection:(NSInteger)section
+{
+    if ([self.collectionView.delegate respondsToSelector:@selector(waterfallsCollectionView:layout:referenceSizeForFooterInSection:)])
+    {
+        return [(id<UICollectionViewDelegateWaterfallsFlowLayout>)self.collectionView.delegate waterfallsCollectionView:self.collectionView layout:self referenceSizeForFooterInSection:section];
+    }
+    
+    return CGSizeMake(self.collectionView.frame.size.width, 30.0);
+}
+
+/// 返回高度最小列的下标
+- (NSInteger)getMinimumHeightColumnIndexFromAllColumns
+{
+    __block NSInteger index = 0;
+    
+    [self.columnHeightArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        if ([obj floatValue] < [self.columnHeightArray[index] floatValue])
+        {
+            index = idx;
+        }
+    }];
+    
+    return index;
+}
+
+/// 返回高度最大值
+- (CGFloat)getMaximumHeightFormAllColumnHeights
+{
+    __block CGFloat height = 0.0;
+    
+    [self.columnHeightArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        CGFloat h = [obj floatValue];
+        
+        if (h > height)
+        {
+            height = h;
+        }
+    }];
+    
+    return height;
+}
+
+
+- (void)config
+{
+    self.columnCount   = 3;
+    self.sectionInset  = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
+    self.columnSpacing = 10.0;
+    self.rowSpacing    = 10.0;
+}
+
+
+#pragma mark- 懒加载
 - (NSMutableDictionary *)attributesDic
 {
     if (_attributesDic == nil)

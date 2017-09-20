@@ -15,16 +15,17 @@
 - (CGFloat)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout heightForItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @optional
+// 返回每个section的列数
 - (NSInteger)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout columnCountForSectionAtIndex:(NSInteger)section;
-// 返回section到collection view四周的边距
+// 返回item到section四周的边距
 - (UIEdgeInsets)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section;
 // 返回行间距
 - (CGFloat)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout rowSpacingForSectionAtIndex:(NSInteger)section;
 // 返回列间距
 - (CGFloat)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout columnSpacingForSectionAtIndex:(NSInteger)section;
-
+// 返回Header size
 - (CGSize)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section;
-
+// 返回Footer size
 - (CGSize)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section;
 
 @end
@@ -42,7 +43,7 @@
 // 行间距
 @property (nonatomic, assign) CGFloat rowSpacing;
 
-// section到collection view四周的边距
+// item到section四周的边距
 @property (nonatomic, assign) UIEdgeInsets sectionInset;
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import "WaterfallsFlowViewController.h"
+#import "WaterfallsFlowLayout.h"
 
-@interface WaterfallsFlowViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface WaterfallsFlowViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateWaterfallsFlowLayout>
 
 
 @end
@@ -26,12 +27,12 @@
 #pragma mark- UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return 3;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return 20;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -42,19 +43,11 @@
 }
 
 
-#pragma mark- UICollectionViewDelegateFlowLayout
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark- UICollectionViewDelegateWaterfallsFlowLayout
+- (CGFloat)waterfallsCollectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout heightForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 3)
-    {
-        return CGSizeMake(200, 100.0);
-    }else if (indexPath.row == 6)
-    {
-        return CGSizeMake(300.0, 100.0);
-    }
-    return CGSizeMake(100.0, 100.0);
+    return arc4random()%150+50.0;
 }
-
 
 
 - (void)didReceiveMemoryWarning {
