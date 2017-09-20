@@ -11,8 +11,9 @@
 
 static NSString *const itemLayoutInfoKey = @"itemLayoutInfoKey";
 
-static NSString *const supplementaryViewLayoutInfoKey = @"supplementaryViewLayoutInfoKey";
+static NSString *const headerLayoutInfoKey = @"headerLayoutInfoKey";
 
+static NSString *const footerLayoutInfoKey = @"footerLayoutInfoKey";
 
 @interface WaterfallsFlowLayout ()
 
@@ -68,7 +69,9 @@ static NSString *const supplementaryViewLayoutInfoKey = @"supplementaryViewLayou
     
     NSMutableDictionary *itemLayoutInfo = [[NSMutableDictionary alloc] init];
     
-    NSMutableDictionary *supplementaryViewLayoutInfo = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *headerLayoutInfo = [[NSMutableDictionary alloc] init];
+    
+    NSMutableDictionary *footerLayoutInfo = [[NSMutableDictionary alloc] init];
     
     CGFloat originY = 0.0;
     
@@ -89,7 +92,7 @@ static NSString *const supplementaryViewLayoutInfoKey = @"supplementaryViewLayou
         
         headerAttributes.frame = CGRectMake(0.0, originY, self.collectionView.frame.size.width, headerSize.height);
         
-        [supplementaryViewLayoutInfo setObject:headerAttributes forKey:UICollectionElementKindSectionHeader];
+        [headerLayoutInfo setObject:headerAttributes forKey:supplementaryViewIndexPath];
         
         originY += headerSize.height + inset.top;
         
@@ -141,7 +144,7 @@ static NSString *const supplementaryViewLayoutInfoKey = @"supplementaryViewLayou
         
         footerAttributes.frame = CGRectMake(0, originY, self.collectionView.frame.size.width, footerSize.height);
         
-        [supplementaryViewLayoutInfo setObject:footerAttributes forKey:UICollectionElementKindSectionFooter];
+        [footerLayoutInfo setObject:footerAttributes forKey:supplementaryViewIndexPath];
         
         originY += footerSize.height;
     }
@@ -150,7 +153,9 @@ static NSString *const supplementaryViewLayoutInfoKey = @"supplementaryViewLayou
     
     [self.attributesDic setObject:itemLayoutInfo forKey:itemLayoutInfoKey];
     
-    [self.attributesDic setObject:supplementaryViewLayoutInfo forKey:supplementaryViewLayoutInfoKey];
+    [self.attributesDic setObject:headerLayoutInfo forKey:headerLayoutInfoKey];
+    
+    [self.attributesDic setObject:footerLayoutInfo forKey:footerLayoutInfoKey];
 }
 
 
@@ -206,9 +211,17 @@ static NSString *const supplementaryViewLayoutInfoKey = @"supplementaryViewLayou
 {
     NSLog(@"layoutAttributesForSupplementaryViewOfKind:");
     
-    UICollectionViewLayoutAttributes *attributes = self.attributesDic[supplementaryViewLayoutInfoKey][indexPath];
-    
-    return attributes;
+    if ([elementKind isEqualToString:UICollectionElementKindSectionHeader])
+    {
+        UICollectionViewLayoutAttributes *attributes = self.attributesDic[headerLayoutInfoKey][indexPath];
+        
+        return attributes;
+    }else
+    {
+        UICollectionViewLayoutAttributes *attributes = self.attributesDic[footerLayoutInfoKey][indexPath];
+        
+        return attributes;
+    }
 }
 
 
