@@ -40,10 +40,6 @@
                         @{@"title":@"不规则瀑布流", @"target":@"WaterfallsFlowViewController"}];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -91,5 +87,13 @@
     
     [self.navigationController pushViewController:targetVC animated:YES];
 }
+
+
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 
 @end
