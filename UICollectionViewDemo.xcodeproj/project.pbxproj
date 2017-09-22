@@ -31,6 +31,7 @@
 		1A919ED21F68D24800C2DB12 /* MultipleSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A919ED11F68D24800C2DB12 /* MultipleSelectedViewController.m */; };
 		1AB49E991F74F39800F2E790 /* InsertAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB49E981F74F39800F2E790 /* InsertAnimationViewController.m */; };
 		1AB49E9C1F74F50B00F2E790 /* CustomFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB49E9B1F74F50B00F2E790 /* CustomFlowLayout.m */; };
+		1AB49E9F1F75096700F2E790 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB49E9E1F75096700F2E790 /* CustomCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,8 @@
 		1AB49E981F74F39800F2E790 /* InsertAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsertAnimationViewController.m; sourceTree = "<group>"; };
 		1AB49E9A1F74F50B00F2E790 /* CustomFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomFlowLayout.h; sourceTree = "<group>"; };
 		1AB49E9B1F74F50B00F2E790 /* CustomFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomFlowLayout.m; sourceTree = "<group>"; };
+		1AB49E9D1F75096700F2E790 /* CustomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		1AB49E9E1F75096700F2E790 /* CustomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +218,8 @@
 				1AB49E981F74F39800F2E790 /* InsertAnimationViewController.m */,
 				1AB49E9A1F74F50B00F2E790 /* CustomFlowLayout.h */,
 				1AB49E9B1F74F50B00F2E790 /* CustomFlowLayout.m */,
+				1AB49E9D1F75096700F2E790 /* CustomCell.h */,
+				1AB49E9E1F75096700F2E790 /* CustomCell.m */,
 			);
 			path = "自定义Cell插入和删除动画";
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				1AB49E9C1F74F50B00F2E790 /* CustomFlowLayout.m in Sources */,
 				1A5E1B331F6BB77D00AA79BE /* HomeTableViewController.m in Sources */,
 				1A428C381F611CE6008FC3E0 /* StoryboardCell.m in Sources */,
+				1AB49E9F1F75096700F2E790 /* CustomCell.m in Sources */,
 				1AB49E991F74F39800F2E790 /* InsertAnimationViewController.m in Sources */,
 				1A428C331F611BB0008FC3E0 /* CollectionHeaderView.m in Sources */,
 				1A5E1B101F68D8EC00AA79BE /* SelectCell.m in Sources */,
