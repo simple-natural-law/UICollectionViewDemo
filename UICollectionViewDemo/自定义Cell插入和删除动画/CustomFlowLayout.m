@@ -21,8 +21,32 @@
 
 @implementation CustomFlowLayout
 
+- (void)prepareLayout
+{
+    [super prepareLayout];
+    
+    NSLog(@"prepareLayout");
+}
+
+- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
+{
+    NSLog(@"layoutAttributesForElementsInRect");
+    
+    return [super layoutAttributesForElementsInRect:rect];
+}
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"layoutAttributesForItemAtIndexPath");
+    
+    return [super layoutAttributesForItemAtIndexPath:indexPath];
+}
+
+
 - (void)prepareForCollectionViewUpdates:(NSArray<UICollectionViewUpdateItem *> *)updateItems
 {
+    NSLog(@"prepareForCollectionViewUpdates");
+    
     [super prepareForCollectionViewUpdates:updateItems];
     
     [self.insertIndexPathArr removeAllObjects];
@@ -46,7 +70,7 @@
                 break;
             case UICollectionUpdateActionDelete:
             {
-                [self.insertIndexPathArr addObject:item.indexPathBeforeUpdate];
+                [self.deleteIndexPathArr addObject:item.indexPathBeforeUpdate];
                 
                 self.currentUpdateAction = UICollectionUpdateActionDelete;
             }
@@ -70,6 +94,8 @@
 /// 某个cell的插入，删除，移动，刷新动画开始执行时，设置起始属性值
 - (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
+    NSLog(@"initialLayoutAttributesForAppearingItemAtIndexPath");
+    
     UICollectionViewLayoutAttributes *attributes = [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
     
     switch (self.currentUpdateAction)
@@ -117,6 +143,8 @@
 /// 某个cell的插入，删除，移动，刷新动画执行结束时，设置结束属性值
 - (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
+    NSLog(@"finalLayoutAttributesForDisappearingItemAtIndexPath");
+    
     UICollectionViewLayoutAttributes *attributes = [super finalLayoutAttributesForDisappearingItemAtIndexPath:itemIndexPath];
     
     switch (self.currentUpdateAction)

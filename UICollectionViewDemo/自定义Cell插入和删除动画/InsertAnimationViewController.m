@@ -50,7 +50,20 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    CustomCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    __weak InsertAnimationViewController *weakself = self;
+    
+    [cell deleteItemWithBlock:^(CustomCell *cell) {
+        
+        __strong InsertAnimationViewController *strongSelf = weakself;
+        
+        NSIndexPath *indexPath = [strongSelf.collectionView indexPathForCell:cell];
+        
+        [strongSelf.dataArray removeObjectAtIndex:indexPath.row];
+        
+        [strongSelf.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+    }];
     
     return cell;
 }

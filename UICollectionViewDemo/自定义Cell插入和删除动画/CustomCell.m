@@ -8,11 +8,28 @@
 
 #import "CustomCell.h"
 
+
+typedef void(^DeleteItemBlock)(CustomCell *cell);
+
+@interface CustomCell ()
+
+@property (nonatomic, copy) DeleteItemBlock block;
+
+@end
+
 @implementation CustomCell
 
 - (IBAction)deleteItem:(id)sender
 {
-    
+    if (self.block)
+    {
+        self.block(self);
+    }
+}
+
+- (void)deleteItemWithBlock:(void (^)(CustomCell *))block
+{
+    self.block = block;
 }
 
 @end

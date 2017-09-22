@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface CustomCell : UICollectionViewCell
+
+- (void)deleteItemWithBlock:(void (^)(CustomCell *cell))block;
 
 @end
