@@ -29,6 +29,8 @@
 		1A5E1B441F70C7BF00AA79BE /* WaterfallsFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B411F70C7BF00AA79BE /* WaterfallsFlowLayout.m */; };
 		1A5E1B451F70C7BF00AA79BE /* WaterfallsFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B431F70C7BF00AA79BE /* WaterfallsFlowViewController.m */; };
 		1A919ED21F68D24800C2DB12 /* MultipleSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A919ED11F68D24800C2DB12 /* MultipleSelectedViewController.m */; };
+		1AB49E991F74F39800F2E790 /* InsertAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB49E981F74F39800F2E790 /* InsertAnimationViewController.m */; };
+		1AB49E9C1F74F50B00F2E790 /* CustomFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB49E9B1F74F50B00F2E790 /* CustomFlowLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,10 @@
 		1A5E1B431F70C7BF00AA79BE /* WaterfallsFlowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterfallsFlowViewController.m; sourceTree = "<group>"; };
 		1A919ED01F68D24800C2DB12 /* MultipleSelectedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleSelectedViewController.h; sourceTree = "<group>"; };
 		1A919ED11F68D24800C2DB12 /* MultipleSelectedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleSelectedViewController.m; sourceTree = "<group>"; };
+		1AB49E971F74F39800F2E790 /* InsertAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InsertAnimationViewController.h; sourceTree = "<group>"; };
+		1AB49E981F74F39800F2E790 /* InsertAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsertAnimationViewController.m; sourceTree = "<group>"; };
+		1AB49E9A1F74F50B00F2E790 /* CustomFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomFlowLayout.h; sourceTree = "<group>"; };
+		1AB49E9B1F74F50B00F2E790 /* CustomFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomFlowLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,7 @@
 			children = (
 				1A5E1B271F6BB77D00AA79BE /* Main */,
 				1A5E1B2E1F6BB77D00AA79BE /* Resource */,
+				1AB49E961F74F36A00F2E790 /* 自定义Cell插入和删除动画 */,
 				1A5E1B3F1F70C7BF00AA79BE /* 瀑布流布局 */,
 				1A5E1B1C1F6A7BA100AA79BE /* 剪切复制和粘贴Cell */,
 				1A5E1B151F690C8B00AA79BE /* 插入删除移动Cell */,
@@ -201,6 +208,17 @@
 			path = "可多选的UICollectionView";
 			sourceTree = "<group>";
 		};
+		1AB49E961F74F36A00F2E790 /* 自定义Cell插入和删除动画 */ = {
+			isa = PBXGroup;
+			children = (
+				1AB49E971F74F39800F2E790 /* InsertAnimationViewController.h */,
+				1AB49E981F74F39800F2E790 /* InsertAnimationViewController.m */,
+				1AB49E9A1F74F50B00F2E790 /* CustomFlowLayout.h */,
+				1AB49E9B1F74F50B00F2E790 /* CustomFlowLayout.m */,
+			);
+			path = "自定义Cell插入和删除动画";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -227,7 +245,7 @@
 		1A428BF21F5E37F3008FC3E0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "讯心科技";
 				TargetAttributes = {
 					1A428BF91F5E37F3008FC3E0 = {
@@ -288,8 +306,10 @@
 				1A5E1B181F690C8B00AA79BE /* InsertViewController.m in Sources */,
 				1A5E1B1F1F6A7C0700AA79BE /* EditViewController.m in Sources */,
 				1A5E1B351F6BB77D00AA79BE /* main.m in Sources */,
+				1AB49E9C1F74F50B00F2E790 /* CustomFlowLayout.m in Sources */,
 				1A5E1B331F6BB77D00AA79BE /* HomeTableViewController.m in Sources */,
 				1A428C381F611CE6008FC3E0 /* StoryboardCell.m in Sources */,
+				1AB49E991F74F39800F2E790 /* InsertAnimationViewController.m in Sources */,
 				1A428C331F611BB0008FC3E0 /* CollectionHeaderView.m in Sources */,
 				1A5E1B101F68D8EC00AA79BE /* SelectCell.m in Sources */,
 			);
@@ -308,7 +328,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -316,7 +338,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -339,7 +365,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -356,7 +382,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -364,7 +392,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -381,7 +413,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
