@@ -61,7 +61,9 @@
         
         CGFloat d = fabs(attributes.center.x - targetX);
         
-        CGFloat scale = 1.0 - d/self.collectionView.frame.size.width;
+        CGFloat scale = 1 - d/targetX;
+        
+        scale = scale > 0.6 ? scale : 0.6;
         
         copyAttributes.transform = CGAffineTransformMakeScale(scale, scale);
         
