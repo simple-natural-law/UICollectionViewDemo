@@ -38,7 +38,8 @@
                         @{@"title":@"插入，删除和移动Cell", @"target":@"InsertViewController"},
                         @{@"title":@"剪切，复制和粘贴Cell", @"target":@"EditViewController"},
                         @{@"title":@"不规则瀑布流", @"target":@"WaterfallsFlowViewController"},
-                        @{@"title":@"自定义Cell插入和删除动画", @"target":@"InsertAnimationViewController"}];
+                        @{@"title":@"自定义Cell插入和删除动画", @"target":@"InsertAnimationViewController"},
+                        @{@"title":@"类似iCarousel卡片切换效果", @"target":@"CardSelectedViewController"}];
 }
 
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A15119E1F7A5CE800A12D5E /* CardSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A15119D1F7A5CE800A12D5E /* CardSelectedViewController.m */; };
 		1A428C321F611BB0008FC3E0 /* BaseDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A428C2D1F611BB0008FC3E0 /* BaseDemoViewController.m */; };
 		1A428C331F611BB0008FC3E0 /* CollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A428C2F1F611BB0008FC3E0 /* CollectionHeaderView.m */; };
 		1A428C341F611BB0008FC3E0 /* CustomFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A428C301F611BB0008FC3E0 /* CustomFooterView.xib */; };
@@ -35,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A15119C1F7A5CE800A12D5E /* CardSelectedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardSelectedViewController.h; sourceTree = "<group>"; };
+		1A15119D1F7A5CE800A12D5E /* CardSelectedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardSelectedViewController.m; sourceTree = "<group>"; };
 		1A428BFA1F5E37F3008FC3E0 /* UICollectionViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UICollectionViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A428C2C1F611BB0008FC3E0 /* BaseDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDemoViewController.h; sourceTree = "<group>"; };
 		1A428C2D1F611BB0008FC3E0 /* BaseDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDemoViewController.m; sourceTree = "<group>"; };
@@ -93,6 +96,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A15119B1F7A4FE400A12D5E /* 类似iCarousel卡片效果 */ = {
+			isa = PBXGroup;
+			children = (
+				1A15119C1F7A5CE800A12D5E /* CardSelectedViewController.h */,
+				1A15119D1F7A5CE800A12D5E /* CardSelectedViewController.m */,
+			);
+			path = "类似iCarousel卡片效果";
+			sourceTree = "<group>";
+		};
 		1A428BF11F5E37F3008FC3E0 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +126,7 @@
 			children = (
 				1A5E1B271F6BB77D00AA79BE /* Main */,
 				1A5E1B2E1F6BB77D00AA79BE /* Resource */,
+				1A15119B1F7A4FE400A12D5E /* 类似iCarousel卡片效果 */,
 				1AB49E961F74F36A00F2E790 /* 自定义Cell插入和删除动画 */,
 				1A5E1B3F1F70C7BF00AA79BE /* 瀑布流布局 */,
 				1A5E1B1C1F6A7BA100AA79BE /* 剪切复制和粘贴Cell */,
@@ -304,6 +317,7 @@
 				1A428C401F611E9E008FC3E0 /* CodeCell.m in Sources */,
 				1A428C3C1F611E13008FC3E0 /* XibCell.m in Sources */,
 				1A5E1B221F6A7CDE00AA79BE /* EditCell.m in Sources */,
+				1A15119E1F7A5CE800A12D5E /* CardSelectedViewController.m in Sources */,
 				1A5E1B451F70C7BF00AA79BE /* WaterfallsFlowViewController.m in Sources */,
 				1A919ED21F68D24800C2DB12 /* MultipleSelectedViewController.m in Sources */,
 				1A428C321F611BB0008FC3E0 /* BaseDemoViewController.m in Sources */,
