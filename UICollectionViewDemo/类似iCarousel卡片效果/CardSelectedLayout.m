@@ -23,8 +23,6 @@
     if (self)
     {
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        
-        self.needPrepareLayout = YES;
     }
     
     return self;
@@ -37,7 +35,6 @@
     if (self)
     {
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        self.needPrepareLayout = YES;
     }
     
     return self;
@@ -46,14 +43,11 @@
 
 - (void)prepareLayout
 {
-    if (self.needPrepareLayout)
-    {
-        [super prepareLayout];
-        
-        CGFloat left = (self.collectionView.frame.size.width - self.itemSize.width)*0.5;
-        CGFloat top  = (self.collectionView.frame.size.height - self.itemSize.height)*0.5;
-        self.sectionInset = UIEdgeInsetsMake(top, left, top, left);
-    }
+    [super prepareLayout];
+    
+    CGFloat left = (self.collectionView.frame.size.width - self.itemSize.width)*0.5;
+    CGFloat top  = (self.collectionView.frame.size.height - self.itemSize.height)*0.5;
+    self.sectionInset = UIEdgeInsetsMake(top, left, top, left);
 }
 
 
@@ -87,7 +81,6 @@
 // CollectionView滚动过程中会不断调用此方法来判断是否废弃当前布局并重新生成布局信息，这里返回YES。那么cell在滚动时就会不断更新布局信息以达到动画效果。
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
 {
-    self.needPrepareLayout = !(CGRectGetWidth(newBounds) == CGRectGetWidth(self.collectionView.bounds));
     return YES;
 }
 
