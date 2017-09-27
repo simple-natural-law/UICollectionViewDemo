@@ -225,7 +225,7 @@ static NSString *const footerLayoutInfoKey = @"footerLayoutInfoKey";
 }
 
 
-/// Collection View 在滚动过程中会不断调用布局对象的`shouldInvalidateLayoutForBoundsChange`方法来判断是否需要废弃当前布局信息并重复之前的布局过程重新生成布局。所以这里需要增加一下条件限制，只有当collection view的bounds属性发生变化时，我们需要废弃当前布局信息并重新生成布局。否则会在滚动过程中不断重新生成布局信息，视觉体验极差,同时大大降低程序的运行效率。(设备方向变化通常会导致 collection view 的 bounds 变化。如果通过 shouldInvalidateLayoutForBoundsChange: 判定为布局需要被无效化并重新计算的时候，布局对象会被询问以提供新的布局。UICollectionViewFlowLayout 的默认实现正确地处理了这个情况，但是如果你子类化 UICollectionViewLayout 的话，你需要在bounds变化时返回 YES。)
+/// Collection View 在滚动过程中会不断调用布局对象的`shouldInvalidateLayoutForBoundsChange`方法来判断是否需要废弃当前布局信息并重复之前的布局过程重新生成布局。所以这里需要增加一下条件限制，只有当collection view的bounds属性发生变化时，我们需要废弃当前布局信息并重新生成布局。否则会在滚动过程中不断重新生成布局信息，会大大降低程序的运行效率。(设备方向变化通常会导致 collection view 的 bounds 变化。如果通过 shouldInvalidateLayoutForBoundsChange: 判定为布局需要被无效化并重新计算的时候，布局对象会被询问以提供新的布局。UICollectionViewFlowLayout 的默认实现正确地处理了这个情况，但是如果你子类化 UICollectionViewLayout 的话，你需要在bounds变化时返回 YES。)
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
 {
     CGRect oldBounds = self.collectionView.bounds;

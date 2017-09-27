@@ -8,6 +8,12 @@
 
 #import "CardSelectedLayout.h"
 
+@interface CardSelectedLayout ()
+
+@property (nonatomic, assign) BOOL needPrepareLayout;
+
+@end
+
 @implementation CardSelectedLayout
 
 - (instancetype)init
@@ -17,6 +23,8 @@
     if (self)
     {
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        
+        self.needPrepareLayout = YES;
     }
     
     return self;
@@ -29,6 +37,7 @@
     if (self)
     {
         self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        self.needPrepareLayout = YES;
     }
     
     return self;
@@ -37,13 +46,14 @@
 
 - (void)prepareLayout
 {
-    [super prepareLayout];
-    
-    CGFloat left = (self.collectionView.frame.size.width - self.itemSize.width)*0.5;
-    
-    CGFloat top  = (self.collectionView.frame.size.height - self.itemSize.height)*0.5;
-    
-    self.sectionInset = UIEdgeInsetsMake(top, left, top, left);
+    if (self.needPrepareLayout)
+    {
+        [super prepareLayout];
+        
+        CGFloat left = (self.collectionView.frame.size.width - self.itemSize.width)*0.5;
+        CGFloat top  = (self.collectionView.frame.size.height - self.itemSize.height)*0.5;
+        self.sectionInset = UIEdgeInsetsMake(top, left, top, left);
+    }
 }
 
 
@@ -73,9 +83,38 @@
     return array;
 }
 
+// 重要!!!
+// CollectionView滚动过程中会不断调用此方法来判断是否废弃当前布局并重新生成布局信息，这里返回YES。那么cell在滚动时就会不断更新布局信息以达到动画效果。
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
 {
+    self.needPrepareLayout = !(CGRectGetWidth(newBounds) == CGRectGetWidth(self.collectionView.bounds));
     return YES;
 }
+
+// 调整CollectionView滚动结束的最终位置，让某个cell始终处于屏幕心。
+- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity
+{
+    // 计算停止滚动后当前屏幕上显示的CollectionView内容区域
+    CGRect rect = CGRectMake(proposedContentOffset.x, 0, self.collectionView.frame.size.width, self.collectionView.frame.size.height);
+    
+    // 获取停止滚动后在屏幕上显示的cell的布局信息
+    NSArray<UICollectionViewLayoutAttributes *> *array = [super layoutAttributesForElementsInRect:rect];
+    
+    // 计算停止滚动后，此时屏幕中心点位置到CollectionView最左侧距离
+    CGFloat centerX = proposedContentOffset.x + self.collectionView.frame.size.width*0.5;
+    
+    CGFloat distance = self.collectionView.contentSize.height;
+    
+    for (UICollectionViewLayoutAttributes *attributes in array)
+    {
+        if (fabs(attributes.center.x - centerX) < fabs(distance))
+        {
+            distance = attributes.center.x - centerX;
+        }
+    }
+    
+    return CGPointMake(proposedContentOffset.x + distance, proposedContentOffset.y);
+}
+
 
 @end
