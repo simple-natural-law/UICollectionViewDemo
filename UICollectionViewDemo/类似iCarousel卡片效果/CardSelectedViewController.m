@@ -9,12 +9,8 @@
 #import "CardSelectedViewController.h"
 
 @interface CardSelectedViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
-{
-    NSInteger _count;
-}
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-
 
 @end
 
@@ -25,25 +21,16 @@
     // Do any additional setup after loading the view.
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-    
-    _count = 10;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        _count = 20;
-        
-        [self.collectionView reloadData];
-    });
+    [super viewDidAppear:animated];    
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return _count;
+    return 16;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
