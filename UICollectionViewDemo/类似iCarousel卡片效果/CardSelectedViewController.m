@@ -10,6 +10,8 @@
 
 @interface CardSelectedViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @end
 
 @implementation CardSelectedViewController
@@ -21,14 +23,23 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];    
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    return 16;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    UILabel *label = [cell.contentView viewWithTag:66666];
+    
+    label.text = [NSString stringWithFormat:@"%ld",indexPath.row];
     
     return cell;
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dhc-vW-r5S">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dhc-vW-r5S">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -153,8 +153,22 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="66666" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEq-of-voE">
+                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </view>
                                         <color key="backgroundColor" red="0.19301689120000001" green="0.63202937130000003" blue="0.14253683910000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="SEq-of-voE" secondAttribute="trailing" id="33Q-lX-A2b"/>
+                                            <constraint firstAttribute="bottom" secondItem="SEq-of-voE" secondAttribute="bottom" id="965-oZ-6zd"/>
+                                            <constraint firstItem="SEq-of-voE" firstAttribute="leading" secondItem="pJ1-eX-LGE" secondAttribute="leading" id="FRu-mm-40Y"/>
+                                            <constraint firstItem="SEq-of-voE" firstAttribute="top" secondItem="pJ1-eX-LGE" secondAttribute="top" id="KUj-xL-ebu"/>
+                                        </constraints>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -171,6 +185,9 @@
                             <constraint firstItem="4Hd-Om-OCF" firstAttribute="leading" secondItem="pCo-Jl-Aui" secondAttribute="leading" id="XNM-8H-JbU"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="4Hd-Om-OCF" id="tiu-Ex-rKe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z6Y-kB-EcN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
