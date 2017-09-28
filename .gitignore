@@ -18,8 +18,8 @@ DerivedData/
 xcuserdata/
 
 ## 忽略 Pods/和Podfile.lock
-Pods/
-Podfile.lock
+#Pods/
+#Podfile.lock
 
 ## Other
 *.moved-aside
