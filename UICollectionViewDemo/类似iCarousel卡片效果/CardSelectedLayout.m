@@ -65,7 +65,7 @@
         
         CGFloat d = fabs(attributes.center.x - targetX);
         
-        CGFloat scale = 1 - d/targetX;
+        CGFloat scale = 1 - d/self.collectionView.frame.size.width;
         
         scale = scale > 0.6 ? scale : 0.6;
         
