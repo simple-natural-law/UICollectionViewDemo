@@ -78,7 +78,7 @@
 }
 
 // 重要!!!
-// CollectionView滚动过程中会不断调用此方法来判断是否废弃当前布局并重新生成布局信息，这里返回YES。那么cell在滚动时就会不断更新布局信息以达到动画效果。
+// CollectionView滚动过程中会不断调用此方法来判断是否废弃当前布局并重新生成布局信息，这里返回YES。让cell在滚动时不断更新布局信息以达到动画效果。
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
 {
     return YES;
