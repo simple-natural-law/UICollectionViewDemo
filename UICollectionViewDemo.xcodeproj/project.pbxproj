@@ -34,6 +34,7 @@
 		1AB49E9C1F74F50B00F2E790 /* CustomFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB49E9B1F74F50B00F2E790 /* CustomFlowLayout.m */; };
 		1AB49E9F1F75096700F2E790 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB49E9E1F75096700F2E790 /* CustomCell.m */; };
 		348559671F7A98360058F2CD /* CardSelectedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 348559661F7A98360058F2CD /* CardSelectedLayout.m */; };
+		34F6D0E71F8CF90900094EF2 /* CollectionViewTransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1B5D0F1F8CD03600456AD2 /* CollectionViewTransitionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -329,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34F6D0E71F8CF90900094EF2 /* CollectionViewTransitionViewController.m in Sources */,
 				1A5E1B1B1F691F6D00AA79BE /* InsertCell.m in Sources */,
 				1A5E1B441F70C7BF00AA79BE /* WaterfallsFlowLayout.m in Sources */,
 				1A428C401F611E9E008FC3E0 /* CodeCell.m in Sources */,
