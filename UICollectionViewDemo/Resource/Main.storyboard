@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dhc-vW-r5S">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dhc-vW-r5S">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -595,6 +595,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wuk-uG-FVd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2038" y="113"/>
+        </scene>
+        <!--线性动画切换布局-->
+        <scene sceneID="o9w-Fn-uke">
+            <objects>
+                <viewController storyboardIdentifier="CollectionViewTransitionViewController" title="线性动画切换布局" id="7Oj-CV-77L" customClass="CollectionViewTransitionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GZT-VX-FZk"/>
+                        <viewControllerLayoutGuide type="bottom" id="vQ8-fl-BqR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7hO-Qc-koc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xE4-Yb-aPA">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="In6-Vm-AXe">
+                                    <size key="itemSize" width="147" height="136"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="JC3-v4-yR4">
+                                        <rect key="frame" x="0.0" y="0.0" width="147" height="136"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="147" height="136"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="7Oj-CV-77L" id="LVi-fH-adD"/>
+                                    <outlet property="delegate" destination="7Oj-CV-77L" id="d8c-UF-kER"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xE4-Yb-aPA" firstAttribute="top" secondItem="GZT-VX-FZk" secondAttribute="bottom" id="DFQ-PD-gMO"/>
+                            <constraint firstItem="vQ8-fl-BqR" firstAttribute="top" secondItem="xE4-Yb-aPA" secondAttribute="bottom" id="PfK-Q4-9ix"/>
+                            <constraint firstItem="xE4-Yb-aPA" firstAttribute="leading" secondItem="7hO-Qc-koc" secondAttribute="leading" id="hq5-Ua-KIs"/>
+                            <constraint firstAttribute="trailing" secondItem="xE4-Yb-aPA" secondAttribute="trailing" id="w3l-FH-ujh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="xE4-Yb-aPA" id="Taa-Km-Zks"/>
+                        <outlet property="flowLayoutA" destination="In6-Vm-AXe" id="fW9-5q-7Yi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hEq-fs-S88" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2860" y="122.78860569715144"/>
         </scene>
         <!--简单的Collection View-->
         <scene sceneID="gEY-7h-LF1">

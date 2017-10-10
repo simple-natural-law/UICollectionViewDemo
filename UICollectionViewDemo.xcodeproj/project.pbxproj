@@ -39,6 +39,8 @@
 /* Begin PBXFileReference section */
 		1A15119C1F7A5CE800A12D5E /* CardSelectedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardSelectedViewController.h; sourceTree = "<group>"; };
 		1A15119D1F7A5CE800A12D5E /* CardSelectedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardSelectedViewController.m; sourceTree = "<group>"; };
+		1A1B5D0E1F8CD03600456AD2 /* CollectionViewTransitionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewTransitionViewController.h; sourceTree = "<group>"; };
+		1A1B5D0F1F8CD03600456AD2 /* CollectionViewTransitionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewTransitionViewController.m; sourceTree = "<group>"; };
 		1A428BFA1F5E37F3008FC3E0 /* UICollectionViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UICollectionViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A428C2C1F611BB0008FC3E0 /* BaseDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseDemoViewController.h; sourceTree = "<group>"; };
 		1A428C2D1F611BB0008FC3E0 /* BaseDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDemoViewController.m; sourceTree = "<group>"; };
@@ -110,6 +112,15 @@
 			path = "类似iCarousel卡片效果";
 			sourceTree = "<group>";
 		};
+		1A1B5D0D1F8CD03600456AD2 /* 线性动画切换布局 */ = {
+			isa = PBXGroup;
+			children = (
+				1A1B5D0E1F8CD03600456AD2 /* CollectionViewTransitionViewController.h */,
+				1A1B5D0F1F8CD03600456AD2 /* CollectionViewTransitionViewController.m */,
+			);
+			path = "线性动画切换布局";
+			sourceTree = "<group>";
+		};
 		1A428BF11F5E37F3008FC3E0 = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +142,7 @@
 			children = (
 				1A5E1B271F6BB77D00AA79BE /* Main */,
 				1A5E1B2E1F6BB77D00AA79BE /* Resource */,
+				1A1B5D0D1F8CD03600456AD2 /* 线性动画切换布局 */,
 				1A15119B1F7A4FE400A12D5E /* 类似iCarousel卡片效果 */,
 				1AB49E961F74F36A00F2E790 /* 自定义Cell插入和删除动画 */,
 				1A5E1B3F1F70C7BF00AA79BE /* 瀑布流布局 */,
