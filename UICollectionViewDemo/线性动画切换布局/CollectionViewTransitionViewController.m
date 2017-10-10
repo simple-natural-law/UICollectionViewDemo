@@ -12,7 +12,9 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
-@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayoutA;
+@property (strong, nonatomic) UICollectionViewFlowLayout *flowLayoutA;
+
+@property (strong, nonatomic) UICollectionViewFlowLayout *flowLayoutB;
 
 @end
 
@@ -21,7 +23,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 60, 30);
+    [button setTitle:@"切换" forState:UIControlStateNormal];
+    [button setTitleColor:self.navigationController.navigationBar.tintColor forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(changeLayout) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    
+    self.collectionView.collectionViewLayout = self.flowLayoutA;
 }
+
+- (void)changeLayout
+{
+    if (self.collectionView.collectionViewLayout == self.flowLayoutB)
+    {
+        [self.collectionView setCollectionViewLayout:self.flowLayoutA animated:YES];
+    }else
+    {
+        [self.collectionView setCollectionViewLayout:self.flowLayoutB animated:YES];
+    }
+}
+
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
@@ -35,6 +58,42 @@
     return cell;
 }
 
+
+- (UICollectionViewFlowLayout *)flowLayoutB
+{
+    if (_flowLayoutB == nil)
+    {
+        _flowLayoutB = [[UICollectionViewFlowLayout alloc] init];
+        
+        _flowLayoutB.itemSize = CGSizeMake(150.0, 150.0);
+        
+        _flowLayoutB.minimumLineSpacing = 10.0;
+        
+        _flowLayoutB.minimumInteritemSpacing = 10.0;
+        
+        _flowLayoutB.sectionInset = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
+    }
+    
+    return _flowLayoutB;
+}
+
+- (UICollectionViewFlowLayout *)flowLayoutA
+{
+    if (_flowLayoutA == nil)
+    {
+        _flowLayoutA = [[UICollectionViewFlowLayout alloc] init];
+        
+        _flowLayoutA.itemSize = CGSizeMake(80.0, 80.0);
+        
+        _flowLayoutA.minimumLineSpacing = 10.0;
+        
+        _flowLayoutA.minimumInteritemSpacing = 10.0;
+        
+        _flowLayoutA.sectionInset = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
+    }
+    
+    return _flowLayoutA;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
