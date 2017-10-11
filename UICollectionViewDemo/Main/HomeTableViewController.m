@@ -19,12 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     self.title = @"UICollectionView使用";
     
     UIBarButtonItem * backButtonItem = [[UIBarButtonItem alloc] init];
@@ -40,7 +34,8 @@
                         @{@"title":@"不规则瀑布流", @"target":@"WaterfallsFlowViewController"},
                         @{@"title":@"自定义Cell插入和删除动画", @"target":@"InsertAnimationViewController"},
                         @{@"title":@"类似iCarousel卡片切换效果", @"target":@"CardSelectedViewController"},
-                        @{@"title":@"线性动画切换布局", @"target":@"CollectionViewChangeLayoutViewController"}];
+                        @{@"title":@"线性动画切换布局", @"target":@"CollectionViewChangeLayoutViewController"},
+                        @{@"title":@"控制器跳转时布局切换转场动画", @"target":@"FirstViewController"}];
 }
 
 
