@@ -606,7 +606,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TwB-KC-ZwG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3653.5999999999999" y="1498.2008995502249"/>
+            <point key="canvasLocation" x="3678" y="814"/>
         </scene>
         <!--剪切粘贴和复制Cell-->
         <scene sceneID="HnG-TU-ayf">
