@@ -21,12 +21,16 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 20;
+    return 25;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    UIImageView *imageView = [cell.contentView viewWithTag:10086];
+    
+    imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"sa%ld.jpg",indexPath.row]];
     
     return cell;
 }

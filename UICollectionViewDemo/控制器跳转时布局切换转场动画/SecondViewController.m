@@ -8,7 +8,7 @@
 
 #import "SecondViewController.h"
 
-@interface SecondViewController ()
+@interface SecondViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @end
 
@@ -17,6 +17,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 25;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    UIImageView *imageView = [cell.contentView viewWithTag:10086];
+    
+    imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"sa%ld.jpg",indexPath.row]];
+    
+    return cell;
 }
 
 - (void)didReceiveMemoryWarning {
