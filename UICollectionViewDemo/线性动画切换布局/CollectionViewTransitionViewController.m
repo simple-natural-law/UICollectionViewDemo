@@ -8,6 +8,7 @@
 
 #import "CollectionViewTransitionViewController.h"
 
+
 @interface CollectionViewTransitionViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -45,7 +46,7 @@
     }
 }
 
-
+#pragma mark- UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return 20;
@@ -59,6 +60,7 @@
 }
 
 
+#pragma mark- 懒加载
 - (UICollectionViewFlowLayout *)flowLayoutB
 {
     if (_flowLayoutB == nil)
