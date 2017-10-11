@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  CustomTransitionLayout.h
 //  UICollectionViewDemo
 //
 //  Created by 讯心科技 on 2017/10/11.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UICollectionViewController
+@interface CustomTransitionLayout : UICollectionViewTransitionLayout
 
 @end
