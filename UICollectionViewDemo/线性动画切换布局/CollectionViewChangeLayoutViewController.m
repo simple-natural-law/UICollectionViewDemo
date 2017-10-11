@@ -1,15 +1,15 @@
 //
-//  CollectionViewTransitionViewController.m
+//  CollectionViewChangeLayoutViewController.m
 //  UICollectionViewDemo
 //
 //  Created by 讯心科技 on 2017/10/10.
 //  Copyright © 2017年 讯心科技. All rights reserved.
 //
 
-#import "CollectionViewTransitionViewController.h"
+#import "CollectionViewChangeLayoutViewController.h"
 
 
-@interface CollectionViewTransitionViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface CollectionViewChangeLayoutViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation CollectionViewTransitionViewController
+@implementation CollectionViewChangeLayoutViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

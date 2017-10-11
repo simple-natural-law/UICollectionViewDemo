@@ -40,7 +40,7 @@
                         @{@"title":@"不规则瀑布流", @"target":@"WaterfallsFlowViewController"},
                         @{@"title":@"自定义Cell插入和删除动画", @"target":@"InsertAnimationViewController"},
                         @{@"title":@"类似iCarousel卡片切换效果", @"target":@"CardSelectedViewController"},
-                        @{@"title":@"线性动画切换布局", @"target":@"CollectionViewTransitionViewController"}];
+                        @{@"title":@"线性动画切换布局", @"target":@"CollectionViewChangeLayoutViewController"}];
 }
 
 
@@ -69,7 +69,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 60.0;
+    return 44.0;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section

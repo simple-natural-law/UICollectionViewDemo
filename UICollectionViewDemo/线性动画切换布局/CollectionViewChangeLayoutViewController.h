@@ -1,5 +1,5 @@
 //
-//  CollectionViewTransitionViewController.h
+//  CollectionViewChangeLayoutViewController.h
 //  UICollectionViewDemo
 //
 //  Created by 讯心科技 on 2017/10/10.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CollectionViewTransitionViewController : UIViewController
+@interface CollectionViewChangeLayoutViewController : UIViewController
 
 @end
