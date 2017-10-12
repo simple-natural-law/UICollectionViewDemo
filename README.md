@@ -57,7 +57,7 @@ Collection View支持三种不同类型的可重用视图，每种视图都具�
 ```
 提供每个section包含的item(单元格)数量：
 ```
-- (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section 
+- (NSInteger)collectionView:(UICollectionView*)collectionView numberOfItemsInSection:(NSInteger)section
 {
     NSArray* sectionArray = [_dataArray objectAtIndex:section];
 
@@ -66,7 +66,7 @@ Collection View支持三种不同类型的可重用视图，每种视图都具�
 ```
 根据IndexPath提供需要显示的cell：
 ```
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath 
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"reuseIdentifier" forIndexPath:indexPath];
 
@@ -83,7 +83,7 @@ Collection View支持三种不同类型的可重用视图，每种视图都具�
         UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"HeaderReuseIdentifier" forIndexPath:indexPath];
 
         return supplementaryView;
-    }else 
+    }else
     {
         UICollectionReusableView *supplementaryView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"FooterReuseIdentifier" forIndexPath:indexPath];
 
@@ -152,7 +152,7 @@ cell被取消选中变为普通状态后，会调用这个方法，我们可以�
 ![图2-1](http://oaz007vqv.bkt.clouddn.com/cell_selection_semantics_2x.png?imageView/2/w/600)
 
 ### UICollectionViewDelegateFlowLayout
-该协议是对`UICollectionViewDelegate`的扩展，能够动态返回cell的大小，和cell之间的`最小`间距等。
+该协议是对`UICollectionViewDelegate`的扩展，能够动态返回cell的大小，和cell之间的最小间距等。
 
 根据IndexPath返回对应的Cell的大小：
 ```
@@ -168,14 +168,14 @@ cell被取消选中变为普通状态后，会调用这个方法，我们可以�
     return UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
 }
 ```
-根据Section返回对应的cell之间的行`最小`间距：
+根据Section返回对应的cell之间的行最小间距：
 ```
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
     return 10.0;
 }
 ```
-根据section返回对应的cell之间的列`最小`间距：
+根据section返回对应的cell之间的列最小间距：
 ```
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 {
@@ -218,7 +218,7 @@ dataSource对象为Collection View配置cell和supplementary view时，使用`- 
 
 Collection View插入，删除和移动cell之前，必须先对应更新数据源。如果数据源没有更新，程序运行就会崩溃。
 
-当插入，删除或者移动cell时，会自动添加动画效果来反映Collection View的更改。在执行动画时如果还需要`同步`执行其他操作，可以使用`- (void)performBatchUpdates:(void (^ __nullable)(void))updates completion:(void (^ __nullable)(BOOL finished))completion`方法，在`updates block`内执行所有插入，删除或移动调用，动画执行完毕后会调用`completion block`。
+当插入，删除或者移动cell时，会自动添加动画效果来反映Collection View的更改。在执行动画时如果还需要同步执行其他操作，可以使用`- (void)performBatchUpdates:(void (^ __nullable)(void))updates completion:(void (^ __nullable)(BOOL finished))completion`方法，在`updates block`内执行所有插入，删除或移动调用，动画执行完毕后会调用`completion block`。
 ```
 [self.collectionView performBatchUpdates:^{
     // 执行更改操作
@@ -271,7 +271,7 @@ Collection View插入，删除和移动cell之前，必须先对应更新数据�
 Collection View只支持`cut:`，`copy:`，`paste:`三种编辑操作。想要了解如何配合剪贴板使用这些操作，可以参看[Text Programming Guide for iOS](https://developer.apple.com/library/content/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009542)。
 
 ### 切换布局时的转场动画
-切换布局最简单的方式是使用`- (void)setCollectionViewLayout:(UICollectionViewLayout *)layout animated:(BOOL)animated`方法，交互式转场切换布局或者需要控制切换过程时，可以使用`UICollectionViewTransitionLayout`对象。
+切换布局最简单的方式是使用`- (void)setCollectionViewLayout:(UICollectionViewLayout *)layout animated:(BOOL)animated`方法。在`UICollectionViewController`之间跳转时，如果需要交互式转场切换布局或者控制切换过程，可以使用`UICollectionViewTransitionLayout`对象。
 
 `UICollectionViewTransitionLayout`类是一种特殊的布局类，它继承自`UICollectionViewLayout`类,在切换到新布局的过程中，它将作为Collection View的临时布局。使用`UICollectionViewTransitionLayout`布局对象时，可以使用不同的计时算法让动画遵循非线性路径，或者根据传入的触摸事件进行移动。官方提供的`UICollectionViewTransitionLayout`类支持对新布局的线性转换，但我们可以对其进行子类化来实现任何所需的效果。
 
@@ -286,13 +286,70 @@ Collection View只支持`cut:`，`copy:`，`paste:`三种编辑操作。想要�
 
 - 可以使用`- (void)updateValue:(CGFloat)value forAnimatedKey:(NSString *)key`方法来修改与布局相关的值。
 
-## 流水布局
-官方提供的`UICollectionViewFlowLayout`流水布局对象实现了基于行的断开布局，单元格被放置在线性路径上，并沿着该行放置尽可能多的单元格，当前行上的空间在使用`最小`间距也不足以放置下一个单元格时，会重新计算出合适的当前行上摆放的单元格之间的间距，如果该行上只有一个单元格，那么它会被置中，然后流水布局会创建新的一行并在该行继续之前的布局过程。
+## 进阶
+### 流水布局
+官方提供的`UICollectionViewFlowLayout`流水布局对象实现了基于行的断开布局，单元格被放置在线性路径上，并沿着该行放置尽可能多的单元格，当前行上的空间在使用最小间距也不足以放置下一个单元格时，会重新计算出合适的当前行上摆放的单元格之间的间距，如果该行上只有一个单元格，那么它会被置中，然后会创建新的一行并在该行重复之前的布局过程。
 
 ![图3-1](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/flow_horiz_layout_uneven_2x.png)
 
 ![图3-2](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/flow_section_insets_2x.png)
 
-在使用流水布局时，通过固定单元格的大小和单元格之间的`最小`间距来实现网格状视图，同时也可以任意设置单元格的小和单元格之间的间距来实现不规则排列的视图。单元格的大小，单元格之间的`最小`间距，单元格到所在分区四周的边距以及Header和Footer的大小固定时，可以直接设置`itemSize`，`minimumLineSpacing`，`minimumInteritemSpacing`，`sectionInset`，`headerReferenceSize`，`footerReferenceSize`属性值。如果想要动态设置它们，需要集合视图的delegate对象实现`UICollectionViewDelegateFlowLayout`协议的委托方法。
+使用时，通过固定单元格的大小和单元格之间的最小间距来实现网格状视图，同时也可以任意设置单元格的小和单元格之间的间距来实现不规则排列的视图。当单元格的大小，单元格之间的最小间距，单元格到所在分区四周的边距以及Header和Footer的大小固定时，可以直接设置`itemSize`，`minimumLineSpacing`，`minimumInteritemSpacing`，`sectionInset`，`headerReferenceSize`，`footerReferenceSize`属性值。如果想要动态设置它们，需要集合视图的delegate对象实现`UICollectionViewDelegateFlowLayout`协议的委托方法。
 
-## 自定义布局
+
+### 自定义布局
+子类化`UICollectionViewLayout`实现自定义布局有两个关键任务需要完成：
+
+- 指定可滚动内容区域的大小。
+- 为每个单元格和补充视图提供布局属性对象以便集合视图定位。
+
+#### 理解布局过程
+集合视图和自定义布局对象一起工作来管理整体布局过程，当集合视图需要用到布局信息时，它会请求布局对象提供这些布局信息。调用布局对象的`- (void)invalidateLayout`方法会告知集合视图显式更新其布局，此方法会废弃现有的布局信息，并强制布局对象生成新的布局对象。
+
+> 注意：不要将布局对象的`- (void)invalidateLayout`方法与集合视图的`-(void)reloadData`方法混淆，调用`- (void)invalidateLayout`方法不一定会移除当前现有的单元格和子视图，它只会强制布局对象重新计算移动、添加或删除单元格时所需的所有布局信息。如果数据源对象提供的数据发生了更改，则应该调用`-(void)reloadData`方法。使用这两种方法来更新布局时，实际的布局过程都是一样的。
+
+在布局过程中，集合视图会始终按顺序来调用布局对象的以下三种方法：
+
+- `-(void)prepareLayout`
+
+- `- (CGSize)collectionViewContentSize`
+
+- `- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect`
+
+集合视图调用布局对象的`-(void)prepareLayout`方法，提供机会让我们提前计算确定布局属性信息时所需的数据，从计算出来的数据中要能够得知集合视图整个内容区域的大小。
+
+集合视图调用布局对象的`- (CGSize)collectionViewContentSize`方法获得内容大小来适当的配置其滚动视图，我们在这里根据提前计算的数据返回整个内容区域的大小。如果内容大小在垂直和水平方向上都超出当前设备屏幕的边界，则会允许滚动视图同时在这两个方向上滚动，而`UICollectionViewFlowLayout`只能在一个方向上滚动。
+
+集合视图会基于当前的滚动位置调用`- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect`方法来查找在特定区域中的单元格和视图的布局属性，此区域和可视区域可能相同也可能不同，我们在这里遍历提前生成的所有的布局属性信息，检查每个布局信息的frame，返回所有frame和给定rect相交的布局属性，这样核心布局过程就完成了。
+
+![图4-1](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_process_2x.png)
+
+我们可以在`-(void)prepareLayout`方法中生成布局属性对象后缓存起来，也可以在`- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect`方法中生成布局属性对象，但是集合视图在滚动过程中会多次调用`- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect`方法，这样就会为视图重复计算布局属性，会有性能损耗。
+
+布局完成后，单元格和视图的布局属性会保持不变。调用布局对象的`- (void)invalidateLayout`会废弃当前所有布局信息，然后再次从调用`-(void)prepareLayout`方法开始，重复布局过程生成新的布局信息。集合视图在滚动过程中，会不断调用布局对象的`- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds`方法来判断是否需要废弃当前布局并重新生成布局。
+
+> 注意：调用`- (void)invalidateLayout`方法后不会立即开始布局更新过程，该方法仅将布局标记为与数据不一致并需要更新。在下一个视图更新周期中，集合视图会检查其布局是否为脏，如果是，则更新布局。也就是说，当我们快速连续地调用`- (void)invalidateLayout`方法多次后，不会每次调用都立即更新布局。
+
+#### 创建布局信息对象
+官方提供了三种方法来创建`UICollectionViewLayoutAttributes`布局信息对象：
+
+- `+ (instancetype)layoutAttributesForCellWithIndexPath:(NSIndexPath *)indexPath`
+
+- `+ (instancetype)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind withIndexPath:(NSIndexPath *)indexPath`
+
+- `+ (instancetype)layoutAttributesForDecorationViewOfKind:(NSString *)decorationViewKind withIndexPath:(NSIndexPath *)indexPath`
+
+要根据视图的类型调用对应的方法来生成布局属性对象，因为集合视图会根据布局信息对象的`representedElementCategory`属性从数据源对象中获取对应类型的视图，使用错误的方法生成布局信息对象会导致集合视图在错误的位置创建错误的视图。
+
+生成布局属性对象后，一定要根据前面提前计算的数据设置好`frame`或者`center`和`size`属性，使集合视图能够确定对应的视图的位置和大小。同时，还可以设置`transform`，`alpha`，`hidden`等属性来控制对应视图的视觉效果。如果视图的布局是重叠的，则可以设置`zIndex`属性值来确保视图的顺序一致。如果官方提供`UICollectionViewLayoutAttributes`标准类无法满足需求，可以对其子类化并扩展，以存储和视图外观有关的信息。当对布局属性进行子类化时，需要实现用于比较自定义属性的`isEqual:`方法，因为集合视图对其某些操作使用此方法。
+
+#### 根据需要为单个视图提供属性
+布局对象还需要能够根据需要为单个视图提供布局属性，因为集合视图会在执行Cell的插入，删除，移动和刷新动画时请求该布局信息。需要覆写下面三种方法：
+
+- `-(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath`
+
+- `- (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath`
+
+- `- (UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString*)elementKind atIndexPath:(NSIndexPath *)indexPath`
+
+在三种方法中，需要返回已计算好的对应视图的布局属性信息，返回属性时，不应更改布局属性。如果布局中不包含任何补充视图和装饰视图，则不需要覆写后两种方法。
