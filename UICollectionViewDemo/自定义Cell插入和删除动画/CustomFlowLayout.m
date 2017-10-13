@@ -79,7 +79,7 @@
                 break;
             case UICollectionUpdateActionReload:
             {
-                
+                NSLog(@"%@",item);
             }
                 break;
             case UICollectionUpdateActionDelete:
