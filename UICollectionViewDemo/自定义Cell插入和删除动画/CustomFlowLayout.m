@@ -73,20 +73,16 @@
             case UICollectionUpdateActionInsert:
             {
                 [self.insertIndexPathArr addObject:item.indexPathAfterUpdate];
-                
-                self.currentUpdateAction = UICollectionUpdateActionInsert;
             }
                 break;
             case UICollectionUpdateActionReload:
             {
-                NSLog(@"%@",item);
+                
             }
                 break;
             case UICollectionUpdateActionDelete:
             {
                 [self.deleteIndexPathArr addObject:item.indexPathBeforeUpdate];
-                
-                self.currentUpdateAction = UICollectionUpdateActionDelete;
             }
                 break;
             case UICollectionUpdateActionMove:
@@ -102,14 +98,14 @@
             default:
                 break;
         }
+        
+        self.currentUpdateAction = item.updateAction;
     }
 }
 
 /// 某个cell的插入，删除，移动，刷新动画开始执行时，设置起始属性值
 - (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
-    NSLog(@"initialLayoutAttributesForAppearingItemAtIndexPath");
-    
     UICollectionViewLayoutAttributes *attributes = [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
     
     switch (self.currentUpdateAction)
@@ -121,30 +117,27 @@
                 attributes.transform = CGAffineTransformMakeScale(0.2, 0.2);
                 attributes.alpha     = 0.0;
             }
+            NSLog(@"AppearingItem --> insert");
         }
             break;
         case UICollectionUpdateActionReload:
         {
-            
+            NSLog(@"AppearingItem --> reload");
         }
             break;
         case UICollectionUpdateActionDelete:
         {
-            if ([self.deleteIndexPathArr containsObject:itemIndexPath])
-            {
-                attributes.transform = CGAffineTransformMakeScale(1.0, 1.0);
-                attributes.alpha     = 1.0;
-            }
+            NSLog(@"AppearingItem --> delete");
         }
             break;
         case UICollectionUpdateActionMove:
         {
-            
+            NSLog(@"AppearingItem --> move");
         }
             break;
         case UICollectionUpdateActionNone:
         {
-            
+            NSLog(@"AppearingItem --> none");
         }
             break;
         default:
@@ -157,24 +150,18 @@
 /// 某个cell的插入，删除，移动，刷新动画执行结束时，设置结束属性值
 - (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
-    NSLog(@"finalLayoutAttributesForDisappearingItemAtIndexPath");
-    
     UICollectionViewLayoutAttributes *attributes = [super finalLayoutAttributesForDisappearingItemAtIndexPath:itemIndexPath];
     
     switch (self.currentUpdateAction)
     {
         case UICollectionUpdateActionInsert:
         {
-            if ([self.insertIndexPathArr containsObject:itemIndexPath])
-            {
-                attributes.transform = CGAffineTransformMakeScale(1.0, 1.0);
-                attributes.alpha     = 1.0;
-            }
+            NSLog(@"DisappearingItem --> insert");
         }
             break;
         case UICollectionUpdateActionReload:
         {
-            
+            NSLog(@"DisappearingItem --> reload");
         }
             break;
         case UICollectionUpdateActionDelete:
@@ -184,16 +171,18 @@
                 attributes.transform = CGAffineTransformMakeScale(0.2, 0.2);
                 attributes.alpha     = 0.0;
             }
+            
+            NSLog(@"DisappearingItem --> delete");
         }
             break;
         case UICollectionUpdateActionMove:
         {
-            
+            NSLog(@"DisappearingItem --> move");
         }
             break;
         case UICollectionUpdateActionNone:
         {
-            
+            NSLog(@"DisappearingItem --> none");
         }
             break;
         default:
