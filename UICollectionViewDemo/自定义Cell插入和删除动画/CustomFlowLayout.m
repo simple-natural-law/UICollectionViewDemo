@@ -28,6 +28,13 @@
     NSLog(@"prepareLayout");
 }
 
+- (CGSize)collectionViewContentSize
+{
+    NSLog(@"collectionViewContentSize");
+    
+    return [super collectionViewContentSize];
+}
+
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect
 {
     NSLog(@"layoutAttributesForElementsInRect");
