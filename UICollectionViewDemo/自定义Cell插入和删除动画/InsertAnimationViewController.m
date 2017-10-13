@@ -68,6 +68,11 @@
     return cell;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [collectionView reloadItemsAtIndexPaths:@[indexPath]];
+}
+
 
 -(NSMutableArray *)dataArray
 {
