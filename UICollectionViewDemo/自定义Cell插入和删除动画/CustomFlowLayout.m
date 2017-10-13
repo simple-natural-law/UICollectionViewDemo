@@ -21,6 +21,13 @@
 
 @implementation CustomFlowLayout
 
+- (void)invalidateLayout
+{
+    NSLog(@"invalidateLayout");
+    
+    [super invalidateLayout];
+}
+
 - (void)prepareLayout
 {
     [super prepareLayout];
