@@ -38,8 +38,9 @@
 {
     [self.dataArray insertObject:@"insert" atIndex:0];
     [self.dataArray insertObject:@"insert" atIndex:1];
+    [self.dataArray insertObject:@"insert" atIndex:2];
     
-    [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0],[NSIndexPath indexPathForItem:1 inSection:0]]];
+    [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:0 inSection:0],[NSIndexPath indexPathForItem:1 inSection:0],[NSIndexPath indexPathForItem:2 inSection:0]]];
 }
 
 #pragma mark- UICollectionViewDataSource

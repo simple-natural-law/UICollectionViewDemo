@@ -14,8 +14,6 @@
 
 @property (nonatomic, strong) NSMutableArray <NSIndexPath *>* deleteIndexPathArr;
 
-@property (nonatomic, assign) UICollectionUpdateAction currentUpdateAction;
-
 @end
 
 
@@ -98,52 +96,24 @@
             default:
                 break;
         }
-        
-        self.currentUpdateAction = item.updateAction;
     }
 }
 
 /// 某个cell的插入，删除，移动，刷新动画开始执行时，设置起始属性值
 - (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
+    NSLog(@"initialLayoutAttributesForAppearingItemAtIndexPath:");
+    
     UICollectionViewLayoutAttributes *attributes = [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
     
-    switch (self.currentUpdateAction)
+    if ([self.insertIndexPathArr containsObject:itemIndexPath])
     {
-        case UICollectionUpdateActionInsert:
-        {
-            if ([self.insertIndexPathArr containsObject:itemIndexPath])
-            {
-                attributes.transform = CGAffineTransformMakeScale(0.2, 0.2);
-                attributes.alpha     = 0.0;
-            }
-            NSLog(@"AppearingItem --> insert");
-        }
-            break;
-        case UICollectionUpdateActionReload:
-        {
-            NSLog(@"AppearingItem --> reload");
-        }
-            break;
-        case UICollectionUpdateActionDelete:
-        {
-            NSLog(@"AppearingItem --> delete");
-        }
-            break;
-        case UICollectionUpdateActionMove:
-        {
-            NSLog(@"AppearingItem --> move");
-        }
-            break;
-        case UICollectionUpdateActionNone:
-        {
-            NSLog(@"AppearingItem --> none");
-        }
-            break;
-        default:
-            break;
+        attributes.transform = CGAffineTransformMakeScale(0.2, 0.2);
+        attributes.alpha     = 0.0;
+        
+        NSLog(@"Appearing Item that was inserted.");
     }
-    
+
     return attributes;
 }
 
@@ -152,43 +122,14 @@
 {
     UICollectionViewLayoutAttributes *attributes = [super finalLayoutAttributesForDisappearingItemAtIndexPath:itemIndexPath];
     
-    switch (self.currentUpdateAction)
+    if ([self.deleteIndexPathArr containsObject:itemIndexPath])
     {
-        case UICollectionUpdateActionInsert:
-        {
-            NSLog(@"DisappearingItem --> insert");
-        }
-            break;
-        case UICollectionUpdateActionReload:
-        {
-            NSLog(@"DisappearingItem --> reload");
-        }
-            break;
-        case UICollectionUpdateActionDelete:
-        {
-            if ([self.deleteIndexPathArr containsObject:itemIndexPath])
-            {
-                attributes.transform = CGAffineTransformMakeScale(0.2, 0.2);
-                attributes.alpha     = 0.0;
-            }
-            
-            NSLog(@"DisappearingItem --> delete");
-        }
-            break;
-        case UICollectionUpdateActionMove:
-        {
-            NSLog(@"DisappearingItem --> move");
-        }
-            break;
-        case UICollectionUpdateActionNone:
-        {
-            NSLog(@"DisappearingItem --> none");
-        }
-            break;
-        default:
-            break;
+        attributes.transform = CGAffineTransformMakeScale(0.2, 0.2);
+        attributes.alpha     = 0.0;
+        
+        NSLog(@"Disappearing Item that was deleted.");
     }
-    
+
     return attributes;
 }
 
