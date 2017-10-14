@@ -54,7 +54,7 @@
     return [super layoutAttributesForItemAtIndexPath:indexPath];
 }
 
-
+/// 开始更新集合视图前，会调用此方法，传入被更新的cell的更新前IndexPath和更新后IndexPath，我们可以在此记录下来，后面需要使用。
 - (void)prepareForCollectionViewUpdates:(NSArray<UICollectionViewUpdateItem *> *)updateItems
 {
     NSLog(@"prepareForCollectionViewUpdates");
@@ -99,7 +99,8 @@
     }
 }
 
-/// 某个cell的插入，删除，移动，刷新动画开始执行时，设置起始属性值
+/// 设置更新布局后cell刚显示时的起始布局属性值
+/// 用来执行动画: cell刚显示时的起始布局属性值 -> 更新布局后的布局属性值
 - (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
     NSLog(@"initialLayoutAttributesForAppearingItemAtIndexPath:");
@@ -111,13 +112,14 @@
         attributes.transform = CGAffineTransformMakeScale(0.2, 0.2);
         attributes.alpha     = 0.0;
         
-        NSLog(@"Appearing Item that was inserted.");
+        NSLog(@"Appearing Item that was inserted by us.");
     }
 
     return attributes;
 }
 
-/// 某个cell的插入，删除，移动，刷新动画执行结束时，设置结束属性值
+/// 设置更新布局前cell被移除时的最终布局属性值
+/// 用来执行动画: 更新布局前的布局属性值 -> cell被移除前的最终布局属性值
 - (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
     NSLog(@"finalLayoutAttributesForDisappearingItemAtIndexPath:");
@@ -129,7 +131,7 @@
         attributes.transform = CGAffineTransformMakeScale(0.2, 0.2);
         attributes.alpha     = 0.0;
         
-        NSLog(@"Disappearing Item that was deleted.");
+        NSLog(@"Disappearing Item that was deleted by us.");
     }
 
     return attributes;
