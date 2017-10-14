@@ -120,6 +120,8 @@
 /// 某个cell的插入，删除，移动，刷新动画执行结束时，设置结束属性值
 - (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
+    NSLog(@"finalLayoutAttributesForDisappearingItemAtIndexPath:");
+    
     UICollectionViewLayoutAttributes *attributes = [super finalLayoutAttributesForDisappearingItemAtIndexPath:itemIndexPath];
     
     if ([self.deleteIndexPathArr containsObject:itemIndexPath])
