@@ -119,7 +119,7 @@
 }
 
 /// 设置更新布局前cell被移除时的最终布局属性值
-/// 用来执行动画: 更新布局前的布局属性值 -> cell被移除前的最终布局属性值
+/// 用来执行动画: 更新布局前的布局属性值 -> cell被移除时的最终布局属性值
 - (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
     NSLog(@"finalLayoutAttributesForDisappearingItemAtIndexPath:");
