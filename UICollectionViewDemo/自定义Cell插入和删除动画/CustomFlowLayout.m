@@ -14,8 +14,6 @@
 
 @property (nonatomic, strong) NSMutableArray <NSIndexPath *>* deleteIndexPathArr;
 
-@property (nonatomic, assign) UICollectionUpdateAction currentUpdateAction;
-
 @end
 
 
@@ -56,7 +54,7 @@
     return [super layoutAttributesForItemAtIndexPath:indexPath];
 }
 
-
+/// 开始更新集合视图前，会调用此方法，传入被更新的cell的更新前IndexPath和更新后IndexPath，我们可以在此记录下来，后面需要使用。
 - (void)prepareForCollectionViewUpdates:(NSArray<UICollectionViewUpdateItem *> *)updateItems
 {
     NSLog(@"prepareForCollectionViewUpdates");
@@ -98,97 +96,44 @@
             default:
                 break;
         }
-        
-        self.currentUpdateAction = item.updateAction;
     }
 }
 
-/// 某个cell的插入，删除，移动，刷新动画开始执行时，设置起始属性值
+/// 设置更新布局后cell刚显示时的起始布局属性值
+/// 用来执行动画: cell刚显示时的起始布局属性值 -> 更新布局后的布局属性值
 - (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
+    NSLog(@"initialLayoutAttributesForAppearingItemAtIndexPath:");
+    
     UICollectionViewLayoutAttributes *attributes = [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
     
-    switch (self.currentUpdateAction)
+    if ([self.insertIndexPathArr containsObject:itemIndexPath])
     {
-        case UICollectionUpdateActionInsert:
-        {
-            if ([self.insertIndexPathArr containsObject:itemIndexPath])
-            {
-                attributes.transform = CGAffineTransformMakeScale(0.2, 0.2);
-                attributes.alpha     = 0.0;
-            }
-            NSLog(@"AppearingItem --> insert");
-        }
-            break;
-        case UICollectionUpdateActionReload:
-        {
-            NSLog(@"AppearingItem --> reload");
-        }
-            break;
-        case UICollectionUpdateActionDelete:
-        {
-            NSLog(@"AppearingItem --> delete");
-        }
-            break;
-        case UICollectionUpdateActionMove:
-        {
-            NSLog(@"AppearingItem --> move");
-        }
-            break;
-        case UICollectionUpdateActionNone:
-        {
-            NSLog(@"AppearingItem --> none");
-        }
-            break;
-        default:
-            break;
+        attributes.transform = CGAffineTransformMakeScale(0.2, 0.2);
+        attributes.alpha     = 0.0;
+        
+        NSLog(@"Appearing Item that was inserted by us.");
     }
-    
+
     return attributes;
 }
 
-/// 某个cell的插入，删除，移动，刷新动画执行结束时，设置结束属性值
+/// 设置更新布局前cell被移除时的最终布局属性值
+/// 用来执行动画: 更新布局前的布局属性值 -> cell被移除时的最终布局属性值
 - (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
+    NSLog(@"finalLayoutAttributesForDisappearingItemAtIndexPath:");
+    
     UICollectionViewLayoutAttributes *attributes = [super finalLayoutAttributesForDisappearingItemAtIndexPath:itemIndexPath];
     
-    switch (self.currentUpdateAction)
+    if ([self.deleteIndexPathArr containsObject:itemIndexPath])
     {
-        case UICollectionUpdateActionInsert:
-        {
-            NSLog(@"DisappearingItem --> insert");
-        }
-            break;
-        case UICollectionUpdateActionReload:
-        {
-            NSLog(@"DisappearingItem --> reload");
-        }
-            break;
-        case UICollectionUpdateActionDelete:
-        {
-            if ([self.deleteIndexPathArr containsObject:itemIndexPath])
-            {
-                attributes.transform = CGAffineTransformMakeScale(0.2, 0.2);
-                attributes.alpha     = 0.0;
-            }
-            
-            NSLog(@"DisappearingItem --> delete");
-        }
-            break;
-        case UICollectionUpdateActionMove:
-        {
-            NSLog(@"DisappearingItem --> move");
-        }
-            break;
-        case UICollectionUpdateActionNone:
-        {
-            NSLog(@"DisappearingItem --> none");
-        }
-            break;
-        default:
-            break;
+        attributes.transform = CGAffineTransformMakeScale(0.2, 0.2);
+        attributes.alpha     = 0.0;
+        
+        NSLog(@"Disappearing Item that was deleted by us.");
     }
-    
+
     return attributes;
 }
 
