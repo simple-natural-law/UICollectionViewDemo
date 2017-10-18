@@ -300,7 +300,7 @@ dataSource对象为Collection View配置cell和supplementary view时，使用`de
 #### 理解布局过程
 集合视图和自定义布局对象一起工作来管理整体布局过程，当集合视图需要用到布局信息时，它会请求布局对象提供这些布局信息。调用布局对象的`invalidateLayout`方法会告知集合视图显式更新其布局，此方法会废弃现有的布局属性，并强制布局对象生成新的布局属性。
 
-> 注意：不要将布局对象的`invalidateLayout`方法与集合视图的`reloadData`方法混淆，调用`invalidateLayout`方法不一定会移除当前现有的单元格和子视图，它只会强制布局对象重新计算移动、添加或删除单元格时所需的所有布局信息。如果数据源对象提供的数据发生了更改，则应该调用`reloadData`方法。使用这两种方法来更新布局时，实际的布局过程都是一样的。
+不要将布局对象的`invalidateLayout`方法与集合视图的`reloadData`方法混淆，调用`invalidateLayout`方法不一定会移除当前现有的单元格和子视图，它只会强制布局对象重新计算移动、添加或删除单元格时所需的所有布局信息。如果数据源对象提供的数据发生了更改，则应该调用`reloadData`方法。使用这两种方法来更新布局时，实际的布局过程都是一样的。
 
 在布局过程中，集合视图会始终按顺序来调用布局对象的以下三种方法：
 
@@ -320,7 +320,7 @@ dataSource对象为Collection View配置cell和supplementary view时，使用`de
 
 布局完成后，单元格和视图的布局属性会保持不变。调用布局对象的`invalidateLayout`会废弃当前所有布局信息，然后再次从调用`prepareLayout`方法开始，重复布局过程生成新的布局信息。集合视图在滚动过程中，会不断调用布局对象的`shouldInvalidateLayoutForBoundsChange:`方法来判断是否需要废弃当前布局并重新生成布局。当集合视图的`bounds`属性发生变化时，也会调用`shouldInvalidateLayoutForBoundsChange:`方法。
 
-> 注意：调用`invalidateLayout`方法后不会立即开始布局更新过程，该方法仅将布局标记为与数据不一致并需要更新。在下一个视图更新周期中，集合视图会检查其布局是否为脏，如果是，则更新布局。也就是说，当我们快速连续地调用`invalidateLayout`方法多次后，不会每次调用都立即更新布局。
+调用`invalidateLayout`方法后不会立即开始布局更新过程，该方法仅将布局标记为与数据不一致并需要更新。在下一个视图更新周期中，集合视图会检查其布局是否为脏，如果是，则更新布局。也就是说，当我们快速连续地调用`invalidateLayout`方法多次后，不会每次调用都立即更新布局。
 
 #### 创建布局信息对象
 官方提供了三种方法来创建`UICollectionViewLayoutAttributes`布局信息对象：
@@ -334,6 +334,7 @@ dataSource对象为Collection View配置cell和supplementary view时，使用`de
 生成布局属性对象后，一定要根据前面提前计算的数据设置好`frame`或者`center`和`size`属性，使集合视图能够确定对应的视图的位置和大小。同时，还可以设置`transform`，`alpha`，`hidden`等属性来控制对应视图的视觉效果。如果视图的布局是重叠的，则可以设置`zIndex`属性值来确保视图的顺序一致。如果官方提供`UICollectionViewLayoutAttributes`标准类无法满足需求，可以对其子类化并扩展，以存储和视图外观有关的信息。当对布局属性进行子类化时，需要实现用于比较自定义属性的`isEqual:`方法，因为集合视图对其某些操作使用此方法。
 
 #### 根据需要为单个视图提供布局属性
+
 布局对象还需要能够根据需要为单个视图提供布局属性，因为集合视图会在执行Cell的插入，删除，移动和刷新动画时请求该布局信息。需要覆写下面三种方法：
 
 - `-(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath`
@@ -343,7 +344,10 @@ dataSource对象为Collection View配置cell和supplementary view时，使用`de
 在三种方法中，需要返回已计算好的对应视图的布局属性信息，返回属性时，不应更改布局属性。如果布局中不包含任何补充视图和装饰视图，则不需要覆写后两种方法。
 
 #### 自定义cell的插入，删除，移动和刷新动画
-集合视图调用对应的方法`插入`、`删除`、`刷新`、`移动`cell时，布局对象会调用`invalidateLayout`废弃现有的布局信息，重新执行前面提到的布局过程生成新的布局属性。在集合视图更新前调用`prepareForCollectionViewUpdates:`方法告知要更新的cell在更新前的IndexPath和更新完成后的IndexPath，以及其要执行的更新方式(插入、删除、刷新、移动)，我们需要重写此方法记录这些IndexPath。之后，集合视图会执行两个动画：更新布局前每个cell被移除的动画和更新布局后每个cell显示的动画，我们看到的动画效果是由这两个动画组合而成的。在执行动画过程中，布局对象会调用`finalLayoutAttributesForDisappearingItemAtIndexPath:`方法获取对应IndexPath的cell被移除时的最终布局属性来执行动画：更新布局前的布局属性值-->cell被移除时的最终布局属性值，调用`initialLayoutAttributesForAppearingItemAtIndexPath:`方法获取对应IndexPath的cell显示时的起始布局属性来执行动画：cell显示时的起始布局属性值-->更新布局后的cell布局属性值。
 
-> 注意：`插入`、`删除`、`移动`cell时，会导致其周围cell的布局属性发生变化，这些cell会强制执行这个动画：cell更新布局前的frame-->cell更新布局后的frame，这是官方在内部实现的。在重写`finalLayoutAttributesForDisappearingItemAtIndexPath:`和`initialLayoutAttributesForAppearingItemAtIndexPath:`方法设置执行动画用到的布局属性时，最好检查一下传入的IndexPathh与调用`prepareForCollectionViewUpdates:`方法时记录的IndexPath是否一致。
+集合视图调用对应的方法`插入`、`删除`、`刷新`、`移动`cell时，布局对象会调用`invalidateLayout`废弃现有的布局信息，重新执行前面提到的布局过程生成新的布局属性。在集合视图更新前调用`prepareForCollectionViewUpdates:`方法告知要更新的cell在更新前的IndexPath和更新完成后的IndexPath，以及其要执行的更新方式(插入、删除、刷新、移动)，我们需要重写此方法记录这些IndexPath。
+
+之后，集合视图会执行两个动画：更新布局前每个cell被移除的动画和更新布局后每个cell显示的动画，我们看到的动画效果是由这两个动画组合而成的。在执行动画过程中，布局对象会调用`finalLayoutAttributesForDisappearingItemAtIndexPath:`方法获取对应IndexPath的cell被移除时的最终布局属性来执行动画：更新布局前的布局属性值-->cell被移除时的最终布局属性值，调用`initialLayoutAttributesForAppearingItemAtIndexPath:`方法获取对应IndexPath的cell显示时的起始布局属性来执行动画：cell显示时的起始布局属性值-->更新布局后的cell布局属性值。
+
+`插入`、`删除`、`移动`cell时，会导致其周围cell的布局属性发生变化，这些cell会强制执行这个动画：cell更新布局前的frame-->cell更新布局后的frame，这是官方在内部实现的。在重写`finalLayoutAttributesForDisappearingItemAtIndexPath:`和`initialLayoutAttributesForAppearingItemAtIndexPath:`方法设置执行动画用到的布局属性时，最好检查一下传入的IndexPathh与调用`prepareForCollectionViewUpdates:`方法时记录的IndexPath是否一致。
 
