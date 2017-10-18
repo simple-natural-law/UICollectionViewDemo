@@ -346,3 +346,4 @@ dataSource对象为Collection View配置cell和supplementary view时，使用`de
 集合视图调用对应的方法`插入`、`删除`、`刷新`、`移动`cell时，布局对象会调用`invalidateLayout`废弃现有的布局信息，重新执行前面提到的布局过程生成新的布局属性。在集合视图更新前调用`prepareForCollectionViewUpdates:`方法告知要更新的cell在更新前的IndexPath和更新完成后的IndexPath，以及其要执行的更新方式(插入、删除、刷新、移动)，我们需要重写此方法记录这些IndexPath。之后，集合视图会执行两个动画：更新布局前每个cell被移除的动画和更新布局后每个cell显示的动画，我们看到的动画效果是由这两个动画组合而成的。在执行动画过程中，布局对象会调用`finalLayoutAttributesForDisappearingItemAtIndexPath:`方法获取对应IndexPath的cell被移除时的最终布局属性来执行动画：更新布局前的布局属性值-->cell被移除时的最终布局属性值，调用`initialLayoutAttributesForAppearingItemAtIndexPath:`方法获取对应IndexPath的cell显示时的起始布局属性来执行动画：cell显示时的起始布局属性值-->更新布局后的cell布局属性值。
 
 > 注意：`插入`、`删除`、`移动`cell时，会导致其周围cell的布局属性发生变化，这些cell会强制执行这个动画：cell更新布局前的frame-->cell更新布局后的frame，这是官方在内部实现的。在重写`finalLayoutAttributesForDisappearingItemAtIndexPath:`和`initialLayoutAttributesForAppearingItemAtIndexPath:`方法设置执行动画用到的布局属性时，最好检查一下传入的IndexPathh与调用`prepareForCollectionViewUpdates:`方法时记录的IndexPath是否一致。
+
