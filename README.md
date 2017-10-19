@@ -2,11 +2,11 @@
 
 ## 概述
 
-[UICollectionView](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/CollectionViewBasics/CollectionViewBasics.html#//apple_ref/doc/uid/TP40012334-CH2-SW7)是iOS开发中最常用的UI控件之一，可以用它来管理一组有序的不同尺寸的视图，并以可定制的布局来展示它们。UICollectionView支持动画，当视图被插入，删除或重新排序时，会触发动画，动画效果支持自定义。为了更好的使用UICollectionView，我们有必要对其进行深入了解。
+&emsp;&emsp;&ensp;[UICollectionView](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/CollectionViewBasics/CollectionViewBasics.html#//apple_ref/doc/uid/TP40012334-CH2-SW7)是iOS开发中最常用的UI控件之一，可以用它来管理一组有序的不同尺寸的视图，并以可定制的布局来展示它们。UICollectionView支持动画，当视图被插入，删除或重新排序时，会触发动画，动画效果支持自定义。为了更好的使用UICollectionView，我们有必要对其进行深入了解。
 
 ## 基础
 ### UICollectionView是由多个对象协作实现的
-集合视图将视图的数据内容与视图的布局方式分开来管理。数据内容由集合视图的dataSource对象管理，而布局方式则是由许多不同的对象协作来管理。下表列出了UIKit中与集合视图相关的类，并根据它们在集合视图中的作用进行了划分。
+&emsp;&emsp;&ensp;集合视图将视图的数据内容与视图的布局方式分开来管理。数据内容由集合视图的dataSource对象管理，而布局方式则是由许多不同的对象协作来管理。下表列出了UIKit中与集合视图相关的类，并根据它们在集合视图中的作用进行了划分。
 
 | 目的 | 类/协议 | 描述 |
 |-----|--------|------|
