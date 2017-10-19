@@ -291,12 +291,12 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 
 
 ### 自定义布局
+#### 理解布局过程
 &emsp;&emsp;子类化`UICollectionViewLayout`实现自定义布局有两个关键任务需要完成：
 
 - 指定可滚动内容区域的大小。
 - 为每个单元格和补充视图提供布局属性对象以便集合视图定位。
 
-#### 理解布局过程
 &emsp;&emsp;集合视图和自定义布局对象一起工作来管理整体布局过程，当集合视图需要用到布局信息时，它会请求布局对象提供这些布局信息。调用布局对象的`invalidateLayout`方法会告知集合视图显式更新其布局，此方法会废弃现有的布局属性，并强制布局对象生成新的布局属性。
 
 &emsp;&emsp;不要将布局对象的`invalidateLayout`方法与集合视图的`reloadData`方法混淆，调用`invalidateLayout`方法不一定会移除当前现有的单元格和子视图，它只会强制布局对象重新计算移动、添加或删除单元格时所需的所有布局信息。如果数据源对象提供的数据发生了更改，则应该调用`reloadData`方法。使用这两种方法来更新布局时，实际的布局过程都是一样的。
@@ -352,4 +352,4 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 
 ## Demo
 
-&emsp;&emsp;https://github.com/zhangshijian/UICollectionViewDemo
+&emsp;&emsp;示例代码下载：https://github.com/zhangshijian/UICollectionViewDemo
