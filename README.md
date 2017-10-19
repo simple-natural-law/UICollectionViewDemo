@@ -350,3 +350,6 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 
 &emsp;&emsp;`插入`、`删除`、`移动`cell时，会导致其周围cell的布局属性发生变化，这些cell会强制执行这个动画：cell更新布局前的frame-->cell更新布局后的frame，这是官方在内部实现的。在重写`finalLayoutAttributesForDisappearingItemAtIndexPath:`和`initialLayoutAttributesForAppearingItemAtIndexPath:`方法设置执行动画用到的布局属性时，最好检查一下传入的IndexPathh与调用`prepareForCollectionViewUpdates:`方法时记录的IndexPath是否一致。
 
+## Demo
+
+&emsp;&emsp;https://github.com/zhangshijian/UICollectionViewDemo
