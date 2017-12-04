@@ -2,7 +2,7 @@
 
 ## 概述
 
-&emsp;&emsp;[UICollectionView](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/CollectionViewBasics/CollectionViewBasics.html#//apple_ref/doc/uid/TP40012334-CH2-SW7)是iOS开发中最常用的UI控件之一，可以用它来管理一组有序的不同尺寸的视图，并以可定制的布局来展示它们。UICollectionView支持动画，当视图被插入，删除或重新排序时，会触发动画，动画效果支持自定义。为了更好的使用UICollectionView，我们有必要对其进行深入了解。
+&emsp;&emsp;[UICollectionView](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/CollectionViewBasics/CollectionViewBasics.html#//apple_ref/doc/uid/TP40012334-CH2-SW7)是iOS开发中最常用的UI控件之一，可以用它来管理一组有序的不同尺寸的视图，并以可定制的布局来展示它们。UICollectionView还支持动画，当视图被插入，删除或重新排序时，会触发动画，动画效果支持自定义。为了更好的使用UICollectionView，我们有必要对其进行深入了解。
 
 ## 基础
 ### UICollectionView是由多个对象协作实现的
@@ -26,7 +26,6 @@
 &emsp;&emsp;集合视图通过复用已被回收的cell来提高效率，当cell滚动到屏幕外时，它们不会被销毁，但会被移出容器视图并放置到重用队列中。当有新的内容将要滚动到屏幕中时，如果重用队列中有可复用的cell，会首先从重用队列中取，并重置被取出来的cell的数据，然后将其添加到容器视图中展示。如果重用队列没有可复用的cell，这时才会新创建一个cell去展示。为了方便这种循环，集合视图中展示的都必须继承自`UICollectionReusableView`类。
 
 &emsp;&emsp;集合视图支持三种不同类型的可重用视图，每种视图都具有特定的用途：
-
 - cell(单元格)展示集合视图的主要内容，每个cell展示的内容由`dataSource`对象提供。每个cell都必须是`UICollectionViewCell`的实例，同时我们也可以根据需要对其子类化。cell对象支持管理其选中和高亮状态。
 - supplementary view(补充视图)展示每个section(分区)的信息。和cell相同的是：supplementary view也是数据驱动的。不同的是：supplementary view是可选的而不是强制的。supplementary view的使用和布局是由布局对象管理的，系统提供的流水布局支持设置header和footer作为可选的supplementary view。
 - decoration view(装饰视图)与`dataSource`对象提供的数据不相关，完全属于布局对象。布局对象可能会使用它自定义集合视图背景。
@@ -197,7 +196,6 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 
 ### cell和supplementary view的重用
 &emsp;&emsp;视图的重用避免了不断生成和销毁对象的操作，提高了程序运行的效率。要想重用cell和supplementary view，首先需要注册cell和supplementary view，有种三种注册方式：
-
 - 使用storyboard布局时，直接拖拽cell或者supplementary view到storyboard中，设置好重用标识即可。
 - 使用xib布局时，设置重用标识后，使用`registerNib:forCellWithReuseIdentifier:`方法来注册cell，使用`registerNib:forSupplementaryViewOfKind:withReuseIdentifier:`方法来注册supplementary view。
 - 使用代码布局时，使用`registerClass:forCellWithReuseIdentifier:`方法来注册cell，使用`registerClass:forSupplementaryViewOfKind:withReuseIdentifier:`方法来注册supplementary view。
@@ -208,7 +206,6 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 
 ### cell的插入，删除和移动
 &emsp;&emsp;插入，删除，移动单个cell或者某个section的所有cell时，遵循下面两个步骤：
-
 - 更新数据源对象中的数据内容。
 - 调用对应的插入，删除或者移动方法。
 
@@ -273,7 +270,6 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 &emsp;&emsp;`UICollectionViewLayout`提供了几种跟踪布局之间转换进度的方法，`UICollectionViewTransitionLayout`类通过`transitionProgress`属性来跟踪转场切换的进度，当转场切换开始后，我们需要定期更新此属性值来指示完成的百分比。使用自定义`UICollectionViewTransitionLayout`对象时，`UICollectionViewTransitionLayout`类提供来2种跟踪与布局相关的值的方法：`updateValue:forAnimatedKey:`和`valueForAnimatedKey:`。
 
 &emsp;&emsp;转场切换布局时，使用`UICollectionViewTransitionLayout`对象的步骤如下：
-
 - 使用`initWithCurrentLayout:nextLayout: `方法创建一个`UICollectionViewTransitionLayout`实例对象。
 - 定期修改`transitionProgress`属性值来指示转场切换的进度。在修改转场进度后，一定要调用`invalidateLayout`方法来废弃当前布局并更新布局。
 - 集合视图的`delegate`对象实现委托方法`collectionView:transitionLayoutForOldLayout:newLayout:`返回创建的`UICollectionViewTransitionLayout`实例对象。
@@ -293,7 +289,6 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 ### 自定义布局
 #### 理解布局过程
 &emsp;&emsp;子类化`UICollectionViewLayout`实现自定义布局有两个关键任务需要完成：
-
 - 指定可滚动内容区域的大小。
 - 为每个单元格和补充视图提供布局属性对象以便集合视图定位。
 
@@ -302,7 +297,6 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 &emsp;&emsp;不要将布局对象的`invalidateLayout`方法与集合视图的`reloadData`方法混淆，调用`invalidateLayout`方法不一定会移除当前现有的单元格和子视图，它只会强制布局对象重新计算移动、添加或删除单元格时所需的所有布局信息。如果数据源对象提供的数据发生了更改，则应该调用`reloadData`方法。使用这两种方法来更新布局时，实际的布局过程都是一样的。
 
 &emsp;&emsp;在布局过程中，集合视图会始终按顺序来调用布局对象的以下三种方法：
-
 - `- (void)prepareLayout`
 - `- (CGSize)collectionViewContentSize`
 - `- (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect`
@@ -323,7 +317,6 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 
 #### 创建布局信息对象
 &emsp;&emsp;官方提供了三种方法来创建`UICollectionViewLayoutAttributes`布局信息对象：
-
 - `+ (instancetype)layoutAttributesForCellWithIndexPath:(NSIndexPath *)indexPath`
 - `+ (instancetype)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind withIndexPath:(NSIndexPath *)indexPath`
 - `+ (instancetype)layoutAttributesForDecorationViewOfKind:(NSString *)decorationViewKind withIndexPath:(NSIndexPath *)indexPath`
@@ -335,7 +328,6 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 #### 根据需要为单个视图提供布局属性
 
 &emsp;&emsp;布局对象还需要能够根据需要为单个视图提供布局属性，因为集合视图会在执行Cell的插入，删除，移动和刷新动画时请求该布局信息。需要覆写下面三种方法：
-
 - `-(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath`
 - `-(UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath`
 - `-(UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString*)elementKind atIndexPath:(NSIndexPath *)indexPath`
