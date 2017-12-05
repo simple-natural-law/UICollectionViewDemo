@@ -35,7 +35,7 @@
                         @{@"title":@"自定义Cell插入和删除动画", @"target":@"InsertAnimationViewController"},
                         @{@"title":@"类似iCarousel卡片切换效果", @"target":@"CardSelectedViewController"},
                         @{@"title":@"线性动画切换布局", @"target":@"CollectionViewChangeLayoutViewController"},
-                        @{@"title":@"控制器跳转时布局切换转场动画", @"target":@"FirstViewController"}];
+                        @{@"title":@"控制器跳转时布局切换转场动画", @"target":@"APLStackCollectionViewController"}];
 }
 
 
