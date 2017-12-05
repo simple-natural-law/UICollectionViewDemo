@@ -8,18 +8,18 @@
 
 ### UICollectionView是由多个对象协作实现的
 
-集合视图将视图的数据内容与视图的布局方式分开来管理。数据内容由集合视图的dataSource对象管理，而布局方式则是由许多不同的对象协作来管理。下表列出了UIKit中与集合视图相关的类，并根据它们在集合视图中的作用进行了划分。
+集合视图将视图的数据内容与视图的布局方式分开来管理。数据内容由集合视图的`dataSource`对象管理，而布局方式则是由许多不同的对象协作来管理。下表列出了UIKit中与集合视图有关的类，并根据它们在集合视图中的作用进行了划分。
 
 | 目的 | 类/协议 | 描述 |
 |-----|--------|------|
-| 顶层容器和管理者 | UICollectionView UICollectionViewController | UICollectionView定义了显示视图内容的空间，它继承自[UIScrollView](https://developer.apple.com/documentation/uikit/uiscrollview)，能够根据内容的高度来调整其滚动区域。它的layout布局对象会提供布局信息来呈现数据。UICollectionViewController对象提供了一个UICollectionView的视图控制器级管理支持。 |
+| 顶层容器和管理者 | UICollectionView UICollectionViewController | UICollectionView定义了显示视图内容的空间，它继承自[UIScrollView](https://developer.apple.com/documentation/uikit/uiscrollview)，能够根据内容的高度来调整其滚动区域。其layout布局对象会提供布局信息来呈现数据。UICollectionViewController对象提供了一个UICollectionView的视图控制器级管理支持。 |
 | 内容管理 | UICollectionViewDataSource协议 UICollectionViewDelegate协议 | DataSource协议是必须实现的，它创造并管理UICollectionView的视图内容。Delegate协议能获取视图的信息并自定义视图的行为，这个协议是可选实现的。|
 | 内容视图 | UICollectionReusableView UICollectionViewCell | UICollectionView展示的所有视图都必须是UICollectionReusableView类的实例，该类支持回收复用机制。在视图滚动时,回收复用视图而不是重新创建，能极大提高性能。UICollectionViewCell对象是用来展示主要数据的可重用视图,该类继承自UICollectionReusableView。|
-| 布局 | UICollectionViewLayout UICollectionViewLayoutAttributes UICollectionViewUpdateItem | UICollectionViewLayout的子类被称为布局对象，它负责定义集合视图中的cell和可重用视图的位置，大小，视觉效果。在布局过程中，布局对象UICollectionViewLayout会创建一个布局属性对象UICollectionViewLayoutAttributes去告诉集合视图在什么位置，用什么样视觉外观去展示cell和可重用视图。当在集合视图中插入，删除，移动数据项时，布局对象会接收到UICollectionViewUpdateItem类的实例，我们不需要自行创建该类的实例。|
+| 布局 | UICollectionViewLayout UICollectionViewLayoutAttributes UICollectionViewUpdateItem | UICollectionViewLayout的子类被称为布局对象，它负责定义集合视图中的cell和可重用视图的位置，大小，视觉效果。在布局过程中，布局对象UICollectionViewLayout会创建一个布局属性对象UICollectionViewLayoutAttributes去告诉集合视图在什么位置，用什么样视觉外观去展示cell和可重用视图。当在集合视图中插入、删除、移动数据项时，布局对象会接收到UICollectionViewUpdateItem类的实例，我们不需要自行创建该类的实例。|
 | 流水布局  | UICollectionViewFlowLayout UICollectionViewDelegateFlowLayout协议 |  UICollectionViewFlowLayout类是用于实现网格或其他基于行的布局的具体布局对象。 我们可以按照原样使用该类或者配合UICollectionViewDelegateFlowLayout协议一起使用，这样就可以动态自定义布局信息。|
 
 
-集合视图从`dataSource`对象中获取要展示的cell的数据内容，通过`delegate`对象去管理cell的选中和高亮等状态。布局对象负责决定cell所在的位置，布局属性对象记录了cell的布局属性，布局对象将布局属性对象传递给集合视图，集合视图接收到布局属性信息后创建并展示cell。
+集合视图从其`dataSource`对象中获取要展示的cell的数据内容，并通过其`delegate`对象去管理cell的选中和高亮等状态。布局对象负责决定cell所在的位置，布局属性对象记录了cell的布局属性，布局对象将布局属性对象传递给集合视图，集合视图接收到布局属性信息后创建并展示cell。
 
 
 ![图1-1](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_objects_2x.png)
@@ -47,9 +47,10 @@
 
 ## 使用
 
-必须为集合视图提供一个`dataSource`对象，集合视图从`dataSource`对象中获取要显示的内容。它可以是一个数据模型对象，也可以是管理集合视图的视图控制器，`dataSource`对象的唯一要求是它必须能够提供集合视图所需的所有信息。`delegate`对象是可选的，用于管理与内容的呈现以及交互有关的方面。它的主要职责是管理cell的选中和高亮状态，可以扩展`UICollectionViewDelegate`协议以提供其他信息。流水布局对象就扩展了`UICollectionViewDelegate`协议来定制布局，例如，cell的大小和它们之间的间距。
+必须为集合视图提供一个`dataSource`对象，集合视图从`dataSource`对象中获取要显示的内容。它可以是一个数据模型对象，也可以是管理集合视图的视图控制器，对`dataSource`对象的唯一要求是它必须能够提供集合视图所需的所有信息。`delegate`对象是可选提供的，其被用于管理与内容的呈现以及交互有关的方面。它的主要职责是管理cell的选中和高亮状态，也可以扩展`UICollectionViewDelegate`协议以提供其他信息。流水布局对象就扩展了`UICollectionViewDelegate`协议来定制布局，例如，cell的大小和它们之间的间距。
 
 ### UICollectionViewDataSource
+
 提供集合视图包含的section(分区)数量：
 ```
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView*)collectionView
@@ -115,14 +116,14 @@
 ```
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    // 执行已选中后所需要的操作
 }
 ```
 已取消选中cell后回调：
 ```
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    // 执行已取消选中后所需要的操作
 }
 ```
 设置cell被选中时是否支持高亮：
@@ -296,7 +297,7 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 
 ![图3-2](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/flow_section_insets_2x.png)
 
-使用时，通过固定单元格的大小和单元格之间的最小间距来实现网格状视图，同时也可以任意设置单元格的小和单元格之间的间距来实现不规则排列的视图。当单元格的大小，单元格之间的最小间距，单元格到所在分区四周的边距以及Header和Footer的大小固定时，可以直接设置`itemSize`，`minimumLineSpacing`，`minimumInteritemSpacing`，`sectionInset`，`headerReferenceSize`，`footerReferenceSize`属性值。如果想要动态设置它们，需要集合视图的delegate对象实现`UICollectionViewDelegateFlowLayout`协议的委托方法。
+使用时，通过固定单元格的大小和单元格之间的最小间距来实现网格状视图，同时也可以任意设置单元格的大小和单元格之间的间距来实现不规则排列的视图。当单元格的大小，单元格之间的最小间距，单元格到所在分区四周的边距以及Header和Footer的大小固定时，可以直接设置`itemSize`，`minimumLineSpacing`，`minimumInteritemSpacing`，`sectionInset`，`headerReferenceSize`，`footerReferenceSize`属性值。如果想要动态设置它们，需要集合视图的delegate对象实现`UICollectionViewDelegateFlowLayout`协议的委托方法。
 
 ### 自定义布局
 
@@ -323,7 +324,7 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 
 ![图4-1](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_process_2x.png)
 
-我们可以在`prepareLayout`方法中生成布局属性对象后缓存起来，也可以在`layoutAttributesForElementsInRect:`方法中生成布局属性对象，但是集合视图在滚动过程中会多次调用`layoutAttributesForElementsInRect:`方法，这样就会为视图重复计算布局属性，会有性能损耗。
+可以在`prepareLayout`方法中生成布局属性对象后缓存起来，也可以在`layoutAttributesForElementsInRect:`方法中生成布局属性对象，但是集合视图在滚动过程中会多次调用`layoutAttributesForElementsInRect:`方法，这样就会为视图重复计算布局属性，会有性能损耗。
 
 布局完成后，单元格和视图的布局属性会保持不变。调用布局对象的`invalidateLayout`会废弃当前所有布局信息，然后再次从调用`prepareLayout`方法开始，重复布局过程生成新的布局信息。集合视图在滚动过程中，会不断调用布局对象的`shouldInvalidateLayoutForBoundsChange:`方法来判断是否需要废弃当前布局并重新生成布局。当集合视图的`bounds`属性发生变化时，也会调用`shouldInvalidateLayoutForBoundsChange:`方法。
 
@@ -349,13 +350,13 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 
 在三种方法中，需要返回已计算好的对应视图的布局属性信息，返回属性时，不应更改布局属性。如果布局中不包含任何补充视图和装饰视图，则不需要覆写后两种方法。
 
-#### 自定义cell的插入，删除，移动和刷新动画
+#### 自定义cell的插入、删除、移动和刷新动画
 
-集合视图调用对应的方法`插入`、`删除`、`刷新`、`移动`cell时，布局对象会调用`invalidateLayout`废弃现有的布局信息，重新执行前面提到的布局过程生成新的布局属性。在集合视图更新前调用`prepareForCollectionViewUpdates:`方法告知要更新的cell在更新前的IndexPath和更新完成后的IndexPath，以及其要执行的更新方式(插入、删除、刷新、移动)，我们需要重写此方法记录这些IndexPath。
+集合视图调用对应的方法插入、删除、刷新、移动cell时，布局对象会调用`invalidateLayout`废弃现有的布局信息，重新执行前面提到的布局过程生成新的布局属性。在集合视图更新前调用`prepareForCollectionViewUpdates:`方法告知要更新的cell在更新前的`indexPath`和更新完成后的`indexPath`，以及其要执行的更新方式，需要重写此方法记录这些`indexPath`。
 
 之后，集合视图会执行两个动画：更新布局前每个cell被移除的动画和更新布局后每个cell显示的动画，我们看到的动画效果是由这两个动画组合而成的。在执行动画过程中，布局对象会调用`finalLayoutAttributesForDisappearingItemAtIndexPath:`方法获取对应IndexPath的cell被移除时的最终布局属性来执行动画：更新布局前的布局属性值-->cell被移除时的最终布局属性值，调用`initialLayoutAttributesForAppearingItemAtIndexPath:`方法获取对应IndexPath的cell显示时的起始布局属性来执行动画：cell显示时的起始布局属性值-->更新布局后的cell布局属性值。
 
-`插入`、`删除`、`移动`cell时，会导致其周围cell的布局属性发生变化，这些cell会强制执行这个动画：cell更新布局前的frame-->cell更新布局后的frame，这是官方在内部实现的。在重写`finalLayoutAttributesForDisappearingItemAtIndexPath:`和`initialLayoutAttributesForAppearingItemAtIndexPath:`方法设置执行动画用到的布局属性时，最好检查一下传入的IndexPathh与调用`prepareForCollectionViewUpdates:`方法时记录的IndexPath是否一致。
+插入、删除、移动cell时，会导致其周围cell的布局属性发生变化，这些cell会强制执行这个动画：cell更新布局前的frame-->cell更新布局后的frame，这是官方在内部实现的。在重写`finalLayoutAttributesForDisappearingItemAtIndexPath:`和`initialLayoutAttributesForAppearingItemAtIndexPath:`方法设置执行动画用到的布局属性时，最好检查一下传入的`indexPath`与调用`prepareForCollectionViewUpdates:`方法时记录的`indexPath`是否一致。
 
 ## Demo
 
