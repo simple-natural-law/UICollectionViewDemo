@@ -47,24 +47,9 @@
  */
 
 #import "APLGridCollectionViewController.h"
-#import "APLDetailViewController.h"
 #import "APLCollectionViewCell.h"
 
 @implementation APLGridCollectionViewController
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    // used tapped a collection view cell, navigate to a detail view controller showing that single photo
-    APLCollectionViewCell *cell = (APLCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    if (cell.imageView.image != nil)
-    {
-        // we need to load the main storyboard because this view controller was created programmatically
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        
-        APLDetailViewController *detailViewController = [storyboard instantiateViewControllerWithIdentifier:@"detailVC"];
-        detailViewController.image = cell.imageView.image;
-        [self.navigationController pushViewController:detailViewController animated:YES];
-    }
-}
 
 @end

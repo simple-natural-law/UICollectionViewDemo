@@ -506,31 +506,6 @@
             </objects>
             <point key="canvasLocation" x="2028" y="805.54722638680664"/>
         </scene>
-        <!--控制器跳转时布局切换转场动画-->
-        <scene sceneID="bwD-wo-sVq">
-            <objects>
-                <collectionViewController storyboardIdentifier="APLStackCollectionViewController" title="控制器跳转时布局切换转场动画" id="gqT-cN-qId" customClass="APLStackCollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="gFu-uD-CYF">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="tLh-Jv-qHi">
-                            <size key="itemSize" width="160" height="180"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
-                        </collectionViewFlowLayout>
-                        <cells/>
-                        <connections>
-                            <outlet property="dataSource" destination="gqT-cN-qId" id="VR1-ln-BsW"/>
-                            <outlet property="delegate" destination="gqT-cN-qId" id="cmb-WU-WFf"/>
-                        </connections>
-                    </collectionView>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ghu-vF-hwd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2918" y="814"/>
-        </scene>
         <!--剪切粘贴和复制Cell-->
         <scene sceneID="HnG-TU-ayf">
             <objects>

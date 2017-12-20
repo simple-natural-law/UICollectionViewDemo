@@ -40,7 +40,6 @@
 		342E96541FD6EA37005AB38D /* APLCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342E96511FD6EA37005AB38D /* APLCollectionViewCell.m */; };
 		342E96591FD6EA47005AB38D /* APLStackCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342E96561FD6EA47005AB38D /* APLStackCollectionViewController.m */; };
 		342E965A1FD6EA47005AB38D /* APLGridCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342E96571FD6EA47005AB38D /* APLGridCollectionViewController.m */; };
-		342E965D1FD6EA8C005AB38D /* APLDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342E965C1FD6EA8C005AB38D /* APLDetailViewController.m */; };
 		348559671F7A98360058F2CD /* CardSelectedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 348559661F7A98360058F2CD /* CardSelectedLayout.m */; };
 		34F6D0E71F8CF90900094EF2 /* CollectionViewChangeLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1B5D0F1F8CD03600456AD2 /* CollectionViewChangeLayoutViewController.m */; };
 /* End PBXBuildFile section */
@@ -109,8 +108,6 @@
 		342E96561FD6EA47005AB38D /* APLStackCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APLStackCollectionViewController.m; sourceTree = "<group>"; };
 		342E96571FD6EA47005AB38D /* APLGridCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APLGridCollectionViewController.m; sourceTree = "<group>"; };
 		342E96581FD6EA47005AB38D /* APLStackCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APLStackCollectionViewController.h; sourceTree = "<group>"; };
-		342E965B1FD6EA8C005AB38D /* APLDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APLDetailViewController.h; sourceTree = "<group>"; };
-		342E965C1FD6EA8C005AB38D /* APLDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APLDetailViewController.m; sourceTree = "<group>"; };
 		348559651F7A98360058F2CD /* CardSelectedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardSelectedLayout.h; sourceTree = "<group>"; };
 		348559661F7A98360058F2CD /* CardSelectedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardSelectedLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -273,8 +270,6 @@
 				342E964B1FD6EA00005AB38D /* APLTransitionManager.m */,
 				342E96471FD6E9FF005AB38D /* APLTransitionLayout.h */,
 				342E96491FD6E9FF005AB38D /* APLTransitionLayout.m */,
-				342E965B1FD6EA8C005AB38D /* APLDetailViewController.h */,
-				342E965C1FD6EA8C005AB38D /* APLDetailViewController.m */,
 			);
 			path = "控制器跳转时布局切换转场动画";
 			sourceTree = "<group>";
@@ -381,7 +376,6 @@
 				34F6D0E71F8CF90900094EF2 /* CollectionViewChangeLayoutViewController.m in Sources */,
 				342E964E1FD6EA00005AB38D /* APLTransitionManager.m in Sources */,
 				1A5E1B1B1F691F6D00AA79BE /* InsertCell.m in Sources */,
-				342E965D1FD6EA8C005AB38D /* APLDetailViewController.m in Sources */,
 				342E96591FD6EA47005AB38D /* APLStackCollectionViewController.m in Sources */,
 				342E964D1FD6EA00005AB38D /* APLTransitionLayout.m in Sources */,
 				1A5E1B441F70C7BF00AA79BE /* WaterfallsFlowLayout.m in Sources */,
