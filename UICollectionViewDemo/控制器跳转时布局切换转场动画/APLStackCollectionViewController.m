@@ -88,6 +88,8 @@
     //
     nextCollectionViewController.useLayoutToLayoutNavigationTransitions = YES;
     
+    nextCollectionViewController.title = @"Grid Layout";
+    
     return nextCollectionViewController;
 }
 
