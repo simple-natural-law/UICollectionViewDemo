@@ -26,7 +26,7 @@
 
 ### 重用视图提高性能
 
-集合视图通过复用已被回收的cell来提高效率，当cell滚动到屏幕外时，它们不会被销毁，但会被移出容器视图并放置到重用队列中。当有新的内容将要滚动到屏幕中时，如果重用队列中有可复用的cell，会首先从重用队列中取，并重置被取出来的cell的数据，然后将其添加到容器视图中展示。如果重用队列没有可复用的cell，这时才会新创建一个cell去展示。为了方便这种循环，集合视图中展示的都必须继承自`UICollectionReusableView`类。
+集合视图通过复用已被回收的cell来提高效率，当cell滚动到屏幕外时，它们不会被销毁，但会被移出容器视图并放置到重用队列中。当有新的内容将要滚动到屏幕中时，如果重用队列中有可复用的cell，会首先从重用队列中取，并重置被取出来的cell的数据，然后将其添加到容器视图中展示。如果重用队列没有可复用的cell，这时才会新创建一个cell去展示。为了方便这种循环，集合视图中展示的视图类都必须继承自`UICollectionReusableView`类。
 
 集合视图支持三种不同类型的可重用视图，每种视图都具有特定的用途：
 - cell(单元格)展示集合视图的主要内容，每个cell展示的内容由`dataSource`对象提供。每个cell都必须是`UICollectionViewCell`的实例，同时我们也可以根据需要对其子类化。cell对象支持管理其选中和高亮状态。
@@ -297,7 +297,7 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 
 ![图3-2](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/flow_section_insets_2x.png)
 
-使用时，通过固定单元格的大小和单元格之间的最小间距来实现网格状视图，同时也可以任意设置单元格的大小和单元格之间的间距来实现不规则排列的视图。当单元格的大小，单元格之间的最小间距，单元格到所在分区四周的边距以及Header和Footer的大小固定时，可以直接设置`itemSize`，`minimumLineSpacing`，`minimumInteritemSpacing`，`sectionInset`，`headerReferenceSize`，`footerReferenceSize`属性值。如果想要动态设置它们，需要集合视图的delegate对象实现`UICollectionViewDelegateFlowLayout`协议的委托方法。
+使用时，通过固定单元格的大小和单元格之间的最小间距来实现网格状视图，同时也可以任意设置单元格的大小和单元格之间的间距来实现不规则排列的视图。当单元格的大小，单元格之间的最小间距，单元格到所在分区四周的边距以及Header和Footer的大小固定时，可以直接设置`itemSize`，`minimumLineSpacing`，`minimumInteritemSpacing`，`sectionInset`，`headerReferenceSize`，`footerReferenceSize`属性值。如果想要动态设置它们，需要集合视图的`delegate`对象实现`UICollectionViewDelegateFlowLayout`协议的委托方法。
 
 ### 自定义布局
 
