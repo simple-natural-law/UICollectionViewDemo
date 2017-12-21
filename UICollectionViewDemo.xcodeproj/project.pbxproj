@@ -30,12 +30,16 @@
 		1A5E1B441F70C7BF00AA79BE /* WaterfallsFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B411F70C7BF00AA79BE /* WaterfallsFlowLayout.m */; };
 		1A5E1B451F70C7BF00AA79BE /* WaterfallsFlowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5E1B431F70C7BF00AA79BE /* WaterfallsFlowViewController.m */; };
 		1A919ED21F68D24800C2DB12 /* MultipleSelectedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A919ED11F68D24800C2DB12 /* MultipleSelectedViewController.m */; };
-		1A9E80201F8DF3A5007534DF /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E801F1F8DF3A5007534DF /* FirstViewController.m */; };
-		1A9E80231F8DF3BB007534DF /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E80221F8DF3BB007534DF /* SecondViewController.m */; };
-		1A9E80261F8E0043007534DF /* CustomTransitionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9E80251F8E0043007534DF /* CustomTransitionLayout.m */; };
 		1AB49E991F74F39800F2E790 /* InsertAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB49E981F74F39800F2E790 /* InsertAnimationViewController.m */; };
 		1AB49E9C1F74F50B00F2E790 /* CustomFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB49E9B1F74F50B00F2E790 /* CustomFlowLayout.m */; };
 		1AB49E9F1F75096700F2E790 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB49E9E1F75096700F2E790 /* CustomCell.m */; };
+		342E964C1FD6EA00005AB38D /* APLStackLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 342E96481FD6E9FF005AB38D /* APLStackLayout.m */; };
+		342E964D1FD6EA00005AB38D /* APLTransitionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 342E96491FD6E9FF005AB38D /* APLTransitionLayout.m */; };
+		342E964E1FD6EA00005AB38D /* APLTransitionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 342E964B1FD6EA00005AB38D /* APLTransitionManager.m */; };
+		342E96531FD6EA37005AB38D /* APLCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342E964F1FD6EA36005AB38D /* APLCollectionViewController.m */; };
+		342E96541FD6EA37005AB38D /* APLCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 342E96511FD6EA37005AB38D /* APLCollectionViewCell.m */; };
+		342E96591FD6EA47005AB38D /* APLStackCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342E96561FD6EA47005AB38D /* APLStackCollectionViewController.m */; };
+		342E965A1FD6EA47005AB38D /* APLGridCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 342E96571FD6EA47005AB38D /* APLGridCollectionViewController.m */; };
 		348559671F7A98360058F2CD /* CardSelectedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 348559661F7A98360058F2CD /* CardSelectedLayout.m */; };
 		34F6D0E71F8CF90900094EF2 /* CollectionViewChangeLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A1B5D0F1F8CD03600456AD2 /* CollectionViewChangeLayoutViewController.m */; };
 /* End PBXBuildFile section */
@@ -84,18 +88,26 @@
 		1A5E1B431F70C7BF00AA79BE /* WaterfallsFlowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaterfallsFlowViewController.m; sourceTree = "<group>"; };
 		1A919ED01F68D24800C2DB12 /* MultipleSelectedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipleSelectedViewController.h; sourceTree = "<group>"; };
 		1A919ED11F68D24800C2DB12 /* MultipleSelectedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipleSelectedViewController.m; sourceTree = "<group>"; };
-		1A9E801E1F8DF3A5007534DF /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		1A9E801F1F8DF3A5007534DF /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		1A9E80211F8DF3BB007534DF /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		1A9E80221F8DF3BB007534DF /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		1A9E80241F8E0043007534DF /* CustomTransitionLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTransitionLayout.h; sourceTree = "<group>"; };
-		1A9E80251F8E0043007534DF /* CustomTransitionLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTransitionLayout.m; sourceTree = "<group>"; };
 		1AB49E971F74F39800F2E790 /* InsertAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InsertAnimationViewController.h; sourceTree = "<group>"; };
 		1AB49E981F74F39800F2E790 /* InsertAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsertAnimationViewController.m; sourceTree = "<group>"; };
 		1AB49E9A1F74F50B00F2E790 /* CustomFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomFlowLayout.h; sourceTree = "<group>"; };
 		1AB49E9B1F74F50B00F2E790 /* CustomFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomFlowLayout.m; sourceTree = "<group>"; };
 		1AB49E9D1F75096700F2E790 /* CustomCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
 		1AB49E9E1F75096700F2E790 /* CustomCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		342E96461FD6E9FF005AB38D /* APLTransitionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APLTransitionManager.h; sourceTree = "<group>"; };
+		342E96471FD6E9FF005AB38D /* APLTransitionLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APLTransitionLayout.h; sourceTree = "<group>"; };
+		342E96481FD6E9FF005AB38D /* APLStackLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APLStackLayout.m; sourceTree = "<group>"; };
+		342E96491FD6E9FF005AB38D /* APLTransitionLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APLTransitionLayout.m; sourceTree = "<group>"; };
+		342E964A1FD6EA00005AB38D /* APLStackLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APLStackLayout.h; sourceTree = "<group>"; };
+		342E964B1FD6EA00005AB38D /* APLTransitionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APLTransitionManager.m; sourceTree = "<group>"; };
+		342E964F1FD6EA36005AB38D /* APLCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APLCollectionViewController.m; sourceTree = "<group>"; };
+		342E96501FD6EA37005AB38D /* APLCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APLCollectionViewController.h; sourceTree = "<group>"; };
+		342E96511FD6EA37005AB38D /* APLCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APLCollectionViewCell.m; sourceTree = "<group>"; };
+		342E96521FD6EA37005AB38D /* APLCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APLCollectionViewCell.h; sourceTree = "<group>"; };
+		342E96551FD6EA46005AB38D /* APLGridCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APLGridCollectionViewController.h; sourceTree = "<group>"; };
+		342E96561FD6EA47005AB38D /* APLStackCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APLStackCollectionViewController.m; sourceTree = "<group>"; };
+		342E96571FD6EA47005AB38D /* APLGridCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = APLGridCollectionViewController.m; sourceTree = "<group>"; };
+		342E96581FD6EA47005AB38D /* APLStackCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APLStackCollectionViewController.h; sourceTree = "<group>"; };
 		348559651F7A98360058F2CD /* CardSelectedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardSelectedLayout.h; sourceTree = "<group>"; };
 		348559661F7A98360058F2CD /* CardSelectedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardSelectedLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -244,12 +256,20 @@
 		1A8EFCC81F8DC480004BD873 /* 控制器跳转时布局切换转场动画 */ = {
 			isa = PBXGroup;
 			children = (
-				1A9E801E1F8DF3A5007534DF /* FirstViewController.h */,
-				1A9E801F1F8DF3A5007534DF /* FirstViewController.m */,
-				1A9E80211F8DF3BB007534DF /* SecondViewController.h */,
-				1A9E80221F8DF3BB007534DF /* SecondViewController.m */,
-				1A9E80241F8E0043007534DF /* CustomTransitionLayout.h */,
-				1A9E80251F8E0043007534DF /* CustomTransitionLayout.m */,
+				342E96501FD6EA37005AB38D /* APLCollectionViewController.h */,
+				342E964F1FD6EA36005AB38D /* APLCollectionViewController.m */,
+				342E96521FD6EA37005AB38D /* APLCollectionViewCell.h */,
+				342E96511FD6EA37005AB38D /* APLCollectionViewCell.m */,
+				342E96551FD6EA46005AB38D /* APLGridCollectionViewController.h */,
+				342E96571FD6EA47005AB38D /* APLGridCollectionViewController.m */,
+				342E96581FD6EA47005AB38D /* APLStackCollectionViewController.h */,
+				342E96561FD6EA47005AB38D /* APLStackCollectionViewController.m */,
+				342E964A1FD6EA00005AB38D /* APLStackLayout.h */,
+				342E96481FD6E9FF005AB38D /* APLStackLayout.m */,
+				342E96461FD6E9FF005AB38D /* APLTransitionManager.h */,
+				342E964B1FD6EA00005AB38D /* APLTransitionManager.m */,
+				342E96471FD6E9FF005AB38D /* APLTransitionLayout.h */,
+				342E96491FD6E9FF005AB38D /* APLTransitionLayout.m */,
 			);
 			path = "控制器跳转时布局切换转场动画";
 			sourceTree = "<group>";
@@ -354,27 +374,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				34F6D0E71F8CF90900094EF2 /* CollectionViewChangeLayoutViewController.m in Sources */,
+				342E964E1FD6EA00005AB38D /* APLTransitionManager.m in Sources */,
 				1A5E1B1B1F691F6D00AA79BE /* InsertCell.m in Sources */,
+				342E96591FD6EA47005AB38D /* APLStackCollectionViewController.m in Sources */,
+				342E964D1FD6EA00005AB38D /* APLTransitionLayout.m in Sources */,
 				1A5E1B441F70C7BF00AA79BE /* WaterfallsFlowLayout.m in Sources */,
 				1A428C401F611E9E008FC3E0 /* CodeCell.m in Sources */,
 				1A428C3C1F611E13008FC3E0 /* XibCell.m in Sources */,
 				1A5E1B221F6A7CDE00AA79BE /* EditCell.m in Sources */,
+				342E96531FD6EA37005AB38D /* APLCollectionViewController.m in Sources */,
 				348559671F7A98360058F2CD /* CardSelectedLayout.m in Sources */,
 				1A15119E1F7A5CE800A12D5E /* CardSelectedViewController.m in Sources */,
 				1A5E1B451F70C7BF00AA79BE /* WaterfallsFlowViewController.m in Sources */,
 				1A919ED21F68D24800C2DB12 /* MultipleSelectedViewController.m in Sources */,
+				342E965A1FD6EA47005AB38D /* APLGridCollectionViewController.m in Sources */,
 				1A428C321F611BB0008FC3E0 /* BaseDemoViewController.m in Sources */,
 				1A5E1B321F6BB77D00AA79BE /* AppDelegate.m in Sources */,
-				1A9E80231F8DF3BB007534DF /* SecondViewController.m in Sources */,
 				1A5E1B181F690C8B00AA79BE /* InsertViewController.m in Sources */,
-				1A9E80261F8E0043007534DF /* CustomTransitionLayout.m in Sources */,
 				1A5E1B1F1F6A7C0700AA79BE /* EditViewController.m in Sources */,
 				1A5E1B351F6BB77D00AA79BE /* main.m in Sources */,
 				1AB49E9C1F74F50B00F2E790 /* CustomFlowLayout.m in Sources */,
+				342E96541FD6EA37005AB38D /* APLCollectionViewCell.m in Sources */,
 				1A5E1B331F6BB77D00AA79BE /* HomeTableViewController.m in Sources */,
+				342E964C1FD6EA00005AB38D /* APLStackLayout.m in Sources */,
 				1A428C381F611CE6008FC3E0 /* StoryboardCell.m in Sources */,
 				1AB49E9F1F75096700F2E790 /* CustomCell.m in Sources */,
-				1A9E80201F8DF3A5007534DF /* FirstViewController.m in Sources */,
 				1AB49E991F74F39800F2E790 /* InsertAnimationViewController.m in Sources */,
 				1A428C331F611BB0008FC3E0 /* CollectionHeaderView.m in Sources */,
 				1A5E1B101F68D8EC00AA79BE /* SelectCell.m in Sources */,
