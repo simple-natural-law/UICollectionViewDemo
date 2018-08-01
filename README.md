@@ -12,24 +12,22 @@
 
 | 目的 | 类/协议 | 描述 |
 |-----|--------|------|
-| 顶层容器和管理者 | UICollectionView UICollectionViewController | UICollectionView定义了显示视图内容的空间，它继承自[UIScrollView](https://developer.apple.com/documentation/uikit/uiscrollview)，能够根据内容的高度来调整其滚动区域。其layout布局对象会提供布局信息来呈现数据。UICollectionViewController对象提供了一个UICollectionView的视图控制器级管理支持。 |
-| 内容管理 | UICollectionViewDataSource协议 UICollectionViewDelegate协议 | DataSource协议是必须实现的，它创造并管理UICollectionView的视图内容。Delegate协议能获取视图的信息并自定义视图的行为，这个协议是可选实现的。|
-| 内容视图 | UICollectionReusableView UICollectionViewCell | UICollectionView展示的所有视图都必须是UICollectionReusableView类的实例，该类支持回收复用机制。在视图滚动时,回收复用视图而不是重新创建，能极大提高性能。UICollectionViewCell对象是用来展示主要数据的可重用视图,该类继承自UICollectionReusableView。|
-| 布局 | UICollectionViewLayout UICollectionViewLayoutAttributes UICollectionViewUpdateItem | UICollectionViewLayout的子类被称为布局对象，它负责定义集合视图中的cell和可重用视图的位置，大小，视觉效果。在布局过程中，布局对象UICollectionViewLayout会创建一个布局属性对象UICollectionViewLayoutAttributes去告诉集合视图在什么位置，用什么样视觉外观去展示cell和可重用视图。当在集合视图中插入、删除、移动数据项时，布局对象会接收到UICollectionViewUpdateItem类的实例，我们不需要自行创建该类的实例。|
-| 流水布局  | UICollectionViewFlowLayout UICollectionViewDelegateFlowLayout协议 |  UICollectionViewFlowLayout类是用于实现网格或其他基于行的布局的具体布局对象。 我们可以按照原样使用该类或者配合UICollectionViewDelegateFlowLayout协议一起使用，这样就可以动态自定义布局信息。|
-
+| 顶层容器和管理者 | UICollectionView<br>UICollectionViewController | UICollectionView定义了显示视图内容的空间，它继承自[UIScrollView](https://developer.apple.com/documentation/uikit/uiscrollview)，能够根据内容的高度来调整其滚动区域。其layout布局对象会提供布局信息来呈现数据。<br>UICollectionViewController对象提供了一个UICollectionView的视图控制器级管理支持。 |
+| 内容管理 | UICollectionViewDataSource协议<br>UICollectionViewDelegate协议 | DataSource协议是必须实现的，它创造并管理UICollectionView的视图内容。<br>Delegate协议能获取视图的信息并自定义视图的行为，这个协议是可选实现的。|
+| 内容视图 | UICollectionReusableView<br>UICollectionViewCell | UICollectionView展示的所有视图都必须是UICollectionReusableView类的实例，该类支持回收复用机制。在视图滚动时,回收复用视图而不是重新创建，能极大提高性能。<br>UICollectionViewCell对象是用来展示主要数据的可重用视图,该类继承自UICollectionReusableView。|
+| 布局 | UICollectionViewLayout<br>UICollectionViewLayoutAttributes<br>UICollectionViewUpdateItem | UICollectionViewLayout的子类被称为布局对象，它负责定义集合视图中的cell和可重用视图的位置，大小，视觉效果。在布局过程中，布局对象UICollectionViewLayout会创建一个布局属性对象UICollectionViewLayoutAttributes去告诉集合视图在什么位置，用什么样视觉外观去展示cell和可重用视图。当在集合视图中插入、删除、移动数据项时，布局对象会接收到UICollectionViewUpdateItem类的实例，不需要自行创建该类的实例。|
+| 流水布局  | UICollectionViewFlowLayout协议<br>UICollectionViewDelegateFlowLayout协议 |  UICollectionViewFlowLayout类是用于实现网格或其他基于行的布局的具体布局对象。 可以按照原样使用该类或者配合UICollectionViewDelegateFlowLayout协议一起使用，这样就可以动态自定义布局信息。|
 
 集合视图从其`dataSource`对象中获取要展示的cell的数据内容，并通过其`delegate`对象去管理cell的选中和高亮等状态。布局对象负责决定cell所在的位置，布局属性对象记录了cell的布局属性，布局对象将布局属性对象传递给集合视图，集合视图接收到布局属性信息后创建并展示cell。
 
-
-![图1-1](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_objects_2x.png)
+![图1-1](http://upload-images.jianshu.io/upload_images/4906302-ba3d276d462c721a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### 重用视图提高性能
 
 集合视图通过复用已被回收的cell来提高效率，当cell滚动到屏幕外时，它们不会被销毁，但会被移出容器视图并放置到重用队列中。当有新的内容将要滚动到屏幕中时，如果重用队列中有可复用的cell，会首先从重用队列中取，并重置被取出来的cell的数据，然后将其添加到容器视图中展示。如果重用队列没有可复用的cell，这时才会新创建一个cell去展示。为了方便这种循环，集合视图中展示的视图类都必须继承自`UICollectionReusableView`类。
 
 集合视图支持三种不同类型的可重用视图，每种视图都具有特定的用途：
-- cell(单元格)展示集合视图的主要内容，每个cell展示的内容由`dataSource`对象提供。每个cell都必须是`UICollectionViewCell`的实例，同时我们也可以根据需要对其子类化。cell对象支持管理其选中和高亮状态。
+- cell(单元格)展示集合视图的主要内容，每个cell展示的内容由`dataSource`对象提供。每个cell都必须是`UICollectionViewCell`的实例，同时也可以根据需要对其子类化。cell对象支持管理其选中和高亮状态。
 - supplementary view(补充视图)展示每个section(分区)的信息。和cell相同的是：supplementary view也是数据驱动的。不同的是：supplementary view是可选的而不是强制的。supplementary view的使用和布局是由布局对象管理的，系统提供的流水布局支持设置header和footer作为可选的supplementary view。
 - decoration view(装饰视图)与`dataSource`对象提供的数据不相关，完全属于布局对象。布局对象可能会使用它自定义集合视图背景。
 
@@ -43,7 +41,7 @@
 
 下图显示了垂直滚动的流水布局对象如何布置cell。在垂直滚动流水布局中，内容区域的宽度保持固定，高度随着内容高度的增加而增加。布局对象一次只放置一个cell，在放置前会先计算出cell在容器视图中的frame，为cell选择最合适的位置。
 
-![图1-2](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_basics_2x.png)
+![图1-2](http://upload-images.jianshu.io/upload_images/4906302-5978228bb7d267c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## 使用
 
@@ -133,7 +131,7 @@
     return YES;
 }
 ```
-选中cell时触发高亮后回调，我们可以在这里去改变cell的背景色:
+选中cell时触发高亮后回调，可以在这里改变cell的背景色:
 ```
 - (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -142,7 +140,7 @@
     cell.contentView.backgroundColor = [UIColor lightGrayColor];
 }
 ```
-cell被取消选中变为普通状态后回调，我们可以在这里还原cell的背景色：
+cell被取消选中变为普通状态后回调，可以在这里还原cell的背景色：
 ```
 - (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -153,7 +151,7 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 ```
 > 注意：点击cell时，cell的状态变化过程为：手指接触屏幕时，cell状态变为高亮，此时cell还未被选中。当手指离开屏幕后，cell状态变回到普通状态，然后cell被集合视图选中。当快速点击选中cell时，由于状态变化很快，导致人眼看不出来cell背景色有发生变化，实际上是发生了变化的。而长按选中cell时，可以看到背景色的变化。
 
-![图2-1](http://oaz007vqv.bkt.clouddn.com/cell_selection_semantics_2x.png?imageView/2/w/600)
+![图2-1](http://upload-images.jianshu.io/upload_images/4906302-27daed629c81cd54.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ### UICollectionViewDelegateFlowLayout
 
@@ -279,7 +277,7 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 
 `UICollectionViewTransitionLayout`类是一种特殊的布局类，它继承自`UICollectionViewLayout`类,在切换到新布局的过程中，它将作为集合视图的临时布局。使用`UICollectionViewTransitionLayout`布局对象时，可以使用不同的计时算法让动画遵循非线性路径，或者根据传入的触摸事件进行移动。官方提供的`UICollectionViewTransitionLayout`类支持对新布局的线性转换，但我们可以对其进行子类化来实现任何所需的效果。
 
-`UICollectionViewLayout`提供了几种跟踪布局之间转换进度的方法，`UICollectionViewTransitionLayout`类通过`transitionProgress`属性来跟踪转场切换的进度，当转场切换开始后，我们需要定期更新此属性值来指示完成的百分比。使用自定义`UICollectionViewTransitionLayout`对象时，`UICollectionViewTransitionLayout`类提供来2种跟踪与布局相关的值的方法：`updateValue:forAnimatedKey:`和`valueForAnimatedKey:`。
+`UICollectionViewLayout`提供了几种跟踪布局之间转换进度的方法，`UICollectionViewTransitionLayout`类通过`transitionProgress`属性来跟踪转场切换的进度，当转场切换开始后，需要定期更新此属性值来指示完成的百分比。使用自定义`UICollectionViewTransitionLayout`对象时，`UICollectionViewTransitionLayout`类提供来2种跟踪与布局相关的值的方法：`updateValue:forAnimatedKey:`和`valueForAnimatedKey:`。
 
 转场切换布局时，使用`UICollectionViewTransitionLayout`对象的步骤如下：
 - 使用`initWithCurrentLayout:nextLayout: `方法创建一个`UICollectionViewTransitionLayout`实例对象。
@@ -293,9 +291,9 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 
 官方提供的`UICollectionViewFlowLayout`流水布局对象实现了基于行的断开布局，单元格被放置在线性路径上，并沿着该行放置尽可能多的单元格，当前行上的空间在使用最小间距也不足以放置下一个单元格时，会重新计算出合适的当前行上摆放的单元格之间的间距，如果该行上只有一个单元格，那么它会被置中，然后会创建新的一行并在该行重复之前的布局过程。
 
-![图3-1](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/flow_horiz_layout_uneven_2x.png)
+![图3-1](http://upload-images.jianshu.io/upload_images/4906302-1a616e928e5a1a1b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-![图3-2](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/flow_section_insets_2x.png)
+![图3-2](http://upload-images.jianshu.io/upload_images/4906302-b18aadc17f32bff9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 使用时，通过固定单元格的大小和单元格之间的最小间距来实现网格状视图，同时也可以任意设置单元格的大小和单元格之间的间距来实现不规则排列的视图。当单元格的大小，单元格之间的最小间距，单元格到所在分区四周的边距以及Header和Footer的大小固定时，可以直接设置`itemSize`，`minimumLineSpacing`，`minimumInteritemSpacing`，`sectionInset`，`headerReferenceSize`，`footerReferenceSize`属性值。如果想要动态设置它们，需要集合视图的`delegate`对象实现`UICollectionViewDelegateFlowLayout`协议的委托方法。
 
@@ -318,11 +316,11 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 
 集合视图调用布局对象的`prepareLayout`方法，提供机会让我们提前计算确定布局属性信息时所需的数据，从计算出来的数据中要能够得知集合视图整个内容区域的大小。
 
-集合视图调用布局对象的`collectionViewContentSize`方法获得内容大小来适当的配置其滚动视图，我们在这里根据提前计算的数据返回整个内容区域的大小。如果内容大小在垂直和水平方向上都超出当前设备屏幕的边界，则会允许滚动视图同时在这两个方向上滚动，而`UICollectionViewFlowLayout`只能在一个方向上滚动。
+集合视图调用布局对象的`collectionViewContentSize`方法获得内容大小来适当的配置其滚动视图，在这里根据提前计算的数据返回整个内容区域的大小。如果内容大小在垂直和水平方向上都超出当前设备屏幕的边界，则会允许滚动视图同时在这两个方向上滚动，而`UICollectionViewFlowLayout`只能在一个方向上滚动。
 
-集合视图会基于当前的滚动位置调用`layoutAttributesForElementsInRect:`方法来查找在特定区域中的单元格和视图的布局属性，此区域和可视区域可能相同也可能不同，我们在这里遍历提前生成的所有的布局属性信息，检查每个布局信息的frame，返回所有frame和给定rect相交的布局属性，这样核心布局过程就完成了。
+集合视图会基于当前的滚动位置调用`layoutAttributesForElementsInRect:`方法来查找在特定区域中的单元格和视图的布局属性，此区域和可视区域可能相同也可能不同，在这里遍历提前生成的所有的布局属性信息，检查每个布局信息的frame，返回所有frame和给定rect相交的布局属性，这样核心布局过程就完成了。
 
-![图4-1](https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/CollectionViewPGforIOS/Art/cv_layout_process_2x.png)
+![图4-1](http://upload-images.jianshu.io/upload_images/4906302-a97e8cd3dd565470.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 可以在`prepareLayout`方法中生成布局属性对象后缓存起来，也可以在`layoutAttributesForElementsInRect:`方法中生成布局属性对象，但是集合视图在滚动过程中会多次调用`layoutAttributesForElementsInRect:`方法，这样就会为视图重复计算布局属性，会有性能损耗。
 
@@ -352,9 +350,9 @@ cell被取消选中变为普通状态后回调，我们可以在这里还原cell
 
 #### 自定义cell的插入、删除、移动和刷新动画
 
-集合视图调用对应的方法插入、删除、刷新、移动cell时，布局对象会调用`invalidateLayout`废弃现有的布局信息，重新执行前面提到的布局过程生成新的布局属性。在集合视图更新前调用`prepareForCollectionViewUpdates:`方法告知要更新的cell在更新前的`indexPath`和更新完成后的`indexPath`，以及其要执行的更新方式，需要重写此方法记录这些`indexPath`。
+集合视图调用对应的方法插入、删除、刷新、移动cell时，布局对象会调用`invalidateLayout`方法废弃现有的布局信息，重新执行前面提到的布局过程生成新的布局属性。在集合视图更新前调用`prepareForCollectionViewUpdates:`方法告知要更新的cell在更新前的`indexPath`和更新完成后的`indexPath`，以及其要执行的更新方式，需要重写此方法记录这些`indexPath`。
 
-之后，集合视图会执行两个动画：更新布局前每个cell被移除的动画和更新布局后每个cell显示的动画，我们看到的动画效果是由这两个动画组合而成的。在执行动画过程中，布局对象会调用`finalLayoutAttributesForDisappearingItemAtIndexPath:`方法获取对应IndexPath的cell被移除时的最终布局属性来执行动画：更新布局前的布局属性值-->cell被移除时的最终布局属性值，调用`initialLayoutAttributesForAppearingItemAtIndexPath:`方法获取对应IndexPath的cell显示时的起始布局属性来执行动画：cell显示时的起始布局属性值-->更新布局后的cell布局属性值。
+之后，集合视图会执行两个动画：更新布局前每个cell被移除的动画和更新布局后每个cell显示的动画，我们看到的动画效果是由这两个动画组合而成的。在执行动画过程中，布局对象会调用`finalLayoutAttributesForDisappearingItemAtIndexPath:`方法获取对应`indexPath`的cell被移除时的最终布局属性来执行动画：更新布局前的布局属性值-->cell被移除时的最终布局属性值，调用`initialLayoutAttributesForAppearingItemAtIndexPath:`方法获取对应`indexPath`的cell显示时的起始布局属性来执行动画：cell显示时的起始布局属性值-->更新布局后的cell布局属性值。
 
 插入、删除、移动cell时，会导致其周围cell的布局属性发生变化，这些cell会强制执行这个动画：cell更新布局前的frame-->cell更新布局后的frame，这是官方在内部实现的。在重写`finalLayoutAttributesForDisappearingItemAtIndexPath:`和`initialLayoutAttributesForAppearingItemAtIndexPath:`方法设置执行动画用到的布局属性时，最好检查一下传入的`indexPath`与调用`prepareForCollectionViewUpdates:`方法时记录的`indexPath`是否一致。
 
