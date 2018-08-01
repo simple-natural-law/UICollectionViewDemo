@@ -10,7 +10,6 @@
 
 @interface CardSelectedLayout ()
 
-@property (nonatomic, assign) BOOL needPrepareLayout;
 
 @end
 
